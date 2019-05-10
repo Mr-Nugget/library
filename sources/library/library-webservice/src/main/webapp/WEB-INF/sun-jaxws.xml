@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<endpoints
+	xmlns="http://java.sun.com/xml/ns/jax-ws/ri/runtime" version="2.0">
+	<endpoint name="SearchImpl"
+		implementation="fr.library.webservices.entrypoint.SearchImpl"
+		url-pattern="/search" />
+	<endpoint name="ManageImpl"
+		implementation="fr.library.webservices.entrypoint.ManageImpl"
+		url-pattern="/manage" />
+		<endpoint name="ConnectionImpl"
+		implementation="fr.library.webservices.entrypoint.ConnectionImpl"
+		url-pattern="/connect" />
+</endpoints>

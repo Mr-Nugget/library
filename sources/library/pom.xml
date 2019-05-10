@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>fr.oc.p3</groupId>
+	<artifactId>library</artifactId>
+	<version>1.0.0</version>
+	<packaging>pom</packaging>
+
+	<name>library</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencyManagement>
+
+		<dependencies>
+
+			<!-- ===== Bibliothèques tierces ===== -->
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>javax.servlet-api</artifactId>
+				<version>4.0.1</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>jstl</groupId>
+				<artifactId>jstl</artifactId>
+				<version>1.2</version>
+			</dependency>
+			<dependency>
+				<groupId>postgresql</groupId>
+				<artifactId>postgresql</artifactId>
+				<version>9.1-901-1.jdbc4</version>
+			</dependency>
+			<dependency>
+				<groupId>log4j</groupId>
+				<artifactId>log4j</artifactId>
+				<version>1.2.17</version>
+			</dependency>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.12</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>javax.xml.ws</groupId>
+				<artifactId>jaxws-api</artifactId>
+				<version>2.3.0</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-dbcp</groupId>
+				<artifactId>commons-dbcp</artifactId>
+				<version>1.4</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>jsp-api</artifactId>
+				<version>2.0</version>
+				<scope>provided</scope>
+			</dependency>
+			<!-- =============JWT=============== -->
+			<dependency>
+				<groupId>com.auth0</groupId>
+				<artifactId>java-jwt</artifactId>
+				<version>3.3.0</version>
+			</dependency>
+			<dependency>
+				<groupId>io.jsonwebtoken</groupId>
+				<artifactId>jjwt</artifactId>
+				<version>0.9.1</version>
+			</dependency>
+
+			<!-- ===== Spring ===== -->
+			<dependency>
+				<groupId>org.springframework.ws</groupId>
+				<artifactId>spring-ws-core</artifactId>
+				<version>3.0.4.RELEASE</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-webmvc</artifactId>
+				<version>5.1.3.RELEASE</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>5.1.3.RELEASE</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>jstl</artifactId>
+				<version>1.2</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.validation</groupId>
+				<artifactId>validation-api</artifactId>
+				<version>2.0.1.Final</version>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-validator</artifactId>
+				<version>5.3.1.Final</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.0</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.xml.soap</groupId>
+				<artifactId>javax.xml.soap-api</artifactId>
+				<version>1.4.0</version>
+			</dependency>
+		</dependencies>
+
+	</dependencyManagement>
+
+	<dependencies>
+	</dependencies>
+	<modules>
+		<module>library-batch</module>
+		<module>library-webapp</module>
+		<module>library-webservice</module>
+    <module>library-model</module>
+    <module>library-client</module>
+  </modules>
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>jaxb2-maven-plugin</artifactId>
+					<version>2.4</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>

@@ -1,0 +1,71 @@
+body{
+  background-image: url("../res/background.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  background-color: grey;
+  margin: 0;
+  padding: 0;
+}
+
+.header{
+  height: 7vh;
+  display: flex;
+  align-items: center;
+}
+
+.login{
+  margin-left:auto; margin-right:0;
+  overflow : hidden;
+}
+
+a{
+  color: white;
+  background-color: grey;
+  text-shadow: inherit;
+
+}
+a:hover{
+  color:white;
+  text-shadow: inherit;
+}
+
+.welcome{
+  text-align: center;
+  margin-top: 25vh;
+  display: flex;
+  flex-direction: row;
+}
+
+.infos{
+	background-color: white;
+	margin-left: 5vw;
+	margin-right: 5vw;
+	border-radius: 10px;
+	padding-left: 2vw;
+	padding-right: 2vw;
+	background: rgba(256, 256, 256, 0.7);
+}
+.horaire{
+	background-color: white;
+	width: 100vw;
+	border-radius: 10px;
+	padding-left: 2vw;
+	padding-right: 2vw;
+	background: rgba(256, 256, 256, 0.7);
+}
+.adresse{
+	background-color: white;
+	width: 100vw;
+	border-radius: 10px;
+	padding-left: 2vw;
+	padding-right: 2vw;
+	background: rgba(256, 256, 256, 0.7);
+}
+
+img{
+	height: 5vh;
+	width: auto;
+	margin-bottom: 5vh;
+}

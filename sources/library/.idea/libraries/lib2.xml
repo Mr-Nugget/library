@@ -1,0 +1,19 @@
+<component name="libraryTable">
+  <library name="lib2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/library-webservice/target/library-webservice/WEB-INF/lib/javax.xml.soap-api-1.4.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/library-webservice/target/library-webservice/WEB-INF/lib/log4j-1.2.17.jar!/" />
+      <root url="jar://$PROJECT_DIR$/library-webservice/target/library-webservice/WEB-INF/lib/wsdl4j.jar!/" />
+      <root url="jar://$PROJECT_DIR$/library-webservice/target/library-webservice/WEB-INF/lib/commons-discovery-0.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/library-webservice/target/library-webservice/WEB-INF/lib/jaxb-api-2.3.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/library-webservice/target/library-webservice/WEB-INF/lib/postgresql-9.1-901-1.jdbc4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/library-webservice/target/library-webservice/WEB-INF/lib/axis.jar!/" />
+      <root url="jar://$PROJECT_DIR$/library-webservice/target/library-webservice/WEB-INF/lib/commons-logging.jar!/" />
+      <root url="jar://$PROJECT_DIR$/library-webservice/target/library-webservice/WEB-INF/lib/jaxrpc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/library-webservice/target/library-webservice/WEB-INF/lib/jaxws-api-2.3.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/library-webservice/target/library-webservice/WEB-INF/lib/saaj.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
