@@ -27,24 +27,6 @@ public interface IConnection {
 
     /**
      * 
-     * @param arg1
-     * @param arg0
-     * @return
-     *     returns java.lang.String
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "login", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.connect.Login")
-    @ResponseWrapper(localName = "loginResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.connect.LoginResponse")
-    @Action(input = "http://entrypoint.webservices.library.fr/IConnection/loginRequest", output = "http://entrypoint.webservices.library.fr/IConnection/loginResponse")
-    public String login(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        String arg1);
-
-    /**
-     * 
      * @param arg0
      * @return
      *     returns fr.library.wsdl.connect.User
@@ -62,6 +44,24 @@ public interface IConnection {
         String arg0)
         throws JWTCheckingException_Exception
     ;
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "login", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.connect.Login")
+    @ResponseWrapper(localName = "loginResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.connect.LoginResponse")
+    @Action(input = "http://entrypoint.webservices.library.fr/IConnection/loginRequest", output = "http://entrypoint.webservices.library.fr/IConnection/loginResponse")
+    public String login(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        String arg1);
 
     /**
      * 

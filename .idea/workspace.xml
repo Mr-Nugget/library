@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="a4622f9c-3acd-48d4-8517-4be3a6cb5588" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/install/sql/create_db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/install/sql/create_db.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-batch/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/sources/library/library-batch/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-batch/src/main/java/fr/library/librarybatch/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/library/library-batch/src/main/java/fr/library/librarybatch/AppConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-batch/src/main/java/fr/library/librarybatch/MailScheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/library/library-batch/src/main/java/fr/library/librarybatch/MailScheduler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-client/.classpath" beforeDir="false" afterPath="$PROJECT_DIR$/sources/library/library-client/.classpath" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-client/.settings/org.eclipse.core.resources.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/sources/library/library-client/.settings/org.eclipse.core.resources.prefs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-client/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/sources/library/library-client/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/connect/ConnectionImplService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/connect/GetUser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/connect/GetUserResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/connect/IConnection.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/connect/JWTCheckingException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/connect/JWTCheckingException_Exception.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/connect/Login.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/connect/LoginResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/connect/Logout.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/connect/LogoutResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/connect/ObjectFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/connect/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/connect/package-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/manage/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/manage/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/manage/Document.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/manage/Document.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/manage/ExtendLoan.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/manage/ExtendLoanResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/manage/GetArchivedLoans.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/manage/GetArchivedLoansResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/manage/GetCurrentLoans.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/manage/GetCurrentLoansResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/manage/IManage.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/manage/IManage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/manage/JWTCheckingException.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/manage/JWTCheckingException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/manage/JWTCheckingException_Exception.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/manage/Loan.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/manage/Loan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/manage/LoanExpired.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/manage/LoanExpiredResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/manage/ManageImplService.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/manage/ManageImplService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/manage/ObjectFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/manage/Status.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/manage/Status.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/manage/Type.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/manage/Type.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/manage/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/manage/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/manage/package-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/search/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/search/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/search/Document.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/search/Document.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/search/ISearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/search/ISearch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/search/JWTCheckingException.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/search/JWTCheckingException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/search/JWTCheckingException_Exception.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/search/ObjectFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/search/Search.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/search/SearchImplService.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/search/SearchImplService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/search/SearchResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/search/Type.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/search/Type.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-client/src/main/java/fr/library/wsdl/search/package-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-webapp/.classpath" beforeDir="false" afterPath="$PROJECT_DIR$/sources/library/library-webapp/.classpath" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-webapp/.settings/org.eclipse.core.resources.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/sources/library/library-webapp/.settings/org.eclipse.core.resources.prefs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-webapp/.settings/org.eclipse.wst.common.component" beforeDir="false" afterPath="$PROJECT_DIR$/sources/library/library-webapp/.settings/org.eclipse.wst.common.component" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-webapp/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/sources/library/library-webapp/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-webapp/src/main/java/fr/library/config/SpringWebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/library/library-webapp/src/main/java/fr/library/config/SpringWebConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-webapp/src/main/java/fr/library/controllers/ConnectionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/library/library-webapp/src/main/java/fr/library/controllers/ConnectionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-webapp/src/main/java/fr/library/controllers/LoanController.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/library/library-webapp/src/main/java/fr/library/controllers/LoanController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-webapp/src/main/java/fr/library/controllers/SearchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/sources/library/library-webapp/src/main/java/fr/library/controllers/SearchController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-webservice/src/main/main2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/sources/library/library-webservice/src/main/main2.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-webservice/src/main/resources/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/sources/library/library-webservice/src/main/resources/config.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/library-webservice/src/test/test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/sources/library/library-webservice/src/test/test.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/library/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/sources/library/pom.xml" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/out/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-966723183">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.2" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="java" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="JAVA" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/sources/library/library-webservice/src/test/java/test/sql/UserDaoImplTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-476">
+              <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="96" />
+    <option name="y" value="-9" />
+    <option name="width" value="1750" />
+    <option name="height" value="969" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator currentView="PackagesPane" proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="library" type="b2602c69:ProjectViewProjectNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="library" type="b2602c69:ProjectViewProjectNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="library" type="b2602c69:ProjectViewProjectNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="library" type="b2602c69:ProjectViewProjectNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="library" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558443717722" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a4622f9c-3acd-48d4-8517-4be3a6cb5588" name="Default Changelist" comment="" />
+      <created>1558443665601</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1558443665601</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <layout>
+      <window_info id="Image Layers" />
+      <window_info id="Designer" />
+      <window_info id="UI Designer" />
+      <window_info id="Capture Tool" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.42348993" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" visible="true" weight="0.3286119" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Palette" />
+      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="right" id="Palette&#9;" />
+      <window_info anchor="right" id="Maven Projects" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/sources/library/library-webservice/src/test/java/test/sql/UserDaoImplTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-476">
+          <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>JDK1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

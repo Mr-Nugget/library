@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/sources/library/library-batch/src/main/main.iml" filepath="$PROJECT_DIR$/sources/library/library-batch/src/main/main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sources/library/library-client/src/main/main1.iml" filepath="$PROJECT_DIR$/sources/library/library-client/src/main/main1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sources/library/library-webservice/src/main/main2.iml" filepath="$PROJECT_DIR$/sources/library/library-webservice/src/main/main2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sources/library/library-model/src/main/main3.iml" filepath="$PROJECT_DIR$/sources/library/library-model/src/main/main3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sources/library/library-webapp/src/main/main4.iml" filepath="$PROJECT_DIR$/sources/library/library-webapp/src/main/main4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sources/library/library-webservice/src/test/test.iml" filepath="$PROJECT_DIR$/sources/library/library-webservice/src/test/test.iml" />
+    </modules>
+  </component>
+</project>

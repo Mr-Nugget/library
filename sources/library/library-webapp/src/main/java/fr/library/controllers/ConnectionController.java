@@ -17,6 +17,11 @@ import fr.library.wsdl.connect.IConnection;
 import fr.library.wsdl.connect.JWTCheckingException_Exception;
 import fr.library.wsdl.connect.User;
 
+
+
+
+
+
 /**
  * Controller for connection users action like login, logout
  * @author Titouan
@@ -57,7 +62,9 @@ public class ConnectionController {
 				model.addObject("error", "Identifiants incorrects");
 				model.setViewName("redirect:/connection");
 			}else {
+
 				jwt = service.login(mail, password);
+
 				if(jwt == null) {
 					model.addObject("error", "Identifiants incorrects");
 					model.setViewName("redirect:/connection");

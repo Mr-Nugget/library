@@ -14,6 +14,10 @@ import org.springframework.stereotype.Component;
 import fr.library.wsdl.manage.IManage;
 import fr.library.wsdl.manage.Loan;
 import fr.library.wsdl.manage.Status;
+
+
+
+
 /**
  * Scheduler, this job will be launched by Srping batch every week
  * @author Titouan
@@ -34,9 +38,10 @@ public class MailScheduler {
 	public void task() {
 		StringBuilder message = new StringBuilder();
 		DateFormat simpleFormat = new SimpleDateFormat("dd/MM/yyyy");
-		
+
 		// Get expired loans list from webservice ManageLoans
-		List<Loan> loansList = service.loanExpired();
+		List<Loan> loansList = null;
+		loansList = service.loanExpired();
 		// For every user who have a loan in progress
 		for(Loan loan : loansList) {
 			System.out.println(loan.toString());

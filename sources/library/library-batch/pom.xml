@@ -20,7 +20,7 @@
 	</properties>
 
 	<dependencies>
-	
+
 		<!-- Modules -->
 		<dependency>
 			<groupId>fr.oc.p3</groupId>
@@ -30,7 +30,7 @@
 		<dependency>
 			<groupId>fr.oc.p3</groupId>
 			<artifactId>library-client</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>1.0.0</version>
 		</dependency>
 		<!-- Bibliothèques tierces -->
 		<dependency>
@@ -46,6 +46,11 @@
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>1.2.17</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.xml</groupId>
+			<artifactId>jaxrpc-api</artifactId>
+			<version>1.1</version>
 		</dependency>
 	</dependencies>
 

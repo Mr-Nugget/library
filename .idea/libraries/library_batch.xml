@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="library-batch">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/sources/library/library-batch.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

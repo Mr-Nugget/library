@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/sources/library/library-webservice/src/main/webapp/WEB-INF/lib/wsdl4j.jar!/" />
+      <root url="jar://$PROJECT_DIR$/sources/library/library-webservice/src/main/webapp/WEB-INF/lib/saaj.jar!/" />
+      <root url="jar://$PROJECT_DIR$/sources/library/library-webservice/src/main/webapp/WEB-INF/lib/commons-logging.jar!/" />
+      <root url="jar://$PROJECT_DIR$/sources/library/library-webservice/src/main/webapp/WEB-INF/lib/commons-discovery-0.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/sources/library/library-webservice/src/main/webapp/WEB-INF/lib/axis.jar!/" />
+      <root url="jar://$PROJECT_DIR$/sources/library/library-webservice/src/main/webapp/WEB-INF/lib/jaxrpc.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

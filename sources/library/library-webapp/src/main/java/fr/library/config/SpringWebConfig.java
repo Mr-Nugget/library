@@ -24,41 +24,43 @@ import fr.library.wsdl.search.SearchImplService;
 @EnableWebMvc // Enabled Spring MVC annotations
 @Configuration
 public class SpringWebConfig implements WebMvcConfigurer {
-	 	@Override
-	   public void addViewControllers(ViewControllerRegistry registry) {
-	      registry.addViewController("/index");
-	   }
-	 
-	   @Bean
-	   public ViewResolver viewResolver() {
-	      InternalResourceViewResolver bean = new InternalResourceViewResolver();
-	 
-	      bean.setViewClass(JstlView.class);
-	      // Where find the views
-	      bean.setPrefix("/WEB-INF/view/");
-	      // Wich file used
-	      bean.setSuffix(".jsp");
-	 
-	      return bean;
-	   }
-	   
-	   @Bean
-		public IManage manageService() {
-			ManageImplService manage = new ManageImplService();
-			return manage.getManageImplPort();
-		}
-	   
-	   @Bean
-		public ISearch serachService() {
-			SearchImplService search = new SearchImplService();
-			return search.getSearchImplPort();
-		}
-	   
-	   @Bean
-		public IConnection connectionService() {
-			ConnectionImplService connect = new ConnectionImplService();
-			return connect.getConnectionImplPort();
-		}
-	   
- 
+	@Override
+	public void addViewControllers(ViewControllerRegistry registry) {
+		registry.addViewController("/index");
+	}
+
+	@Bean
+	public ViewResolver viewResolver() {
+		InternalResourceViewResolver bean = new InternalResourceViewResolver();
+
+		bean.setViewClass(JstlView.class);
+		// Where find the views
+		bean.setPrefix("/WEB-INF/view/");
+		// Wich file used
+		bean.setSuffix(".jsp");
+
+		return bean;
+	}
+
+	@Bean
+	public IManage manageService() {
+		ManageImplService manage = new ManageImplService();
+		return manage.getManageImplPort();
+		
+	}
+
+	@Bean
+	public ISearch serachService() {
+		SearchImplService search = new SearchImplService();
+		return search.getSearchImplPort();
+	}
+
+	@Bean
+	public IConnection connectionService() {
+		ConnectionImplService connect = new ConnectionImplService();
+		return connect.getConnectionImplPort();
+
+	}
+
+
 }

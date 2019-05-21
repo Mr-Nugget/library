@@ -14,6 +14,8 @@ import fr.library.wsdl.manage.IManage;
 import fr.library.wsdl.manage.ManageImplService;
 
 
+
+
 /**
  * Spring batch configuration beans, the javaMailSender, the DataSource, the JDBCTemplate
  * @author Titouan
@@ -57,5 +59,6 @@ public class AppConfig {
 	public IManage manageLoanservice() {
 		ManageImplService manage = new ManageImplService();
 		return manage.getManageImplPort();
+		
 	}
 }

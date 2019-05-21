@@ -1,6 +1,8 @@
 package fr.library.controllers;
 
+
 import java.util.ArrayList;
+
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -15,6 +17,9 @@ import org.springframework.web.servlet.ModelAndView;
 import fr.library.wsdl.manage.IManage;
 import fr.library.wsdl.manage.JWTCheckingException_Exception;
 import fr.library.wsdl.manage.Loan;
+
+
+
 
 
 
@@ -44,6 +49,7 @@ public class LoanController {
 		
 		List<Loan> listResLoans = new ArrayList<>();
 		try {
+			// Convert the array into an ArrayList
 			listResLoans = service.getCurrentLoans(jwtCookie);
 		} catch (JWTCheckingException_Exception e) {
 			logger.error("current Loans", e);
