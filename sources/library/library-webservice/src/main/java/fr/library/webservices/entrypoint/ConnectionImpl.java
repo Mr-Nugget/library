@@ -44,4 +44,12 @@ public class ConnectionImpl implements IConnection {
 			return null;
 		}
 	}
+	@Override
+	public User userExist(String mail) {
+		if(mail.isEmpty()) {
+			return null;
+		}
+		return UserService.userExist(mail);
+		
+	}
 }

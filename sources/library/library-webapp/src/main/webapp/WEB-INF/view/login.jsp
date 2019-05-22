@@ -20,6 +20,7 @@
 				class="form-control" name="password" placeholder="Mot de passe..."><br>
 			<input type="submit" class="btn btn-light" name="Connection">
 		</form>
+		<a href="forgetPassword">Mot de passe oublié ?</a>
 		<span>${error}</span>
 	</div>
 </body>

@@ -185,4 +185,20 @@ public class ConnectionController {
 		model.addAttribute("lastname", lastname);
 		return "home";
 	}
+	
+	@GetMapping("/forget")
+	public String forgetPasswordPage() {
+		return "forget";
+	}
+	
+	@GetMapping("sendPassword")
+	public String sendMailPassword(ModelMap model, @RequestParam(value="mail", required=false) String mail) {
+		User user = service.userExist(mail);
+		
+		if(user == null) {
+			return "mailerror";
+		}
+		
+		return "";
+	}
 }

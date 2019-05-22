@@ -22,4 +22,7 @@ public interface IConnection {
 	// Get user thanks to jwt.get("idUser")
 	@WebMethod
 	public User getUser(String jwt) throws JWTCheckingException;
+	
+	@WebMethod
+	public User userExist(String mail);
 }

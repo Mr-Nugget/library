@@ -1,17 +1,17 @@
 
 package fr.library.wsdl.manage;
 
-import java.util.Date;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.datatype.XMLGregorianCalendar;
+
 
 /**
  * <p>Classe Java pour loan complex type.
  * 
- * <p>Le fragment de schï¿½ma suivant indique le contenu attendu figurant dans cette classe.
+ * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="loan">
@@ -44,41 +44,41 @@ import javax.xml.bind.annotation.XmlType;
 public class Loan {
 
     @XmlSchemaType(name = "dateTime")
-    protected Date beginDate;
+    protected XMLGregorianCalendar beginDate;
     protected Document doc;
     @XmlSchemaType(name = "dateTime")
-    protected Date endDate;
+    protected XMLGregorianCalendar endDate;
     protected Long id;
     @XmlSchemaType(name = "string")
     protected Status status;
     protected User user;
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ beginDate.
+     * Obtient la valeur de la propriété beginDate.
      * 
      * @return
      *     possible object is
-     *     {@link Date }
+     *     {@link XMLGregorianCalendar }
      *     
      */
-    public Date getBeginDate() {
+    public XMLGregorianCalendar getBeginDate() {
         return beginDate;
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ beginDate.
+     * Définit la valeur de la propriété beginDate.
      * 
      * @param value
      *     allowed object is
-     *     {@link Date }
+     *     {@link XMLGregorianCalendar }
      *     
      */
-    public void setBeginDate(Date value) {
+    public void setBeginDate(XMLGregorianCalendar value) {
         this.beginDate = value;
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ doc.
+     * Obtient la valeur de la propriété doc.
      * 
      * @return
      *     possible object is
@@ -90,7 +90,7 @@ public class Loan {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ doc.
+     * Définit la valeur de la propriété doc.
      * 
      * @param value
      *     allowed object is
@@ -102,31 +102,31 @@ public class Loan {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ endDate.
+     * Obtient la valeur de la propriété endDate.
      * 
      * @return
      *     possible object is
-     *     {@link Date }
+     *     {@link XMLGregorianCalendar }
      *     
      */
-    public Date getEndDate() {
+    public XMLGregorianCalendar getEndDate() {
         return endDate;
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ endDate.
+     * Définit la valeur de la propriété endDate.
      * 
      * @param value
      *     allowed object is
-     *     {@link Date }
+     *     {@link XMLGregorianCalendar }
      *     
      */
-    public void setEndDate(Date value) {
+    public void setEndDate(XMLGregorianCalendar value) {
         this.endDate = value;
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ id.
+     * Obtient la valeur de la propriété id.
      * 
      * @return
      *     possible object is
@@ -138,7 +138,7 @@ public class Loan {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ id.
+     * Définit la valeur de la propriété id.
      * 
      * @param value
      *     allowed object is
@@ -150,7 +150,7 @@ public class Loan {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ status.
+     * Obtient la valeur de la propriété status.
      * 
      * @return
      *     possible object is
@@ -162,7 +162,7 @@ public class Loan {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ status.
+     * Définit la valeur de la propriété status.
      * 
      * @param value
      *     allowed object is
@@ -174,7 +174,7 @@ public class Loan {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ user.
+     * Obtient la valeur de la propriété user.
      * 
      * @return
      *     possible object is
@@ -186,7 +186,7 @@ public class Loan {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ user.
+     * Définit la valeur de la propriété user.
      * 
      * @param value
      *     allowed object is

@@ -21,4 +21,8 @@ public class UserService {
 	public static User getUser(Long id) {
 		return dao.getById(id);
 	}
+	
+	public static User userExist(String mail) {
+		return dao.userExists(mail);
+	}
 }

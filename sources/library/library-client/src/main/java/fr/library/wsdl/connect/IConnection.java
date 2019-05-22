@@ -30,6 +30,21 @@ public interface IConnection {
      * @param arg0
      * @return
      *     returns fr.library.wsdl.connect.User
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "userExist", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.connect.UserExist")
+    @ResponseWrapper(localName = "userExistResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.connect.UserExistResponse")
+    @Action(input = "http://entrypoint.webservices.library.fr/IConnection/userExistRequest", output = "http://entrypoint.webservices.library.fr/IConnection/userExistResponse")
+    public User userExist(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns fr.library.wsdl.connect.User
      * @throws JWTCheckingException_Exception
      */
     @WebMethod

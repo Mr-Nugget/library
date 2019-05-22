@@ -30,7 +30,9 @@ public class ObjectFactory {
     private final static QName _LogoutResponse_QNAME = new QName("http://entrypoint.webservices.library.fr/", "logoutResponse");
     private final static QName _JWTCheckingException_QNAME = new QName("http://entrypoint.webservices.library.fr/", "JWTCheckingException");
     private final static QName _GetUserResponse_QNAME = new QName("http://entrypoint.webservices.library.fr/", "getUserResponse");
+    private final static QName _UserExistResponse_QNAME = new QName("http://entrypoint.webservices.library.fr/", "userExistResponse");
     private final static QName _Login_QNAME = new QName("http://entrypoint.webservices.library.fr/", "login");
+    private final static QName _UserExist_QNAME = new QName("http://entrypoint.webservices.library.fr/", "userExist");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: fr.library.wsdl.connect
@@ -96,6 +98,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link UserExist }
+     * 
+     */
+    public UserExist createUserExist() {
+        return new UserExist();
+    }
+
+    /**
+     * Create an instance of {@link UserExistResponse }
+     * 
+     */
+    public UserExistResponse createUserExistResponse() {
+        return new UserExistResponse();
+    }
+
+    /**
      * Create an instance of {@link User }
      * 
      */
@@ -158,12 +176,30 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link UserExistResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://entrypoint.webservices.library.fr/", name = "userExistResponse")
+    public JAXBElement<UserExistResponse> createUserExistResponse(UserExistResponse value) {
+        return new JAXBElement<UserExistResponse>(_UserExistResponse_QNAME, UserExistResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link Login }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://entrypoint.webservices.library.fr/", name = "login")
     public JAXBElement<Login> createLogin(Login value) {
         return new JAXBElement<Login>(_Login_QNAME, Login.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link UserExist }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://entrypoint.webservices.library.fr/", name = "userExist")
+    public JAXBElement<UserExist> createUserExist(UserExist value) {
+        return new JAXBElement<UserExist>(_UserExist_QNAME, UserExist.class, null, value);
     }
 
 }
