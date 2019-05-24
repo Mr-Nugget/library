@@ -49,43 +49,52 @@ public class ConnectionController {
 			@CookieValue(value="jwtCookie", required=false) String jwtCookie
 			) {
 
+
 		ModelAndView model = new ModelAndView();
 		String jwt = null;
-
+		//Delete space before and after the mail
+		mail = mail.trim().toLowerCase();
+		// Check if the user exists
+		User userExist = service.userExist(mail);
 		// If there is no jwtCookie, use the login webservice
 		if(jwtCookie == null) {
-			if(mail.isEmpty() || password.isEmpty()) {
+			// if mail is wrong
+			if(mail.isEmpty() || password.isEmpty() || userExist == null) {
 				// Add a message for the client
 				model.addObject("error", "Identifiants incorrects");
 				model.setViewName("redirect:/connection");
 			}else {
-
-				jwt = service.login(mail, password);
-
-				if(jwt == null) {
+				if(!userExist.getPassword().equals(password)) {
 					model.addObject("error", "Identifiants incorrects");
 					model.setViewName("redirect:/connection");
 				}else {
-					// Creating a cookie to stock jwt token
-					Cookie cookie = new Cookie("jwtCookie", jwt);
-
-					// Set cookie Age to 30min
-					cookie.setMaxAge(604800);
-					response.addCookie(cookie);
-					// Get users infos
-					User user = new User();
-
-					try {
-						user = service.getUser(jwt);
-						Cookie firstname = new Cookie("firstname", user.getFirstName());
-						Cookie lastname = new Cookie("lastname", user.getLastName());
-
-						response.addCookie(firstname);
-						response.addCookie(lastname);
-						model.setViewName("redirect:/home");
-					} catch (JWTCheckingException_Exception e) {
+					jwt = service.login(mail, password);
+					// if password is wrong
+					if(jwt == null) {
+						model.addObject("error", "Identifiants incorrects");
 						model.setViewName("redirect:/connection");
-						logger.error("Login controller", e);
+					}else {
+						// Creating a cookie to stock jwt token
+						Cookie cookie = new Cookie("jwtCookie", jwt);
+
+						// Set cookie Age to 30min
+						cookie.setMaxAge(604800);
+						response.addCookie(cookie);
+						// Get users infos
+						User user = new User();
+
+						try {
+							user = service.getUser(jwt);
+							Cookie firstname = new Cookie("firstname", user.getFirstName());
+							Cookie lastname = new Cookie("lastname", user.getLastName());
+
+							response.addCookie(firstname);
+							response.addCookie(lastname);
+							model.setViewName("redirect:/home");
+						} catch (JWTCheckingException_Exception e) {
+							model.setViewName("redirect:/connection");
+							logger.error("Login controller", e);
+						}
 					}
 				}
 			}
@@ -182,12 +191,12 @@ public class ConnectionController {
 		model.addAttribute("lastname", lastname);
 		return "home";
 	}
-	
+
 	@GetMapping("/forget")
 	public String forgetPasswordPage() {
 		return "forget";
 	}
-	
+
 	@PostMapping("/forgetresponse")
 	public String sendMailPassword(ModelMap model, @RequestParam(value="mail", required=false) String mail) {
 		User user = service.userExist(mail);
@@ -199,25 +208,25 @@ public class ConnectionController {
 			service.sendMail("bonjour", "bonjour", mail);
 		}
 		model.addAttribute("message", message);
-		
+
 		return "forgetresponse";
 	}
-	
+
 	@PostMapping("/newpassword")
 	public String resetPassword(ModelMap model,
-			 @RequestParam(value="token", required=false) String token,
-			 @RequestParam(value="password", required=false) String password,
-			 @RequestParam(value="confirm", required=false) String confirm) {
-		
+			@RequestParam(value="token", required=false) String token,
+			@RequestParam(value="password", required=false) String password,
+			@RequestParam(value="confirm", required=false) String confirm) {
+
 		if(password.isEmpty() || confirm.isEmpty()) {
 			return "home";
 		}
 		if(!password.equals(confirm)) {
 			return "home";
 		}
-		
+
 		//service.resetPassword(password, token);
-		
+
 		return "";
 	}
 }
