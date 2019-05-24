@@ -24,15 +24,19 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _GetUser_QNAME = new QName("http://entrypoint.webservices.library.fr/", "getUser");
+    private final static QName _ResetPasswordResponse_QNAME = new QName("http://entrypoint.webservices.library.fr/", "resetPasswordResponse");
     private final static QName _Logout_QNAME = new QName("http://entrypoint.webservices.library.fr/", "logout");
+    private final static QName _UserExistResponse_QNAME = new QName("http://entrypoint.webservices.library.fr/", "userExistResponse");
+    private final static QName _UserExist_QNAME = new QName("http://entrypoint.webservices.library.fr/", "userExist");
+    private final static QName _SendMailResponse_QNAME = new QName("http://entrypoint.webservices.library.fr/", "sendMailResponse");
+    private final static QName _GetUser_QNAME = new QName("http://entrypoint.webservices.library.fr/", "getUser");
     private final static QName _LoginResponse_QNAME = new QName("http://entrypoint.webservices.library.fr/", "loginResponse");
     private final static QName _LogoutResponse_QNAME = new QName("http://entrypoint.webservices.library.fr/", "logoutResponse");
     private final static QName _JWTCheckingException_QNAME = new QName("http://entrypoint.webservices.library.fr/", "JWTCheckingException");
     private final static QName _GetUserResponse_QNAME = new QName("http://entrypoint.webservices.library.fr/", "getUserResponse");
-    private final static QName _UserExistResponse_QNAME = new QName("http://entrypoint.webservices.library.fr/", "userExistResponse");
+    private final static QName _ResetPassword_QNAME = new QName("http://entrypoint.webservices.library.fr/", "resetPassword");
     private final static QName _Login_QNAME = new QName("http://entrypoint.webservices.library.fr/", "login");
-    private final static QName _UserExist_QNAME = new QName("http://entrypoint.webservices.library.fr/", "userExist");
+    private final static QName _SendMail_QNAME = new QName("http://entrypoint.webservices.library.fr/", "sendMail");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: fr.library.wsdl.connect
@@ -58,11 +62,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Logout }
+     * Create an instance of {@link ResetPassword }
      * 
      */
-    public Logout createLogout() {
-        return new Logout();
+    public ResetPassword createResetPassword() {
+        return new ResetPassword();
     }
 
     /**
@@ -90,11 +94,43 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link SendMail }
+     * 
+     */
+    public SendMail createSendMail() {
+        return new SendMail();
+    }
+
+    /**
      * Create an instance of {@link Login }
      * 
      */
     public Login createLogin() {
         return new Login();
+    }
+
+    /**
+     * Create an instance of {@link Logout }
+     * 
+     */
+    public Logout createLogout() {
+        return new Logout();
+    }
+
+    /**
+     * Create an instance of {@link ResetPasswordResponse }
+     * 
+     */
+    public ResetPasswordResponse createResetPasswordResponse() {
+        return new ResetPasswordResponse();
+    }
+
+    /**
+     * Create an instance of {@link SendMailResponse }
+     * 
+     */
+    public SendMailResponse createSendMailResponse() {
+        return new SendMailResponse();
     }
 
     /**
@@ -122,12 +158,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetUser }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ResetPasswordResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://entrypoint.webservices.library.fr/", name = "getUser")
-    public JAXBElement<GetUser> createGetUser(GetUser value) {
-        return new JAXBElement<GetUser>(_GetUser_QNAME, GetUser.class, null, value);
+    @XmlElementDecl(namespace = "http://entrypoint.webservices.library.fr/", name = "resetPasswordResponse")
+    public JAXBElement<ResetPasswordResponse> createResetPasswordResponse(ResetPasswordResponse value) {
+        return new JAXBElement<ResetPasswordResponse>(_ResetPasswordResponse_QNAME, ResetPasswordResponse.class, null, value);
     }
 
     /**
@@ -137,6 +173,42 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://entrypoint.webservices.library.fr/", name = "logout")
     public JAXBElement<Logout> createLogout(Logout value) {
         return new JAXBElement<Logout>(_Logout_QNAME, Logout.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link UserExistResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://entrypoint.webservices.library.fr/", name = "userExistResponse")
+    public JAXBElement<UserExistResponse> createUserExistResponse(UserExistResponse value) {
+        return new JAXBElement<UserExistResponse>(_UserExistResponse_QNAME, UserExistResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link UserExist }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://entrypoint.webservices.library.fr/", name = "userExist")
+    public JAXBElement<UserExist> createUserExist(UserExist value) {
+        return new JAXBElement<UserExist>(_UserExist_QNAME, UserExist.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SendMailResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://entrypoint.webservices.library.fr/", name = "sendMailResponse")
+    public JAXBElement<SendMailResponse> createSendMailResponse(SendMailResponse value) {
+        return new JAXBElement<SendMailResponse>(_SendMailResponse_QNAME, SendMailResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetUser }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://entrypoint.webservices.library.fr/", name = "getUser")
+    public JAXBElement<GetUser> createGetUser(GetUser value) {
+        return new JAXBElement<GetUser>(_GetUser_QNAME, GetUser.class, null, value);
     }
 
     /**
@@ -176,12 +248,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link UserExistResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ResetPassword }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://entrypoint.webservices.library.fr/", name = "userExistResponse")
-    public JAXBElement<UserExistResponse> createUserExistResponse(UserExistResponse value) {
-        return new JAXBElement<UserExistResponse>(_UserExistResponse_QNAME, UserExistResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://entrypoint.webservices.library.fr/", name = "resetPassword")
+    public JAXBElement<ResetPassword> createResetPassword(ResetPassword value) {
+        return new JAXBElement<ResetPassword>(_ResetPassword_QNAME, ResetPassword.class, null, value);
     }
 
     /**
@@ -194,12 +266,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link UserExist }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link SendMail }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://entrypoint.webservices.library.fr/", name = "userExist")
-    public JAXBElement<UserExist> createUserExist(UserExist value) {
-        return new JAXBElement<UserExist>(_UserExist_QNAME, UserExist.class, null, value);
+    @XmlElementDecl(namespace = "http://entrypoint.webservices.library.fr/", name = "sendMail")
+    public JAXBElement<SendMail> createSendMail(SendMail value) {
+        return new JAXBElement<SendMail>(_SendMail_QNAME, SendMail.class, null, value);
     }
 
 }

@@ -44,6 +44,9 @@ public class ConnectionImpl implements IConnection {
 			return null;
 		}
 	}
+	/**
+	 * Check if user exist
+	 */
 	@Override
 	public User userExist(String mail) {
 		if(mail.isEmpty()) {
@@ -51,5 +54,21 @@ public class ConnectionImpl implements IConnection {
 		}
 		return UserService.userExist(mail);
 		
+	}
+	/**
+	 * reset a user password, check if the token is OK before
+	 */
+	@Override
+	public void resetPassword(String password, String token) throws JWTCheckingException{
+		Long id = JWTHelper.checkJwt(token);
+		if(id!=null) {
+			UserService.resetPassword(password, id);
+		}
+	}
+	@Override
+	public void sendMail(String subject, String message, String mailTo) {
+		if(subject!= null && message !=null && mailTo!=null) {
+			UserService.sendMail(subject, message, mailTo);
+		}
 	}
 }

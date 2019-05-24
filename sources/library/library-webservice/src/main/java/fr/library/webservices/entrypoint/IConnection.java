@@ -22,7 +22,14 @@ public interface IConnection {
 	// Get user thanks to jwt.get("idUser")
 	@WebMethod
 	public User getUser(String jwt) throws JWTCheckingException;
-	
+	// Check if a user exists by login
 	@WebMethod
 	public User userExist(String mail);
+	// Reset a user password, check if token is OK and set new password
+	@WebMethod
+	public void resetPassword(String password, String token) throws JWTCheckingException;
+	// Send a mail with the noreplylibrary address
+	@WebMethod
+	public void sendMail(String subject, String message, String mailTo);
+
 }

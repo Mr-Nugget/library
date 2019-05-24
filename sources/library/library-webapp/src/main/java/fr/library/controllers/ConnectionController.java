@@ -18,10 +18,6 @@ import fr.library.wsdl.connect.JWTCheckingException_Exception;
 import fr.library.wsdl.connect.User;
 
 
-
-
-
-
 /**
  * Controller for connection users action like login, logout
  * @author Titouan
@@ -33,6 +29,7 @@ public class ConnectionController {
 
 	@Autowired
 	IConnection service;
+
 
 	Logger logger = Logger.getLogger(ConnectionController.class);
 
@@ -191,13 +188,35 @@ public class ConnectionController {
 		return "forget";
 	}
 	
-	@GetMapping("sendPassword")
+	@PostMapping("/forgetresponse")
 	public String sendMailPassword(ModelMap model, @RequestParam(value="mail", required=false) String mail) {
 		User user = service.userExist(mail);
-		
+		String message = "";
 		if(user == null) {
-			return "mailerror";
+			message = "Aucun utilisateur connu pour le mail :"+mail+". Veuillez réessayer ou contacter le service d'administration de la bibliothèque";
+		}else {
+			message = "Un mail de réinitialisation vient d'être envoyé à l'adresse : "+mail;
+			service.sendMail("bonjour", "bonjour", mail);
 		}
+		model.addAttribute("message", message);
+		
+		return "forgetresponse";
+	}
+	
+	@PostMapping("/newpassword")
+	public String resetPassword(ModelMap model,
+			 @RequestParam(value="token", required=false) String token,
+			 @RequestParam(value="password", required=false) String password,
+			 @RequestParam(value="confirm", required=false) String confirm) {
+		
+		if(password.isEmpty() || confirm.isEmpty()) {
+			return "home";
+		}
+		if(!password.equals(confirm)) {
+			return "home";
+		}
+		
+		//service.resetPassword(password, token);
 		
 		return "";
 	}
