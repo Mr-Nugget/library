@@ -46,9 +46,9 @@
 								<tr>
 									<td>${loan.doc.title}</td>
 									<td>${loan.doc.author}</td>
-									<td><fmt:formatDate value="${loan.beginDate}"
+									<td><fmt:formatDate value="${loan.beginDate.toGregorianCalendar().time}"
 											pattern="dd-MM-yyyy" /></td>
-									<td><fmt:formatDate value="${loan.endDate}"
+									<td><fmt:formatDate value="${loan.endDate.toGregorianCalendar().time}"
 											pattern="dd-MM-yyyy" /></td>
 									<c:choose>
 										<c:when test="${loan.status == 'IN_PROGRESS'}">
