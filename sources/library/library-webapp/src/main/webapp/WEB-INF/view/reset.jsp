@@ -1,19 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Bilbiothèque - Reinitialisation</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>BilbiothÃ¨que - Reinitialisation</title>
 </head>
 <body>
-<h1>Mot de passe oublié</h1>
+<h1>Mot de passe oubliÃ©</h1>
 <br>
 <h4>Entrez votre nouveau de passe :</h4>
 <form action="newpassword" method="post">
-	<input type="hidden" value="<%= request.getParameter("token")%>">
-	<label>Nouveau mot de passe : </label><input type="password" name="password">
-	<label>Confirmer :            </label><input type="password" name="confirm">
+	<input type="hidden" name="token" value="<%= request.getParameter("token")%>">
+	<label>Nouveau mot de passe : </label><input type="password" name="password" placeholder="Mot de passe">
+	<label>Confirmer :            </label><input type="password" name="confirm" placeholder="Confirmer">
 	<input type="submit">
 </form>
 </body>

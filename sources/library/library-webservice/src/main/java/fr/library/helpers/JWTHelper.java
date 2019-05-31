@@ -54,7 +54,7 @@ public abstract class JWTHelper {
 		// Set expiration date to +5 minutes
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(new Date());
-		calendar.add(Calendar.WEEK_OF_MONTH, 1);
+		calendar.add(Calendar.MINUTE, 5);
 		Date expirationDate = calendar.getTime();
 
 		try {

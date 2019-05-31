@@ -28,11 +28,13 @@ public class ObjectFactory {
     private final static QName _Logout_QNAME = new QName("http://entrypoint.webservices.library.fr/", "logout");
     private final static QName _UserExistResponse_QNAME = new QName("http://entrypoint.webservices.library.fr/", "userExistResponse");
     private final static QName _UserExist_QNAME = new QName("http://entrypoint.webservices.library.fr/", "userExist");
+    private final static QName _SendResetPasswordLinkResponse_QNAME = new QName("http://entrypoint.webservices.library.fr/", "sendResetPasswordLinkResponse");
     private final static QName _SendMailResponse_QNAME = new QName("http://entrypoint.webservices.library.fr/", "sendMailResponse");
     private final static QName _GetUser_QNAME = new QName("http://entrypoint.webservices.library.fr/", "getUser");
     private final static QName _LoginResponse_QNAME = new QName("http://entrypoint.webservices.library.fr/", "loginResponse");
     private final static QName _LogoutResponse_QNAME = new QName("http://entrypoint.webservices.library.fr/", "logoutResponse");
     private final static QName _JWTCheckingException_QNAME = new QName("http://entrypoint.webservices.library.fr/", "JWTCheckingException");
+    private final static QName _SendResetPasswordLink_QNAME = new QName("http://entrypoint.webservices.library.fr/", "sendResetPasswordLink");
     private final static QName _GetUserResponse_QNAME = new QName("http://entrypoint.webservices.library.fr/", "getUserResponse");
     private final static QName _ResetPassword_QNAME = new QName("http://entrypoint.webservices.library.fr/", "resetPassword");
     private final static QName _Login_QNAME = new QName("http://entrypoint.webservices.library.fr/", "login");
@@ -51,6 +53,14 @@ public class ObjectFactory {
      */
     public JWTCheckingException createJWTCheckingException() {
         return new JWTCheckingException();
+    }
+
+    /**
+     * Create an instance of {@link SendResetPasswordLink }
+     * 
+     */
+    public SendResetPasswordLink createSendResetPasswordLink() {
+        return new SendResetPasswordLink();
     }
 
     /**
@@ -134,6 +144,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link SendResetPasswordLinkResponse }
+     * 
+     */
+    public SendResetPasswordLinkResponse createSendResetPasswordLinkResponse() {
+        return new SendResetPasswordLinkResponse();
+    }
+
+    /**
      * Create an instance of {@link UserExist }
      * 
      */
@@ -194,6 +212,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SendResetPasswordLinkResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://entrypoint.webservices.library.fr/", name = "sendResetPasswordLinkResponse")
+    public JAXBElement<SendResetPasswordLinkResponse> createSendResetPasswordLinkResponse(SendResetPasswordLinkResponse value) {
+        return new JAXBElement<SendResetPasswordLinkResponse>(_SendResetPasswordLinkResponse_QNAME, SendResetPasswordLinkResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link SendMailResponse }{@code >}}
      * 
      */
@@ -236,6 +263,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://entrypoint.webservices.library.fr/", name = "JWTCheckingException")
     public JAXBElement<JWTCheckingException> createJWTCheckingException(JWTCheckingException value) {
         return new JAXBElement<JWTCheckingException>(_JWTCheckingException_QNAME, JWTCheckingException.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SendResetPasswordLink }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://entrypoint.webservices.library.fr/", name = "sendResetPasswordLink")
+    public JAXBElement<SendResetPasswordLink> createSendResetPasswordLink(SendResetPasswordLink value) {
+        return new JAXBElement<SendResetPasswordLink>(_SendResetPasswordLink_QNAME, SendResetPasswordLink.class, null, value);
     }
 
     /**

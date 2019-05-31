@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import fr.library.wsdl.connect.IConnection;
 import fr.library.wsdl.connect.JWTCheckingException_Exception;
 import fr.library.wsdl.connect.User;
+import io.jsonwebtoken.ExpiredJwtException;
 
 
 /**
@@ -205,7 +206,7 @@ public class ConnectionController {
 			message = "Aucun utilisateur connu pour le mail :"+mail+". Veuillez réessayer ou contacter le service d'administration de la bibliothèque";
 		}else {
 			message = "Un mail de réinitialisation vient d'être envoyé à l'adresse : "+mail;
-			service.sendMail("bonjour", "bonjour", mail);
+			service.sendResetPasswordLink(mail);
 		}
 		model.addAttribute("message", message);
 
@@ -219,11 +220,13 @@ public class ConnectionController {
 			@RequestParam(value="confirm", required=false) String confirm) {
 
 		String message = "Erreur lors du changement de mot de passe. Lien expiré, veuillez ré-éssayer.";
-		if(!password.isEmpty() && !confirm.isEmpty() && password.equals(confirm)) {
+		if(!password.isEmpty() && !confirm.isEmpty() && password.equals(confirm) && !token.isEmpty()) {
 			try {
 				service.resetPassword(password, token);
 				message = "Felicitation votre mot de passe a bien été changé !";
 			} catch (JWTCheckingException_Exception e) {
+				logger.error("JWTError");
+			}catch(ExpiredJwtException e) {
 				logger.error("JWTError");
 			}
 		}
@@ -231,5 +234,10 @@ public class ConnectionController {
 		model.addAttribute("message", message);
 		
 		return "passwordconfirm";
+	}
+	
+	@GetMapping("/reset")
+	public String reset() {
+		return "reset";
 	}
 }
