@@ -48,6 +48,7 @@ public class UserService {
 
 	public static void sendMail(String subject, String message, String mailTo) {
 		Properties prop = new Properties();
+		
 		prop.put("mail.smtp.auth", true);
 		prop.put("mail.smtp.starttls.enable", "true");
 		prop.put("mail.smtp.host", LoadProperties.HOST_PROPERTY);

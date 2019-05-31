@@ -23,13 +23,15 @@ public class LoadProperties {
 	public static Integer PORT_PROPERTY;
 	public static String ADRESS_PROPERTY;
 	public static String MAIL_PASSWORD_PROPERTY;
+	//Project properties
+	public static String URL_PROJECT_PROPERTY;
 	
 	private final static Logger logger =  Logger.getLogger(LoadProperties.class);
 
 	static {
 		// If one of the following properties is missing, load all the file
 		if(URL_PROPERTY == null || PASSWORD_PROPERTY == null || LOGIN_PROPERTY == null || HOST_PROPERTY == null || PORT_PROPERTY == null ||
-				ADRESS_PROPERTY == null || MAIL_PASSWORD_PROPERTY == null) {
+				ADRESS_PROPERTY == null || MAIL_PASSWORD_PROPERTY == null || URL_PROJECT_PROPERTY == null) {
 			Properties prop = new Properties();
 			try (InputStream input = LoadProperties.class.getClassLoader().getResourceAsStream("config.properties")){
 				prop.load(input);
@@ -41,6 +43,8 @@ public class LoadProperties {
 				ADRESS_PROPERTY = prop.getProperty("spring.mail.username");
 				PORT_PROPERTY =  Integer.parseInt(prop.getProperty("spring.mail.port"));
 				MAIL_PASSWORD_PROPERTY = prop.getProperty("spring.mail.password");
+				
+				URL_PROJECT_PROPERTY = prop.getProperty("project.url");
 				
 			} catch (FileNotFoundException e) {
 				logger.error("Aucun fichier trouvé", e);

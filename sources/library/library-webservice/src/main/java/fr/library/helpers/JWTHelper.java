@@ -5,8 +5,10 @@ import java.util.Calendar;
 import java.util.Date;
 
 import org.apache.log4j.Logger;
+import org.library.model.User;
 
 import fr.library.exceptions.JWTCheckingException;
+import fr.library.webservices.services.UserService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -22,7 +24,7 @@ public abstract class JWTHelper {
 	private final static String SECRET_KEY = "libraryOpenclassrooms";
 	private static final Logger logger = Logger.getLogger(JWTHelper.class);
 	/**
-	 * Create a JWT token with HS256 algorithm
+	 * Create a JWT token with HS256 algorithm for login
 	 * @param id
 	 * @param mail
 	 * @return String
@@ -39,6 +41,26 @@ public abstract class JWTHelper {
 					.setSubject("Authentification")
 					.setExpiration(expirationDate)
 					.claim("userId", id)
+					.claim("mail", mail)
+					.signWith(SignatureAlgorithm.HS256, SECRET_KEY.getBytes("UTF-8"))
+					.compact();
+		} catch (UnsupportedEncodingException e) {
+			logger.error("JWT helper creation", e);
+		}
+		return null;
+	}
+	
+	public static String createTmpJWT(String mail) {
+		// Set expiration date to +5 minutes
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(new Date());
+		calendar.add(Calendar.WEEK_OF_MONTH, 1);
+		Date expirationDate = calendar.getTime();
+
+		try {
+			return Jwts.builder()
+					.setSubject("Authentification")
+					.setExpiration(expirationDate)
 					.claim("mail", mail)
 					.signWith(SignatureAlgorithm.HS256, SECRET_KEY.getBytes("UTF-8"))
 					.compact();
@@ -72,11 +94,18 @@ public abstract class JWTHelper {
 	public static Long checkJwt(String jwt) throws JWTCheckingException {
 		Claims claim = JWTHelper.parseJWT(jwt);
 		Date today = new Date();
-		Long id = ((Integer) claim.get("userId")).longValue();
+		String mail = claim.get("mail").toString();
+		
+		User userExist = UserService.userExist(mail);
+		
 		if(claim.getExpiration().before(today)) {
 			throw new JWTCheckingException("JWT expired");
-		}else {
-			return id;
+		}
+		else if(userExist == null) {
+			throw new JWTCheckingException("Wrong id");
+		}
+		else {
+			return userExist.getId();
 		}
 	}
 }

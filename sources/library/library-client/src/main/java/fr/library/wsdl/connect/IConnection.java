@@ -30,6 +30,26 @@ public interface IConnection {
      * @param arg0
      * @return
      *     returns fr.library.wsdl.connect.User
+     * @throws JWTCheckingException_Exception
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getUser", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.connect.GetUser")
+    @ResponseWrapper(localName = "getUserResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.connect.GetUserResponse")
+    @Action(input = "http://entrypoint.webservices.library.fr/IConnection/getUserRequest", output = "http://entrypoint.webservices.library.fr/IConnection/getUserResponse", fault = {
+        @FaultAction(className = JWTCheckingException_Exception.class, value = "http://entrypoint.webservices.library.fr/IConnection/getUser/Fault/JWTCheckingException")
+    })
+    public User getUser(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0)
+        throws JWTCheckingException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns fr.library.wsdl.connect.User
      */
     @WebMethod
     @WebResult(targetNamespace = "")
@@ -77,26 +97,6 @@ public interface IConnection {
         String arg1,
         @WebParam(name = "arg2", targetNamespace = "")
         String arg2);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns fr.library.wsdl.connect.User
-     * @throws JWTCheckingException_Exception
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getUser", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.connect.GetUser")
-    @ResponseWrapper(localName = "getUserResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.connect.GetUserResponse")
-    @Action(input = "http://entrypoint.webservices.library.fr/IConnection/getUserRequest", output = "http://entrypoint.webservices.library.fr/IConnection/getUserResponse", fault = {
-        @FaultAction(className = JWTCheckingException_Exception.class, value = "http://entrypoint.webservices.library.fr/IConnection/getUser/Fault/JWTCheckingException")
-    })
-    public User getUser(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0)
-        throws JWTCheckingException_Exception
-    ;
 
     /**
      * 

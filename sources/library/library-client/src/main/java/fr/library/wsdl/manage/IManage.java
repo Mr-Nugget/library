@@ -71,18 +71,6 @@ public interface IManage {
 
     /**
      * 
-     * @return
-     *     returns java.util.List<fr.library.wsdl.manage.Loan>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "loanExpired", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.manage.LoanExpired")
-    @ResponseWrapper(localName = "loanExpiredResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.manage.LoanExpiredResponse")
-    @Action(input = "http://entrypoint.webservices.library.fr/IManage/loanExpiredRequest", output = "http://entrypoint.webservices.library.fr/IManage/loanExpiredResponse")
-    public List<Loan> loanExpired();
-
-    /**
-     * 
      * @param arg0
      * @return
      *     returns java.util.List<fr.library.wsdl.manage.Loan>
@@ -100,5 +88,17 @@ public interface IManage {
         String arg0)
         throws JWTCheckingException_Exception
     ;
+
+    /**
+     * 
+     * @return
+     *     returns java.util.List<fr.library.wsdl.manage.Loan>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "loanExpired", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.manage.LoanExpired")
+    @ResponseWrapper(localName = "loanExpiredResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.manage.LoanExpiredResponse")
+    @Action(input = "http://entrypoint.webservices.library.fr/IManage/loanExpiredRequest", output = "http://entrypoint.webservices.library.fr/IManage/loanExpiredResponse")
+    public List<Loan> loanExpired();
 
 }

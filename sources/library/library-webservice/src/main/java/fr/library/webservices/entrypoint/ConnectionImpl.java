@@ -6,6 +6,7 @@ import org.library.model.User;
 
 import fr.library.exceptions.JWTCheckingException;
 import fr.library.helpers.JWTHelper;
+import fr.library.helpers.LoadProperties;
 import fr.library.webservices.services.UserService;
 
 
@@ -70,5 +71,21 @@ public class ConnectionImpl implements IConnection {
 		if(subject!= null && message !=null && mailTo!=null) {
 			UserService.sendMail(subject, message, mailTo);
 		}
+	}
+	@Override
+	public void sendResetPasswordLink(String mail) {
+		if(mail != null) {
+			String token = JWTHelper.createTmpJWT(mail);
+			StringBuilder urlReset = new StringBuilder();
+			urlReset.append(LoadProperties.URL_PROJECT_PROPERTY);
+			urlReset.append("reset?token=");
+			urlReset.append(token);
+			
+			String subject = "[Bibliothèque Municipale] Changement de mot de passe";
+			
+			UserService.sendMail(subject, urlReset.toString(), mail);
+			
+		}
+		
 	}
 }

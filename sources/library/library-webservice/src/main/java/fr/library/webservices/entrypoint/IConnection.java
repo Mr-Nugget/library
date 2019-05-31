@@ -31,5 +31,8 @@ public interface IConnection {
 	// Send a mail with the noreplylibrary address
 	@WebMethod
 	public void sendMail(String subject, String message, String mailTo);
+	// Send a link to reset password
+	@WebMethod
+	public void sendResetPasswordLink(String mail);
 
 }

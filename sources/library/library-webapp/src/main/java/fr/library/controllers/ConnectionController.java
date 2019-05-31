@@ -218,15 +218,18 @@ public class ConnectionController {
 			@RequestParam(value="password", required=false) String password,
 			@RequestParam(value="confirm", required=false) String confirm) {
 
-		if(password.isEmpty() || confirm.isEmpty()) {
-			return "home";
+		String message = "Erreur lors du changement de mot de passe. Lien expiré, veuillez ré-éssayer.";
+		if(!password.isEmpty() && !confirm.isEmpty() && password.equals(confirm)) {
+			try {
+				service.resetPassword(password, token);
+				message = "Felicitation votre mot de passe a bien été changé !";
+			} catch (JWTCheckingException_Exception e) {
+				logger.error("JWTError");
+			}
 		}
-		if(!password.equals(confirm)) {
-			return "home";
-		}
-
-		//service.resetPassword(password, token);
-
-		return "";
+		
+		model.addAttribute("message", message);
+		
+		return "passwordconfirm";
 	}
 }
