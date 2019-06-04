@@ -9,20 +9,12 @@
 <title>Bibliothèque Municipale - Home</title>
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/loan.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="css/header.css">
 </head>
 <body>
-	<div class="container-fluid header">
-		<img src="res/library-icon.png">
-	</div>
-	<div class="container-fluid menu">
-		<a href="accessSearch" class="btn btn-light more-infos" role="button"
-			aria-pressed="true">Rechercher</a> <a href="currentloans"
-			class="btn btn-light more-infos" role="button" aria-pressed="true">Mes
-			prêts en cours</a> <a href="archivedloans"
-			class="btn btn-light more-infos" role="button" aria-pressed="true">Historique</a>
-		<a href="logout" class="btn btn-light more-infos" role="button"
-			aria-pressed="true">Se déconnecter</a>
-	</div>
+	<%@ include file="header.jsp"%>
 	<div class="principal">
 		<c:choose>
 			<c:when test="${empty listResLoans}">

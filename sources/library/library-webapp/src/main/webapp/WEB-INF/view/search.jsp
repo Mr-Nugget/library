@@ -1,38 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+	pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Bibliothèque Municipale - Home</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/home.css">
-  </head>
-  <body>
-    <div class="container-fluid header">
-      <img src="res/library-icon.png">
-    </div>
-    <div class="container-fluid menu">
-      <a href="accessSearch" class="btn btn-light more-infos" role="button" aria-pressed="true">Rechercher</a>
-      <a href="currentloans" class="btn btn-light more-infos" role="button" aria-pressed="true">Mes prêts en cours</a>
-      <a href="archivedloans" class="btn btn-light more-infos" role="button" aria-pressed="true">Historique</a>
-      <a href="logout" class="btn btn-light more-infos" role="button" aria-pressed="true">Se déconnecter</a>
-    </div>
-    <div class="principal">
-    	<h1>Search a document :</h1>
+<head>
+<meta charset="utf-8">
+<title>Bibliothèque Municipale - Home</title>
+<link rel="stylesheet"
+	href="css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="css/home.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="css/header.css">
+</head>
+<body>
+	<%@ include file="header.jsp"%>
+	<div class="principal">
+		<h1>Search a document :</h1>
 		<form action="search">
-			<input type="text" class="form-control searchBar" placeholder="Rechercher un document" name="value">
-			<select name="criteria" class="form-control criteriaSelect" size="1">
+			<input type="text" class="form-control searchBar"
+				placeholder="Rechercher un document" name="value"> <select
+				name="criteria" class="form-control criteriaSelect" size="1">
 				<option>Titre
 				<option>Auteur
 				<option>Reference
-			</select> 
+			</select>
 		</form>
 		<c:choose>
-		<c:when test="${not empty listResSearch }">
-			<div class="container searchResult">
-				<table class="table">
+			<c:when test="${not empty listResSearch }">
+				<div class="container searchResult">
+					<table class="table">
 						<thead>
 							<tr>
 								<th scope="col">Titre</th>
@@ -56,12 +54,12 @@
 							</c:forEach>
 						</tbody>
 					</table>
-			</div>
-		</c:when>
-		<c:otherwise>
-			<h4>${error}</h4>
-		</c:otherwise>
-	</c:choose>
+				</div>
+			</c:when>
+			<c:otherwise>
+				<h4>${error}</h4>
+			</c:otherwise>
+		</c:choose>
 	</div>
-  </body>
+</body>
 </html>

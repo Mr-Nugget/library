@@ -1,0 +1,53 @@
+body{}
+
+.header{
+  height: 13vh;
+  background-color: #d1ae68;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-around;
+}
+
+.header img{
+  height: 13vh;
+  width: auto;
+}
+
+.header a{
+  color: black;
+  border-bottom: 1px solid black;
+  border-radius: 0;
+  background-color: #d1ae68;
+}
+
+.account{
+  padding-right: 1vw;
+  position: absolute;
+  right: 0;
+}
+
+.account img{
+  height: 5vh;
+  border-radius: 15px;
+}
+
+.search{
+  height: 7vh;
+  border-bottom: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search form{
+  display: flex;
+  flex-direction: row;
+}
+
+#searchBar{
+  width: 20vw;
+}
+#criteria{
+  width: 8vw;
+}
