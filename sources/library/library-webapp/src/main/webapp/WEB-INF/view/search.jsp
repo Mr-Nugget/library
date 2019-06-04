@@ -17,16 +17,6 @@
 <body>
 	<%@ include file="header.jsp"%>
 	<div class="principal">
-		<h1>Search a document :</h1>
-		<form action="search">
-			<input type="text" class="form-control searchBar"
-				placeholder="Rechercher un document" name="value"> <select
-				name="criteria" class="form-control criteriaSelect" size="1">
-				<option>Titre
-				<option>Auteur
-				<option>Reference
-			</select>
-		</form>
 		<c:choose>
 			<c:when test="${not empty listResSearch }">
 				<div class="container searchResult">
