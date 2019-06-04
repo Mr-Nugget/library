@@ -6,8 +6,8 @@
   <head>
     <meta charset="utf-8">
     <title>Bibliothèque Municipale - Home</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/home.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/home.css">
   </head>
   <body>
     <div class="container-fluid header">

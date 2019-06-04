@@ -1,14 +1,24 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/bootstrap.min.css" >
-<title>Bibliothèque - Changement de mot de passe</title>
+<head>
+  <meta charset="utf-8">
+  <title>Bibliothèque - Mot de passe oublié</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/forget.css">
 </head>
+
 <body>
-	<h1>Changement de mot de passe</h1>
-	<span>{message}</span>
+  <header class="container-fluid">
+    <h1>Bibliothèque Municipale</h1>
+    <img src="res/library-icon.png" alt="">
+  </header>
+  <div class="container main">
+    <h1>Changement de mot de passe</h1>
+    <span>{message}</span>
+  </div>
 </body>
+
 </html>
