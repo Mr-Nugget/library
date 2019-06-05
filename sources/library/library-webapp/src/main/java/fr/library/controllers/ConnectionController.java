@@ -240,4 +240,42 @@ public class ConnectionController {
 	public String reset() {
 		return "reset";
 	}
+	
+	@GetMapping("/registerPage")
+	public String registerPage() {
+		return "register";
+	}
+	
+	@PostMapping("/register")
+	public String register(
+			ModelMap model,
+			@RequestParam(value="firstname", required=false) String firstname,
+			@RequestParam(value="lastname", required=false) String lastname,
+			@RequestParam(value="mail", required=false) String mail,
+			@RequestParam(value="password", required=false) String password,
+			@RequestParam(value="confirm", required=false) String confirm) {
+		
+		String error = "";
+		
+		if(firstname.isEmpty() || lastname.isEmpty() || mail.isEmpty() || password.isEmpty() ||
+				confirm.isEmpty()) {
+			error = "Un ou plusieurs champs n'ont pas été rempli. Veuillez réessayer.";
+			model.addAttribute("error", error);
+			return "register";
+		}
+		else if(!password.equals(confirm)) {
+			error = "Vous n'avez pas renseigné deux fois le même mot de passe. Veuillez réessayer.";
+			model.addAttribute("error", error);
+			return "register";
+		}
+		else if(service.userExist(mail) != null) {
+			error = "Un compte est déjà associé à cette adresse mail. Utilisez une autre adresse ou connectez-vous.";
+			model.addAttribute("error", error);
+			return "register";
+		}
+		
+		service.register(firstname, lastname, mail, password);
+		
+		return "confirm";
+	}
 }

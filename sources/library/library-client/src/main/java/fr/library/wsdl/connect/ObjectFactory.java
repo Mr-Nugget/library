@@ -24,9 +24,11 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _RegisterResponse_QNAME = new QName("http://entrypoint.webservices.library.fr/", "registerResponse");
     private final static QName _ResetPasswordResponse_QNAME = new QName("http://entrypoint.webservices.library.fr/", "resetPasswordResponse");
     private final static QName _Logout_QNAME = new QName("http://entrypoint.webservices.library.fr/", "logout");
     private final static QName _UserExistResponse_QNAME = new QName("http://entrypoint.webservices.library.fr/", "userExistResponse");
+    private final static QName _Register_QNAME = new QName("http://entrypoint.webservices.library.fr/", "register");
     private final static QName _UserExist_QNAME = new QName("http://entrypoint.webservices.library.fr/", "userExist");
     private final static QName _SendResetPasswordLinkResponse_QNAME = new QName("http://entrypoint.webservices.library.fr/", "sendResetPasswordLinkResponse");
     private final static QName _SendMailResponse_QNAME = new QName("http://entrypoint.webservices.library.fr/", "sendMailResponse");
@@ -128,6 +130,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link RegisterResponse }
+     * 
+     */
+    public RegisterResponse createRegisterResponse() {
+        return new RegisterResponse();
+    }
+
+    /**
      * Create an instance of {@link ResetPasswordResponse }
      * 
      */
@@ -168,11 +178,28 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Register }
+     * 
+     */
+    public Register createRegister() {
+        return new Register();
+    }
+
+    /**
      * Create an instance of {@link User }
      * 
      */
     public User createUser() {
         return new User();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link RegisterResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://entrypoint.webservices.library.fr/", name = "registerResponse")
+    public JAXBElement<RegisterResponse> createRegisterResponse(RegisterResponse value) {
+        return new JAXBElement<RegisterResponse>(_RegisterResponse_QNAME, RegisterResponse.class, null, value);
     }
 
     /**
@@ -200,6 +227,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://entrypoint.webservices.library.fr/", name = "userExistResponse")
     public JAXBElement<UserExistResponse> createUserExistResponse(UserExistResponse value) {
         return new JAXBElement<UserExistResponse>(_UserExistResponse_QNAME, UserExistResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Register }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://entrypoint.webservices.library.fr/", name = "register")
+    public JAXBElement<Register> createRegister(Register value) {
+        return new JAXBElement<Register>(_Register_QNAME, Register.class, null, value);
     }
 
     /**

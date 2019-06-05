@@ -78,4 +78,15 @@ public class UserService {
 		}
 		
 	}
+	
+	public static Long insertUser(String firstname, String lastname, String mail, String password) {
+		
+		User newUser = new User();
+		newUser.setFirstName(firstname);
+		newUser.setLastName(lastname);
+		newUser.setMail(mail);
+		newUser.setPassword(password);
+		
+		return dao.createUser(newUser);
+	}
 }

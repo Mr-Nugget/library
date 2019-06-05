@@ -88,4 +88,11 @@ public class ConnectionImpl implements IConnection {
 		}
 		
 	}
+	@Override
+	public Long register(String firstname, String lastname, String mail, String password) {
+		if(firstname != null && lastname != null && mail != null && password != null) {
+			return UserService.insertUser(firstname, lastname, mail, password);
+		}
+		return null;
+	}
 }

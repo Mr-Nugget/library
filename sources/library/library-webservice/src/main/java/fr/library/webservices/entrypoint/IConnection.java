@@ -34,5 +34,8 @@ public interface IConnection {
 	// Send a link to reset password
 	@WebMethod
 	public void sendResetPasswordLink(String mail);
+	// Add a new users, return null if there is an error
+	@WebMethod
+	public Long register(String firstname, String lastname, String mail, String password);
 
 }
