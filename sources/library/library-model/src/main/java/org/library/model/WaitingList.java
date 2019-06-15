@@ -65,6 +65,9 @@ public class WaitingList {
 	 * @return the first user of the waiting list
 	 */
 	public User removeTheFirstUser() {
+		if(usersPositions.isEmpty()) {
+			return null;
+		}
 		// Get and remove the first user
 		User user = usersPositions.get(1);
 		usersPositions.remove(1);
