@@ -14,7 +14,7 @@ import fr.library.exceptions.LoanStatusException;
  * @author Titouan
  *
  */
-public interface ILoanDao extends IScrudDao<Loan>{
+public interface ILoanDao extends ICrudDao<Loan>{
 	
 	// Return the list of all the archived loans of a user
 	public List<Loan> getListArchived(Long userId); 

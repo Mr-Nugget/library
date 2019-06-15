@@ -47,3 +47,12 @@ CREATE TABLE loans(
   end_date DATE NOT NULL,
   status INT NOT NULL
 );
+
+--Table : Waiting List
+
+CREATE TABLE waitingList(
+  id BIGSERIAL PRIMARY KEY NOT NULL,
+  document_id BIGINT REFERENCES documents(id) NOT NULL,
+  position BIGINT NOT NULL,
+  user_id BIGINT REFERENCES users(id) NOT NULL
+);
