@@ -11,19 +11,31 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javax.sql.DataSource;
+
 import org.apache.log4j.Logger;
 import org.library.model.Document;
 import org.library.model.Loan;
 import org.library.model.Status;
 import org.library.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.jdbc.core.JdbcTemplate;
+
+import org.springframework.stereotype.Service;
 
 import fr.library.exceptions.DocumentNotAvailableException;
 import fr.library.exceptions.LoanStatusException;
+import fr.library.helpers.LoanRowMapper;
 
+@Service("LoanDao")
 public class LoanDaoImpl implements ILoanDao {
 
 	private final static Logger logger =  Logger.getLogger(LoanDaoImpl.class);
 
+	@Autowired
+	private DataSource dataSource;
+	
 	public LoanDaoImpl() {}
 	
 	
@@ -478,4 +490,14 @@ public class LoanDaoImpl implements ILoanDao {
 		}
 		return listRes;
 	}
+
+
+	@Override
+	public List<Loan> getLoansByDocument(Document doc) {
+		JdbcTemplate jdbc = new JdbcTemplate(dataSource);
+		// Add parameters
+		List<Loan> ls = jdbc.query("SELECT * FROM loans WHERE document_id=?", new Object[] {doc.getId()}, new LoanRowMapper());
+		return ls;
+	}
+
 }

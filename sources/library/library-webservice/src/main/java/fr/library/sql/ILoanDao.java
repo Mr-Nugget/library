@@ -33,4 +33,7 @@ public interface ILoanDao extends ICrudDao<Loan>{
 	
 	// Get a list of expired loans -> endDate < today
 	public List<Loan> getExpiredLoans();
+	
+	// Return when the document will be available if there is no more stock
+	public List<Loan> getLoansByDocument(Document doc);
 }
