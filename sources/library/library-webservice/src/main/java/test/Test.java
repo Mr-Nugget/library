@@ -1,5 +1,6 @@
 package test;
 
+import java.util.Date;
 import java.util.List;
 
 import org.library.model.Document;
@@ -13,20 +14,19 @@ import fr.library.sql.ILoanDao;
 import fr.library.sql.LoanDaoImpl;
 import fr.library.webservices.entrypoint.ConnectionImpl;
 import fr.library.webservices.entrypoint.IConnection;
+import fr.library.webservices.services.DocumentService;
 
 public class Test {
 
 	public static void main(String[] args) {
         AbstractApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
         
-        LoanDaoImpl dao = (LoanDaoImpl) context.getBean("LoanDao");
+        DocumentService service = (DocumentService) context.getBean("DocumentService");
         
         LoanDaoImpl dao2 = new LoanDaoImpl();
         Document doc = new Document();
         doc.setId(new Long(502));
-        List<Loan> ls = dao.getLoansByDocument(doc);
-        for(Loan l : ls) {
-        	System.out.println(l);
-        }
+        Date ls = service.getAvailableDate(doc);
+        System.out.println(ls);
 	}
 }	

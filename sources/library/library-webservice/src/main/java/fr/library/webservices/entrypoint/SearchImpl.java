@@ -4,7 +4,10 @@ import java.util.List;
 import javax.jws.WebService;
 
 import org.library.model.Document;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
 
+import fr.library.config.AppConfig;
 import fr.library.exceptions.JWTCheckingException;
 import fr.library.helpers.JWTHelper;
 import fr.library.webservices.services.DocumentService;
@@ -26,8 +29,12 @@ public class SearchImpl implements ISearch{
 	@Override
 	public List<Document> search(String jwt, String word, String criteria) throws JWTCheckingException{
 		Long id = JWTHelper.checkJwt(jwt);
+		@SuppressWarnings("resource")
+		AbstractApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+		DocumentService service = (DocumentService) context.getBean("DocumentService");
+		
 		if(id!=null) {
-			return DocumentService.search(word, criteria);
+			return service.search(word, criteria);
 		}else {
 			return null;
 		}
