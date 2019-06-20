@@ -21,7 +21,7 @@ public class WaitingList {
 	}
 	
 	public Integer getLastPosition() {
-		return lastPosition;
+		return usersPositions.size();
 	}
 
 	public void setLastPosition(Integer lastPosition) {
