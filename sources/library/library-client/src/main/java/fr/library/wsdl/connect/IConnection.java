@@ -27,6 +27,30 @@ public interface IConnection {
 
     /**
      * 
+     * @param arg3
+     * @param arg2
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns java.lang.Long
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "register", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.connect.Register")
+    @ResponseWrapper(localName = "registerResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.connect.RegisterResponse")
+    @Action(input = "http://entrypoint.webservices.library.fr/IConnection/registerRequest", output = "http://entrypoint.webservices.library.fr/IConnection/registerResponse")
+    public Long register(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        String arg1,
+        @WebParam(name = "arg2", targetNamespace = "")
+        String arg2,
+        @WebParam(name = "arg3", targetNamespace = "")
+        String arg3);
+
+    /**
+     * 
      * @param arg0
      * @return
      *     returns fr.library.wsdl.connect.User
@@ -44,6 +68,24 @@ public interface IConnection {
         String arg0)
         throws JWTCheckingException_Exception
     ;
+
+    /**
+     * 
+     * @param arg2
+     * @param arg1
+     * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "sendMail", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.connect.SendMail")
+    @ResponseWrapper(localName = "sendMailResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.connect.SendMailResponse")
+    @Action(input = "http://entrypoint.webservices.library.fr/IConnection/sendMailRequest", output = "http://entrypoint.webservices.library.fr/IConnection/sendMailResponse")
+    public void sendMail(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        String arg1,
+        @WebParam(name = "arg2", targetNamespace = "")
+        String arg2);
 
     /**
      * 
@@ -79,24 +121,6 @@ public interface IConnection {
         String arg1)
         throws JWTCheckingException_Exception
     ;
-
-    /**
-     * 
-     * @param arg2
-     * @param arg1
-     * @param arg0
-     */
-    @WebMethod
-    @RequestWrapper(localName = "sendMail", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.connect.SendMail")
-    @ResponseWrapper(localName = "sendMailResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.connect.SendMailResponse")
-    @Action(input = "http://entrypoint.webservices.library.fr/IConnection/sendMailRequest", output = "http://entrypoint.webservices.library.fr/IConnection/sendMailResponse")
-    public void sendMail(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        String arg1,
-        @WebParam(name = "arg2", targetNamespace = "")
-        String arg2);
 
     /**
      * 
@@ -144,29 +168,5 @@ public interface IConnection {
         String arg0)
         throws JWTCheckingException_Exception
     ;
-
-    /**
-     * 
-     * @param arg3
-     * @param arg2
-     * @param arg1
-     * @param arg0
-     * @return
-     *     returns java.lang.Long
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "register", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.connect.Register")
-    @ResponseWrapper(localName = "registerResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.connect.RegisterResponse")
-    @Action(input = "http://entrypoint.webservices.library.fr/IConnection/registerRequest", output = "http://entrypoint.webservices.library.fr/IConnection/registerResponse")
-    public Long register(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        String arg1,
-        @WebParam(name = "arg2", targetNamespace = "")
-        String arg2,
-        @WebParam(name = "arg3", targetNamespace = "")
-        String arg3);
 
 }
