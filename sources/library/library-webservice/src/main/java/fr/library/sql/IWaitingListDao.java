@@ -1,5 +1,7 @@
 package fr.library.sql;
 
+import java.util.List;
+
 import org.library.model.Document;
 import org.library.model.User;
 import org.library.model.WaitingList;
@@ -21,4 +23,25 @@ public interface IWaitingListDao extends ICrudDao<WaitingList> {
 	 * @return
 	 */
 	public Boolean alreadyInTheList(Document doc, User user);
+	
+	/**
+	 * Return a waitingList associated to a document
+	 * @param doc
+	 * @return
+	 */
+	public WaitingList getByDocument(Document doc);
+	
+	/**
+	 * Add a user in the waitingList
+	 * @param wl
+	 * @param user
+	 */
+	public void addUserToList(WaitingList wl, User user);
+	
+	/**
+	 * Get all the waitingList where the user is into
+	 * @param user
+	 * @return a list of waitingList
+	 */
+	public List<WaitingList> getUserReservations(User user);
 }

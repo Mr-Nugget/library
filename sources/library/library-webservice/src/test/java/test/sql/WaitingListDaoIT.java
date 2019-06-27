@@ -33,7 +33,7 @@ public class WaitingListDaoIT {
 	
 	private static IUserDao userDao = DaoFactory.getInstance().getUserDao();
 	private static IDocumentDao documentDao = DaoFactory.getInstance().getDocumentDao();
-	private static User userTest;
+	private static User userTest, userTestAdd;
 	private static Document docTest;
 	private static int nbWL;
 	private static WaitingList waitingList;
@@ -41,14 +41,16 @@ public class WaitingListDaoIT {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		userTest = new User(new Long(-1), "test", "test", "test@test.fr", "1234", false);
+		userTestAdd = new User(new Long(-2), "test", "test", "test@test.fr", "1234", false);
 		Category category = new Category();
 		category.setId(new Long(0));
 		Type type = new Type();
 		type.setId(new Long(0));
 		docTest = new Document(new Long(-1), "TEST1", "Document test", "tester", category, type, 0, 3);
 		
-		// Add a user and a document test into the DB
+		// Add a 2 users and a document test into the DB
 		userTest.setId(userDao.createUser(userTest));
+		userTestAdd.setId(userDao.createUser(userTestAdd));
 		docTest.setId(documentDao.createDocument(docTest));		
 		waitingList = new WaitingList();
 		
@@ -85,18 +87,30 @@ public class WaitingListDaoIT {
 		assertEquals(userTest.getId(), waitingList.getUsersPositions().get(1).getId());
 	}
 
-	
+	@Test
+	public final void test4getByDocument() {
+		WaitingList wlByDoc = dao.getByDocument(docTest);
+		assertEquals(waitingList.getId(), wlByDoc.getId());
+		Document docWithNoWL = new Document();
+		docWithNoWL.setId(new Long(-42));
+		assertNull(dao.getByDocument(docWithNoWL));
+	}
 
 	@Test
-	public final void test3AlreadyInTheList() {
+	public final void test5AlreadyInTheList() {
 		assertTrue(dao.alreadyInTheList(docTest, userTest));
 		User userNotInTheList = new User();
 		userNotInTheList.setId(new Long(-5));
 		assertFalse(dao.alreadyInTheList(docTest, userNotInTheList));
 	}
+	@Test
+	public final void test6AddUserToList() {
+		dao.addUserToList(waitingList, userTestAdd);
+		assertEquals(2, dao.getById(waitingList.getId()).getUsersPositions().size());		
+	}
 	
 	@Test
-	public final void test4DeleteItem() {
+	public final void test7DeleteItem() {
 		dao.deleteItem(waitingList);
 		assertEquals(nbWL, dao.findAll().size());
 	}
@@ -104,6 +118,7 @@ public class WaitingListDaoIT {
 	 @AfterClass
 	 public static void setUpAfter() {
          userDao.deleteItem(userTest);
+         userDao.deleteItem(userTestAdd);
          documentDao.deleteItem(docTest);
    }
 
