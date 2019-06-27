@@ -15,3 +15,10 @@ body{}
 .criteriaSelect{
 	width: 10vw;
 }
+
+#available{
+	color : green;
+}
+#notAvailable{
+	color : red;
+}

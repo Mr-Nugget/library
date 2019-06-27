@@ -89,4 +89,12 @@ public class WaitingListDaoImpl implements IWaitingListDao {
 		
 	}
 
+	@Override
+	public Boolean alreadyInTheList(Document doc, User user) {
+		JdbcTemplate jdbc = new JdbcTemplate(dataSource);
+		String query = "SELECT COUNT(*) FROM waitingList AS l, position AS p WHERE l.id=p.list_id AND l.document_id=? AND user_id=?;";
+		Integer count = jdbc.queryForObject(query, new Object[] {doc.getId(), user.getId()}, Integer.class);
+		return count == 1;
+	}
+
 }

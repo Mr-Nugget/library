@@ -45,11 +45,11 @@
 									<td>${doc.currentStock}</td>
 									<c:choose>
 										<c:when test="${doc.currentStock == 0}">
-											<td>Disponible le <fmt:formatDate value="${doc.availableDate.toGregorianCalendar().time}" pattern="dd-MM-yyyy" /></td>
+											<td id="notAvailable">Disponible le <fmt:formatDate value="${doc.availableDate.toGregorianCalendar().time}" pattern="dd-MM-yyyy" /></td>
 											<td><a href="">Réserver</a></td>
 										</c:when>
 										<c:otherwise>
-											<td>Disponible</td>
+											<td id="available">Disponible</td>
 											<td><a href="">-</a></td>
 										</c:otherwise>
 									</c:choose>

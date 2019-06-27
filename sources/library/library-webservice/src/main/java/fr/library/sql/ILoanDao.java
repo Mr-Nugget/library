@@ -22,7 +22,7 @@ public interface ILoanDao extends ICrudDao<Loan>{
 	// Return the list of the loans in_progress of a user
 	public List<Loan> getListCurrent(Long userId); 
 	
-	 // Add 4 weeks to the end date of a loan and change the status to EXTENDED
+	// Add 4 weeks to the end date of a loan and change the status to EXTENDED
 	public void extendLoan(Long loanId) throws LoanStatusException;
 	
 	// Set the status to CLOTURED and change the end_date
@@ -36,4 +36,12 @@ public interface ILoanDao extends ICrudDao<Loan>{
 	
 	// Return when the document will be available if there is no more stock
 	public List<Loan> getLoansByDocument(Document doc);
+	
+	/**
+	 * Check if a user already rent the document in param 
+	 * @param user
+	 * @param doc
+	 * @return
+	 */
+	public Boolean alreadyHaveTheDocument(User user, Document doc);
 }

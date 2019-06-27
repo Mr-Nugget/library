@@ -72,9 +72,7 @@ public class WaitingListDaoIT {
 		assertNotNull(id);
 	}
 	
-	/**
-	 * 
-	 */
+	
 	@Test
 	public final void test2FindAll() {
 		assertEquals(nbWL + 1, dao.findAll().size());
@@ -90,8 +88,11 @@ public class WaitingListDaoIT {
 	
 
 	@Test
-	public final void test3UpdateItem() {
-		fail("Not yet implemented");
+	public final void test3AlreadyInTheList() {
+		assertTrue(dao.alreadyInTheList(docTest, userTest));
+		User userNotInTheList = new User();
+		userNotInTheList.setId(new Long(-5));
+		assertFalse(dao.alreadyInTheList(docTest, userNotInTheList));
 	}
 	
 	@Test

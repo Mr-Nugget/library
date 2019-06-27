@@ -501,4 +501,14 @@ public class LoanDaoImpl implements ILoanDao {
 		return ls;
 	}
 
+
+	@Override
+	public Boolean alreadyHaveTheDocument(User user, Document doc) {
+		JdbcTemplate jdbc = new JdbcTemplate(dataSource);
+		String query = "SELECT * FROM loans WHERE document_id=? AND user_id=? AND (status=1 OR status=2);";
+		Loan loanExist = jdbc.queryForObject(query, new Object[] {doc.getId(), user.getId()}, new LoanRowMapper());
+		
+		return loanExist != null;
+	}
+
 }

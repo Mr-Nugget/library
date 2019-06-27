@@ -1,13 +1,14 @@
 <div class="container-fluid header">
+    <img src="res/library-icon.png">
     <a href="accessSearch" class="btn btn-light more-infos" role="button" aria-pressed="true">Rechercher</a>
     <a href="currentloans" class="btn btn-light more-infos" role="button" aria-pressed="true">Mes prêts en cours</a>
-    <img src="res/library-icon.png">
+    <a href="currentbooking" class="btn btn-light more-infos" role="button" aria-pressed="true">Mes réservations</a>
     <a href="archivedloans" class="btn btn-light more-infos" role="button" aria-pressed="true">Historique</a>
     <a href="logout" class="btn btn-light more-infos" role="button" aria-pressed="true">Se déconnecter</a>
     <div class="account">
       <img src="res/profil.png" alt="">
-      <span>${cookie.firstname.value}</span>
-      <span>${cookie.lastname.value}</span>
+      <span>Nom</span>
+      <span>Prénom</span>
     </div>
   </div>
   <div class="search">
@@ -19,4 +20,5 @@
       </select>
       <input id="searchBar" type="text" class="form-control searchBar" placeholder="Rechercher un document" name="value">
       <button type="submit"><i class="fa fa-search"></i></button>
+      </form>
   </div>
