@@ -1,8 +1,10 @@
 package fr.library.webservices.services;
 
+import java.util.Date;
 import java.util.List;
 
 import org.library.model.Loan;
+import org.library.model.Status;
 
 import fr.library.exceptions.LoanStatusException;
 import fr.library.sql.DaoFactory;
@@ -13,7 +15,15 @@ public class LoanService {
 	private static ILoanDao dao = DaoFactory.getInstance().getLoanDao();
 	
 	public static List<Loan> getCurrent(Long id){
-		return dao.getListCurrent(id);
+		List<Loan> listCurrent = dao.getListCurrent(id);
+		Date today = new Date();
+		
+		for(Loan l : listCurrent) {
+			if(l.getEndDate().before(today)) {
+				l.setStatus(Status.LATE);
+			}
+		}
+		return listCurrent;
 	}
 	
 	public static List<Loan> getArchived(Long id){

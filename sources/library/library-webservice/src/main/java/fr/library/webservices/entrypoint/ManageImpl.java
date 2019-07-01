@@ -69,7 +69,7 @@ public class ManageImpl implements IManage{
 			try {
 				LoanService.extend(loanId);
 			} catch (LoanStatusException e) {
-				logger.error("Vous ne pouvez pas prolongé un prêt plus d'une fois");
+				logger.error("Erreur lors de l'extension d'un prêt : le prêt a peut-être déjà été prolongé ou sa date de retour est expirée.");
 			}
 			return true;
 		}else {

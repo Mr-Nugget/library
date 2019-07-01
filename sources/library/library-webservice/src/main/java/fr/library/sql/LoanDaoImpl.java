@@ -72,8 +72,9 @@ public class LoanDaoImpl implements ILoanDao {
 		Loan loan = getById(loanId);
 		Date date = loan.getEndDate();
 		Status status = loan.getStatus();
-
-		if(status.equals(Status.IN_PROGRESS)) {
+		Date today = new Date();
+		
+		if(status.equals(Status.IN_PROGRESS) && loan.getEndDate().after(today)) {
 
 			Calendar cal = Calendar.getInstance(); // creates calendar
 			cal.setTime(date); // sets calendar time/date
@@ -83,7 +84,7 @@ public class LoanDaoImpl implements ILoanDao {
 
 			updateItem(loan);
 		}else {
-			throw new LoanStatusException("You can't extend a document more than once");
+			throw new LoanStatusException("Error extendLoan");
 		}
 	}
 

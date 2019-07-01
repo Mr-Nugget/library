@@ -16,6 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;enumeration value="CLOTURED"/>
  *     &lt;enumeration value="IN_PROGRESS"/>
  *     &lt;enumeration value="EXTENDED"/>
+ *     &lt;enumeration value="LATE"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
@@ -27,7 +28,8 @@ public enum Status {
 
     CLOTURED,
     IN_PROGRESS,
-    EXTENDED;
+    EXTENDED,
+    LATE;
 
     public String value() {
         return name();
