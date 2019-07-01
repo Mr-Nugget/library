@@ -5,7 +5,7 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/test"/>
-        <dependent-module archiveName="library-model-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/library-model/library-model">
+        <dependent-module archiveName="library-model-1.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/library-model/library-model">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <property name="context-root" value="library-webservice"/>

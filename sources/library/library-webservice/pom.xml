@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>fr.oc.p3</groupId>
 		<artifactId>library</artifactId>
-		<version>1.0.0</version>
+		<version>1.0.1-SNAPSHOT</version>
 	</parent>
 	<packaging>war</packaging>
 	<artifactId>library-webservice</artifactId>
@@ -23,7 +23,7 @@
 		<dependency>
 			<groupId>fr.oc.p3</groupId>
 			<artifactId>library-model</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>1.0.0</version>
 		</dependency>
 		<!-- Bilbiothèques Tierces -->
 		<dependency>

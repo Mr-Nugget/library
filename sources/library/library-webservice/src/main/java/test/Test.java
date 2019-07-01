@@ -1,12 +1,18 @@
 package test;
 
-import fr.library.webservices.entrypoint.ConnectionImpl;
-import fr.library.webservices.entrypoint.IConnection;
+import java.util.List;
+
+import org.library.model.Loan;
+
+import fr.library.webservices.services.LoanService;
 
 public class Test {
 
 	public static void main(String[] args) {
-		IConnection connection = new ConnectionImpl();
-		connection.sendMail("bonjour", "bonjour", "t_raimbault@yahoo.fr");
+		List<Loan>  ll = LoanService.getCurrent(new Long(199));
+		
+		for(Loan l : ll) {
+			System.out.println(l.getStatus());
+		}
 	}
 }	
