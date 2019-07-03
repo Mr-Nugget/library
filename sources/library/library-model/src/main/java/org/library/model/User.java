@@ -1,10 +1,11 @@
 package org.library.model;
 
 
-/*
+/**
  * Describe a user registered into the library
  * Getters and setters available
- */
+ * @author Titouan
+ **/
 
 public class User {
 	
@@ -14,18 +15,22 @@ public class User {
 	private String mail = null; // mail, also the login
 	private String password = null;	//user password
 	private boolean isConnected = false;
+	private boolean mailRecall = true;
+
+
 
 	//Empty constructor
 	public User() {}
 	
 	//constructor using fields
-	public User(Long id, String firstName, String lastName, String mail, String password, boolean isConnected) {
+	public User(Long id, String firstName, String lastName, String mail, String password, boolean isConnected, boolean mailRecall) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.mail = mail;
 		this.password = password;
 		this.isConnected = isConnected;
+		this.mailRecall = mailRecall;
 	}
 
 	public Long getId() {
@@ -76,6 +81,14 @@ public class User {
 		this.isConnected = isConnected;
 	}
 
+	public boolean isMailRecall() {
+		return mailRecall;
+	}
+
+	public void setMailRecall(boolean mailRecall) {
+		this.mailRecall = mailRecall;
+	}
+	
 	@Override
 	public String toString() {
 		return "{id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", mail=" + mail

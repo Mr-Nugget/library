@@ -5,9 +5,10 @@
   <parent>
     <groupId>fr.oc.p3</groupId>
     <artifactId>library</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.2-SNAPSHOT</version>
   </parent>
   <artifactId>library-model</artifactId>
+  <version>1.0.2</version>
   <name>library-model</name>
   <url>http://maven.apache.org</url>
   <properties>
