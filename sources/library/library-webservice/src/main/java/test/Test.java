@@ -1,18 +1,21 @@
 package test;
 
 import java.util.List;
+import java.util.Map;
 
 import org.library.model.Loan;
+import org.library.model.User;
 
+import fr.library.sql.DaoFactory;
+import fr.library.sql.ILoanDao;
 import fr.library.webservices.services.LoanService;
 
 public class Test {
 
 	public static void main(String[] args) {
-		List<Loan>  ll = LoanService.getCurrent(new Long(199));
+		Map<User, List<Loan>> res = LoanService.mailRecall();
 		
-		for(Loan l : ll) {
-			System.out.println(l.getStatus());
-		}
+		System.out.println(res.size());
+		System.out.println(res.toString());
 	}
 }	

@@ -19,7 +19,7 @@ import fr.library.wsdl.manage.Status;
 
 
 /**
- * Scheduler, this job will be launched by Srping batch every week
+ * Scheduler, this job will be launched by Spring batch every week
  * @author Titouan
  *
  */

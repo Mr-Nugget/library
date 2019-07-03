@@ -1,10 +1,14 @@
 package fr.library.webservices.services;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.library.model.Loan;
 import org.library.model.Status;
+import org.library.model.User;
 
 import fr.library.exceptions.LoanStatusException;
 import fr.library.sql.DaoFactory;
@@ -36,5 +40,22 @@ public class LoanService {
 	
 	public static List<Loan> expired(){
 		return dao.getExpiredLoans();
+	}
+	
+	public static Map<User, List<Loan>> mailRecall(){
+		List<Loan> almostExpired = dao.forMailRecall();
+		
+		Map<User, List<Loan>> res = new HashMap<>();
+		
+		for(Loan l : almostExpired) {
+			if(res.containsKey(l.getUser())) {
+				res.get(l.getUser()).add(l);
+			}else {
+				List<Loan> temp = new ArrayList<>();
+				temp.add(l);
+				res.put(l.getUser(), temp);
+			}
+		}
+		return res;
 	}
 }

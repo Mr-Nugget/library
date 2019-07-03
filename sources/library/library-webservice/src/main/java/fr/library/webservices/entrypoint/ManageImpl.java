@@ -2,11 +2,13 @@ package fr.library.webservices.entrypoint;
 
 
 import java.util.List;
+import java.util.Map;
 
 import javax.jws.WebService;
 
 import org.apache.log4j.Logger;
 import org.library.model.Loan;
+import org.library.model.User;
 
 import fr.library.exceptions.JWTCheckingException;
 import fr.library.exceptions.LoanStatusException;
@@ -80,5 +82,9 @@ public class ManageImpl implements IManage{
 	@Override
 	public List<Loan> loanExpired() {
 		return LoanService.expired();
+	}
+	@Override
+	public Map<User, List<Loan>> mailRecall() {
+		return LoanService.mailRecall();
 	}
 }

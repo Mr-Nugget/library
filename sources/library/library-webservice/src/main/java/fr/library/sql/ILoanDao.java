@@ -2,6 +2,7 @@ package fr.library.sql;
 
 import java.util.List;
 
+
 import org.library.model.Document;
 import org.library.model.Loan;
 import org.library.model.User;
@@ -33,4 +34,10 @@ public interface ILoanDao extends IScrudDao<Loan>{
 	
 	// Get a list of expired loans -> endDate < today
 	public List<Loan> getExpiredLoans();
+	
+	/**
+	 * Get a list of soon expired current loans 
+	 * @return list of loans
+	 */
+	public List<Loan> forMailRecall();
 }
