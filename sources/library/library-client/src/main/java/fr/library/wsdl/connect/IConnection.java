@@ -51,6 +51,18 @@ public interface IConnection {
 
     /**
      * 
+     * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "updateUser", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.connect.UpdateUser")
+    @ResponseWrapper(localName = "updateUserResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.connect.UpdateUserResponse")
+    @Action(input = "http://entrypoint.webservices.library.fr/IConnection/updateUserRequest", output = "http://entrypoint.webservices.library.fr/IConnection/updateUserResponse")
+    public void updateUser(
+        @WebParam(name = "arg0", targetNamespace = "")
+        User arg0);
+
+    /**
+     * 
      * @param arg1
      * @param arg0
      * @return
