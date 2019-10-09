@@ -28,15 +28,26 @@ public interface IManage {
 
     /**
      * 
+     * @param arg1
+     * @param arg0
      * @return
-     *     returns java.util.List<fr.library.wsdl.manage.Loan>
+     *     returns boolean
+     * @throws JWTCheckingException_Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "loanExpired", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.manage.LoanExpired")
-    @ResponseWrapper(localName = "loanExpiredResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.manage.LoanExpiredResponse")
-    @Action(input = "http://entrypoint.webservices.library.fr/IManage/loanExpiredRequest", output = "http://entrypoint.webservices.library.fr/IManage/loanExpiredResponse")
-    public List<Loan> loanExpired();
+    @RequestWrapper(localName = "extendLoan", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.manage.ExtendLoan")
+    @ResponseWrapper(localName = "extendLoanResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.manage.ExtendLoanResponse")
+    @Action(input = "http://entrypoint.webservices.library.fr/IManage/extendLoanRequest", output = "http://entrypoint.webservices.library.fr/IManage/extendLoanResponse", fault = {
+        @FaultAction(className = JWTCheckingException_Exception.class, value = "http://entrypoint.webservices.library.fr/IManage/extendLoan/Fault/JWTCheckingException")
+    })
+    public boolean extendLoan(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        Long arg1)
+        throws JWTCheckingException_Exception
+    ;
 
     /**
      * 
@@ -60,26 +71,27 @@ public interface IManage {
 
     /**
      * 
-     * @param arg1
-     * @param arg0
      * @return
-     *     returns boolean
-     * @throws JWTCheckingException_Exception
+     *     returns java.util.List<fr.library.wsdl.manage.Loan>
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "extendLoan", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.manage.ExtendLoan")
-    @ResponseWrapper(localName = "extendLoanResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.manage.ExtendLoanResponse")
-    @Action(input = "http://entrypoint.webservices.library.fr/IManage/extendLoanRequest", output = "http://entrypoint.webservices.library.fr/IManage/extendLoanResponse", fault = {
-        @FaultAction(className = JWTCheckingException_Exception.class, value = "http://entrypoint.webservices.library.fr/IManage/extendLoan/Fault/JWTCheckingException")
-    })
-    public boolean extendLoan(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        Long arg1)
-        throws JWTCheckingException_Exception
-    ;
+    @RequestWrapper(localName = "loanExpired", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.manage.LoanExpired")
+    @ResponseWrapper(localName = "loanExpiredResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.manage.LoanExpiredResponse")
+    @Action(input = "http://entrypoint.webservices.library.fr/IManage/loanExpiredRequest", output = "http://entrypoint.webservices.library.fr/IManage/loanExpiredResponse")
+    public List<Loan> loanExpired();
+
+    /**
+     * 
+     * @return
+     *     returns java.util.List<fr.library.wsdl.manage.Loan>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "mailRecall", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.manage.MailRecall")
+    @ResponseWrapper(localName = "mailRecallResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.manage.MailRecallResponse")
+    @Action(input = "http://entrypoint.webservices.library.fr/IManage/mailRecallRequest", output = "http://entrypoint.webservices.library.fr/IManage/mailRecallResponse")
+    public List<Loan> mailRecall();
 
     /**
      * 

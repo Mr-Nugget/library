@@ -11,6 +11,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import fr.library.tools.DateConverter;
 import fr.library.wsdl.manage.IManage;
 import fr.library.wsdl.manage.Loan;
 import fr.library.wsdl.manage.Status;
@@ -19,7 +20,7 @@ import fr.library.wsdl.manage.Status;
 
 
 /**
- * Scheduler, this job will be launched by Srping batch every week
+ * Scheduler, this job will be launched by Spring batch every week
  * @author Titouan
  *
  */
@@ -53,10 +54,10 @@ public class MailScheduler {
 			message.append("Vous avez emprunté ");
 			message.append(loan.getDoc().getTitle());
 			message.append(" à la date du ");
-			message.append(simpleFormat.format(loan.getBeginDate()));
+			message.append(simpleFormat.format(DateConverter.xmlGregorianToDate(loan.getBeginDate())));
 			message.append(".\n");
 			message.append("Vous deviez nous retourner cet emprunt au plus tard le ");
-			message.append(simpleFormat.format(loan.getEndDate()));
+			message.append(simpleFormat.format(DateConverter.xmlGregorianToDate(loan.getEndDate())));
 			message.append(".\n");
 
 			// Message change if the user has already extended its loan
@@ -73,7 +74,6 @@ public class MailScheduler {
 			simpleMail.setTo(loan.getUser().getMail());
 			javaMailSender.send(simpleMail);
 			message = new StringBuilder();
-
 		}
 		logger.info("Mails envoyés");
 	}

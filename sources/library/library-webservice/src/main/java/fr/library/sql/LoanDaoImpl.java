@@ -479,4 +479,74 @@ public class LoanDaoImpl implements ILoanDao {
 		}
 		return listRes;
 	}
+
+
+	@Override
+	public List<Loan> forMailRecall() {
+		Date today = new Date();
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(today);
+		calendar.add(Calendar.DAY_OF_MONTH, 5);
+		java.sql.Date todayPlus5 = new java.sql.Date(calendar.getTime().getTime());
+		
+		Connection connection = null;
+		PreparedStatement prepared = null;
+		ResultSet res = null;
+		
+		String query = "SELECT * FROM users u, loans l, documents d WHERE l.user_id = u.id AND l.document_id = d.id AND l.end_date <= ? AND l.end_date > NOW() AND u.mailrecall=true AND l.status = 1;";
+		
+		List<Loan> listReturn = new ArrayList<>();
+		
+		try {
+			connection = DaoConnection.getInstance().getConnection();
+			prepared = connection.prepareStatement(query);
+			prepared.setDate(1, todayPlus5);
+			res = prepared.executeQuery();
+			
+			while(res.next()) {
+				
+				User user = new User();
+				user.setId(res.getLong("user_id"));
+				user.setFirstName(res.getString("firstname"));
+				user.setLastName(res.getString("lastname"));
+				user.setPassword(res.getString("password"));
+				user.setConnected(res.getBoolean("connected"));
+				user.setMailRecall(true);
+				user.setMail(res.getString("mail"));
+				
+				Document doc = new Document();
+				doc.setId(res.getLong("document_id"));
+				doc.setAuthor(res.getString("author"));
+				doc.setNbstock(res.getInt("nb_stock"));
+				doc.setRef(res.getString("ref"));
+				doc.setTitle(res.getString("title"));
+				
+				Loan loan = new Loan();
+				loan.setBeginDate(res.getDate("start_date"));
+				loan.setEndDate(res.getDate("end_date"));
+				loan.setId(res.getLong("id"));
+				loan.setUser(user);
+				loan.setDoc(doc);
+
+				listReturn.add(loan);
+			}
+		} catch (SQLException e) {
+			logger.error("forMailRecall", e);
+		}finally {
+			try {
+				if(res!=null) {
+					res.close();
+				}
+				if(prepared!=null) {
+					prepared.close();
+				}
+				if(connection!=null) {
+					connection.close();
+				}
+			}catch(SQLException e) {
+				logger.error("Close closeable mailRecall", e);
+			}
+		}
+		return listReturn;
+	}
 }

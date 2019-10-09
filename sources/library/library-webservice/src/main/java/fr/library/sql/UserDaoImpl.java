@@ -97,7 +97,8 @@ public class UserDaoImpl implements IUserDao {
 						res.getString("lastname"),
 						res.getString("mail"),
 						res.getString("password"),
-						res.getBoolean("connected"));
+						res.getBoolean("connected"),
+						res.getBoolean("mailRecall"));
 			}
 
 		} catch (SQLException e) {
@@ -205,7 +206,8 @@ public class UserDaoImpl implements IUserDao {
 						res.getString("lastname"),
 						res.getString("mail"), 
 						res.getString("password"), 
-						res.getBoolean("connected")));
+						res.getBoolean("connected"),
+						res.getBoolean("mailRecall")));
 			}
 		} catch (SQLException e) {
 			logger.error("FindAll : ",e);
@@ -250,6 +252,7 @@ public class UserDaoImpl implements IUserDao {
 				userReturn.setPassword(res.getString("password"));
 				userReturn.setMail(res.getString("mail"));
 				userReturn.setConnected(res.getBoolean("connected"));
+				userReturn.setMailRecall(res.getBoolean("mailRecall"));
 			}
 		} catch (SQLException e) {
 			logger.error("UserExists",e);

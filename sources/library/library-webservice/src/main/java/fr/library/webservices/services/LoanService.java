@@ -1,10 +1,14 @@
 package fr.library.webservices.services;
 
+
 import java.util.Date;
+
 import java.util.List;
+
 
 import org.library.model.Loan;
 import org.library.model.Status;
+
 
 import fr.library.exceptions.LoanStatusException;
 import fr.library.sql.DaoFactory;
@@ -36,5 +40,9 @@ public class LoanService {
 	
 	public static List<Loan> expired(){
 		return dao.getExpiredLoans();
+	}
+	
+	public static List<Loan> mailRecall(){
+		return dao.forMailRecall();
 	}
 }

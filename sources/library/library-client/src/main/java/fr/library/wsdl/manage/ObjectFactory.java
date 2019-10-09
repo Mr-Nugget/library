@@ -28,11 +28,13 @@ public class ObjectFactory {
     private final static QName _GetArchivedLoansResponse_QNAME = new QName("http://entrypoint.webservices.library.fr/", "getArchivedLoansResponse");
     private final static QName _GetCurrentLoans_QNAME = new QName("http://entrypoint.webservices.library.fr/", "getCurrentLoans");
     private final static QName _LoanExpiredResponse_QNAME = new QName("http://entrypoint.webservices.library.fr/", "loanExpiredResponse");
+    private final static QName _MailRecall_QNAME = new QName("http://entrypoint.webservices.library.fr/", "mailRecall");
     private final static QName _JWTCheckingException_QNAME = new QName("http://entrypoint.webservices.library.fr/", "JWTCheckingException");
     private final static QName _GetCurrentLoansResponse_QNAME = new QName("http://entrypoint.webservices.library.fr/", "getCurrentLoansResponse");
     private final static QName _ExtendLoan_QNAME = new QName("http://entrypoint.webservices.library.fr/", "extendLoan");
     private final static QName _ExtendLoanResponse_QNAME = new QName("http://entrypoint.webservices.library.fr/", "extendLoanResponse");
     private final static QName _GetArchivedLoans_QNAME = new QName("http://entrypoint.webservices.library.fr/", "getArchivedLoans");
+    private final static QName _MailRecallResponse_QNAME = new QName("http://entrypoint.webservices.library.fr/", "mailRecallResponse");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: fr.library.wsdl.manage
@@ -74,6 +76,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link MailRecall }
+     * 
+     */
+    public MailRecall createMailRecall() {
+        return new MailRecall();
+    }
+
+    /**
      * Create an instance of {@link GetArchivedLoansResponse }
      * 
      */
@@ -95,6 +105,14 @@ public class ObjectFactory {
      */
     public GetArchivedLoans createGetArchivedLoans() {
         return new GetArchivedLoans();
+    }
+
+    /**
+     * Create an instance of {@link MailRecallResponse }
+     * 
+     */
+    public MailRecallResponse createMailRecallResponse() {
+        return new MailRecallResponse();
     }
 
     /**
@@ -190,6 +208,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link MailRecall }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://entrypoint.webservices.library.fr/", name = "mailRecall")
+    public JAXBElement<MailRecall> createMailRecall(MailRecall value) {
+        return new JAXBElement<MailRecall>(_MailRecall_QNAME, MailRecall.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link JWTCheckingException }{@code >}}
      * 
      */
@@ -232,6 +259,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://entrypoint.webservices.library.fr/", name = "getArchivedLoans")
     public JAXBElement<GetArchivedLoans> createGetArchivedLoans(GetArchivedLoans value) {
         return new JAXBElement<GetArchivedLoans>(_GetArchivedLoans_QNAME, GetArchivedLoans.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link MailRecallResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://entrypoint.webservices.library.fr/", name = "mailRecallResponse")
+    public JAXBElement<MailRecallResponse> createMailRecallResponse(MailRecallResponse value) {
+        return new JAXBElement<MailRecallResponse>(_MailRecallResponse_QNAME, MailRecallResponse.class, null, value);
     }
 
 }
