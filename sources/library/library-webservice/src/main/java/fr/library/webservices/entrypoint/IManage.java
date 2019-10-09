@@ -1,13 +1,13 @@
 package fr.library.webservices.entrypoint;
 
 import java.util.List;
-import java.util.Map;
+
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 
 import org.library.model.Loan;
-import org.library.model.User;
+
 
 import fr.library.exceptions.JWTCheckingException;
 
@@ -37,6 +37,6 @@ public interface IManage {
 	
 	// Get a map of user/list of almost expired loan for recall
 	@WebMethod
-	public Map<User, List<Loan>> mailRecall();
+	public List<Loan> mailRecall();
 	
 }
