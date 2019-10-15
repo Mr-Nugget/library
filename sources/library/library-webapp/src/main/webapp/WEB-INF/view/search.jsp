@@ -42,9 +42,9 @@
 									<td>${doc.ref}</td>
 									<td>${doc.type.label}</td>
 									<td>${doc.category.label}</td>
-									<td>${doc.currentStock}</td>
+									<td>${doc.currentstock}</td>
 									<c:choose>
-										<c:when test="${doc.currentStock == 0}">
+										<c:when test="${doc.currentstock == 0}">
 											<td id="notAvailable">Disponible le <fmt:formatDate value="${doc.availableDate.toGregorianCalendar().time}" pattern="dd-MM-yyyy" /></td>
 											<td><a href="">Réserver</a></td>
 										</c:when>

@@ -64,10 +64,10 @@ public class DocumentDaoImplTest {
 	@Test
 	public final void test4UpdateItem() {
 		
-		documentTest.setCurrentStock(2);
+		documentTest.setCurrentstock(new Integer(2));
 		documentDao.updateItem(documentTest);
 		Document documentUpdate = documentDao.getById(documentTest.getId());
-		assertEquals(documentUpdate.getCurrentStock(), 2);
+		assertEquals(documentUpdate.getCurrentstock(), new Integer(2));
 	}
 
 	@Test
@@ -82,7 +82,8 @@ public class DocumentDaoImplTest {
 		documentTest = new Document();
 		documentTest.setAuthor("AuthorTest");
 		documentTest.setTitle("TitleTest");
-		documentTest.setCurrentStock(1);
+		documentTest.setCurrentstock(new Integer(1));
+		documentTest.setTotalstock(new Integer(5));
 		documentTest.setRef("0000");
 		Category cat = documentDao.findAll().get(0).getCategory();
 		categoryId = cat.getId();

@@ -29,7 +29,7 @@ public class DocumentService {
 	public List<Document> search(String word, String criteria){
 		List<Document> ld =  dao.searchByCriteria(criteria, word);
 		for(Document doc : ld) {
-			if(doc.getCurrentStock() == 0) {
+			if(doc.getCurrentstock() == 0) {
 				doc.setAvailableDate(getAvailableDate(doc));
 			}
 		}

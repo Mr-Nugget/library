@@ -1,10 +1,10 @@
 <div class="container-fluid header">
     <img src="res/library-icon.png">
     <a href="accessSearch" class="btn btn-light more-infos" role="button" aria-pressed="true">Rechercher</a>
-    <a href="currentloans" class="btn btn-light more-infos" role="button" aria-pressed="true">Mes prÃªts en cours</a>
-    <a href="currentbooking" class="btn btn-light more-infos" role="button" aria-pressed="true">Mes rÃ©servations</a>
+    <a href="currentloans" class="btn btn-light more-infos" role="button" aria-pressed="true">Mes prêts en cours</a>
+    <a href="currentbooking" class="btn btn-light more-infos" role="button" aria-pressed="true">Mes réservations</a>
     <a href="archivedloans" class="btn btn-light more-infos" role="button" aria-pressed="true">Historique</a>
-    <a href="logout" class="btn btn-light more-infos" role="button" aria-pressed="true">Se dÃ©connecter</a>
+    <a href="logout" class="btn btn-light more-infos" role="button" aria-pressed="true">Se déconnecter</a>
     <div class="account">
     	<a href="account"><img src="res/profil.png" alt=""></a>
       	<span>${cookie.firstname.value}</span>

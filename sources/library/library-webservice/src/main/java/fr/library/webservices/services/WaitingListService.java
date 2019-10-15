@@ -44,7 +44,7 @@ public class WaitingListService {
 		if(wl == null) {
 			wlDao.createWaitingList(doc, user);
 		}else {
-			if(wl.getLastPosition() >= doc.getTotalStock()*2) {
+			if(wl.getLastPosition() >= doc.getTotalstock()*2) {
 				throw new WaitingListFullException();
 			}else {
 				wlDao.addUserToList(wl, user);

@@ -124,7 +124,7 @@ public class LoanDaoImpl implements ILoanDao {
 				//update document stock
 				query = "UPDATE documents SET nb_stock=? WHERE id = ?;";
 				psUpdateDoc = connect.prepareStatement(query);
-				psUpdateDoc.setInt(1, loan.getDoc().getCurrentStock()+1);
+				psUpdateDoc.setInt(1, loan.getDoc().getCurrentstock()+1);
 				psUpdateDoc.setLong(2, loan.getDoc().getId());
 				psUpdateDoc.executeUpdate();
 				
@@ -207,7 +207,7 @@ public class LoanDaoImpl implements ILoanDao {
 		PreparedStatement prepared = null, ps2 = null, psId=null;
 		ResultSet res = null;
 		Long idReturn = null;
-		if(doc.getCurrentStock()>0) {
+		if(doc.getCurrentstock()>0) {
 
 			String query ="INSERT INTO loans(document_id, user_id, start_date, end_date, status) VALUES(?,?,TO_DATE(?, 'YYYY/MM/DD'),TO_DATE(?, 'YYYY/MM/DD'),?);";
 			try {
@@ -247,7 +247,7 @@ public class LoanDaoImpl implements ILoanDao {
 				// Update document status
 				query = "UPDATE documents SET nb_stock=? WHERE id=?";
 				ps2 = connect.prepareStatement(query);
-				ps2.setInt(1, doc.getTotalStock()-1);
+				ps2.setInt(1, doc.getTotalstock()-1);
 				ps2.setLong(2, doc.getId());
 				ps2.executeUpdate();
 				
@@ -531,8 +531,8 @@ public class LoanDaoImpl implements ILoanDao {
 				Document doc = new Document();
 				doc.setId(res.getLong("document_id"));
 				doc.setAuthor(res.getString("author"));
-				doc.setTotalStock(res.getInt("total_stock"));
-				doc.setCurrentStock(res.getInt("current_stock"));
+				doc.setTotalstock(res.getInt("total_stock"));
+				doc.setCurrentstock(res.getInt("current_stock"));
 				doc.setRef(res.getString("ref"));
 				doc.setTitle(res.getString("title"));
 				

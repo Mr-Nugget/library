@@ -21,15 +21,15 @@ public class Document {
 	// Type of the document ref Type -> Java object 
 	private Type type;
 	// Total Stock
-	private int totalStock;
+	private Integer totalStock;
 	// Current Stock
-	private int currentStock;
+	private Integer currentStock;
 	// Available date
 	private Date availableDate;
 
 	
 	//Constructor with all fields
-	public Document(Long id, String ref, String title, String author, Category category, Type type, int totalStock, int currentStock) {
+	public Document(Long id, String ref, String title, String author, Category category, Type type, Integer totalStock, Integer currentStock) {
 		this.id = id;
 		this.ref = ref;
 		this.title = title;
@@ -54,20 +54,20 @@ public class Document {
 		
 	}
 
-	public int getTotalStock() {
+	public Integer getTotalstock() {
 		return totalStock;
 	}
 
-	public void setTotalStock(int nb_stock) {
-		this.totalStock = nb_stock;
+	public void setTotalstock(Integer nb_stock) {
+		this.totalStock = new Integer(nb_stock);
 	}
 
-	public int getCurrentStock() {
+	public Integer getCurrentstock() {
 		return currentStock;
 	}
 
-	public void setCurrentStock(int currentStock) {
-		this.currentStock = currentStock;
+	public void setCurrentstock(Integer currentStock) {
+		this.currentStock = new Integer(currentStock);
 	}
 
 	public Long getId() {

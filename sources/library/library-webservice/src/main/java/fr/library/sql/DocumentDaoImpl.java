@@ -240,8 +240,8 @@ public class DocumentDaoImpl implements IDocumentDao {
 			prepared.setString(3, item.getRef());
 			prepared.setLong(4, item.getCategory().getId());
 			prepared.setLong(5, item.getType().getId());
-			prepared.setInt(6, item.getCurrentStock());
-			prepared.setInt(7,  item.getTotalStock());
+			prepared.setInt(6, item.getCurrentstock());
+			prepared.setInt(7,  item.getTotalstock());
 			prepared.setLong(8, item.getId());
 
 			prepared.executeUpdate();
@@ -364,8 +364,8 @@ public class DocumentDaoImpl implements IDocumentDao {
 			prepared.setString(3, doc.getRef());
 			prepared.setLong(4, doc.getCategory().getId());
 			prepared.setLong(5, doc.getType().getId());
-			prepared.setInt(6, doc.getCurrentStock());
-			prepared.setInt(7, doc.getTotalStock());
+			prepared.setInt(6, doc.getCurrentstock());
+			prepared.setInt(7, doc.getTotalstock());
 			prepared.executeUpdate();
 
 			//get the id of the new document

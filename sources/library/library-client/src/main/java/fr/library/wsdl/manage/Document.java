@@ -21,11 +21,11 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="author" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="availableDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="category" type="{http://entrypoint.webservices.library.fr/}category" minOccurs="0"/>
- *         &lt;element name="currentStock" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="currentstock" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="ref" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="title" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="totalStock" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="totalstock" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *         &lt;element name="type" type="{http://entrypoint.webservices.library.fr/}type" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -40,11 +40,11 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "author",
     "availableDate",
     "category",
-    "currentStock",
+    "currentstock",
     "id",
     "ref",
     "title",
-    "totalStock",
+    "totalstock",
     "type"
 })
 public class Document {
@@ -53,11 +53,11 @@ public class Document {
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar availableDate;
     protected Category category;
-    protected int currentStock;
+    protected Integer currentstock;
     protected Long id;
     protected String ref;
     protected String title;
-    protected int totalStock;
+    protected Integer totalstock;
     protected Type type;
 
     /**
@@ -133,19 +133,27 @@ public class Document {
     }
 
     /**
-     * Obtient la valeur de la propriété currentStock.
+     * Obtient la valeur de la propriété currentstock.
      * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
      */
-    public int getCurrentStock() {
-        return currentStock;
+    public Integer getCurrentstock() {
+        return currentstock;
     }
 
     /**
-     * Définit la valeur de la propriété currentStock.
+     * Définit la valeur de la propriété currentstock.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
      */
-    public void setCurrentStock(int value) {
-        this.currentStock = value;
+    public void setCurrentstock(Integer value) {
+        this.currentstock = value;
     }
 
     /**
@@ -221,19 +229,27 @@ public class Document {
     }
 
     /**
-     * Obtient la valeur de la propriété totalStock.
+     * Obtient la valeur de la propriété totalstock.
      * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
      */
-    public int getTotalStock() {
-        return totalStock;
+    public Integer getTotalstock() {
+        return totalstock;
     }
 
     /**
-     * Définit la valeur de la propriété totalStock.
+     * Définit la valeur de la propriété totalstock.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
      */
-    public void setTotalStock(int value) {
-        this.totalStock = value;
+    public void setTotalstock(Integer value) {
+        this.totalstock = value;
     }
 
     /**
