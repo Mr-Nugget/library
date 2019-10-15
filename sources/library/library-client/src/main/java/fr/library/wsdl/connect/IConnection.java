@@ -51,26 +51,24 @@ public interface IConnection {
 
     /**
      * 
-
-
-     * @param arg2
-     * @param arg1
      * @param arg0
+     * @throws JWTCheckingException_Exception
      */
     @WebMethod
-    @RequestWrapper(localName = "sendMail", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.connect.SendMail")
-    @ResponseWrapper(localName = "sendMailResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.connect.SendMailResponse")
-    @Action(input = "http://entrypoint.webservices.library.fr/IConnection/sendMailRequest", output = "http://entrypoint.webservices.library.fr/IConnection/sendMailResponse")
-    public void sendMail(
+    @RequestWrapper(localName = "logout", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.connect.Logout")
+    @ResponseWrapper(localName = "logoutResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.connect.LogoutResponse")
+    @Action(input = "http://entrypoint.webservices.library.fr/IConnection/logoutRequest", output = "http://entrypoint.webservices.library.fr/IConnection/logoutResponse", fault = {
+        @FaultAction(className = JWTCheckingException_Exception.class, value = "http://entrypoint.webservices.library.fr/IConnection/logout/Fault/JWTCheckingException")
+    })
+    public void logout(
         @WebParam(name = "arg0", targetNamespace = "")
-        String arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        String arg1,
-        @WebParam(name = "arg2", targetNamespace = "")
-        String arg2);
+        String arg0)
+        throws JWTCheckingException_Exception
+    ;
 
     /**
      * 
+     * @param arg1
      * @param arg0
      * @return
      *     returns java.lang.String
@@ -89,29 +87,27 @@ public interface IConnection {
     /**
      * 
      * @param arg0
-     * @throws JWTCheckingException_Exception
-     */
-    @WebMethod
-    @RequestWrapper(localName = "logout", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.connect.Logout")
-    @ResponseWrapper(localName = "logoutResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.connect.LogoutResponse")
-    @Action(input = "http://entrypoint.webservices.library.fr/IConnection/logoutRequest", output = "http://entrypoint.webservices.library.fr/IConnection/logoutResponse", fault = {
-        @FaultAction(className = JWTCheckingException_Exception.class, value = "http://entrypoint.webservices.library.fr/IConnection/logout/Fault/JWTCheckingException")
-    })
-    public void logout(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0)
-        throws JWTCheckingException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
      */
     @WebMethod
     @RequestWrapper(localName = "sendResetPasswordLink", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.connect.SendResetPasswordLink")
     @ResponseWrapper(localName = "sendResetPasswordLinkResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.connect.SendResetPasswordLinkResponse")
     @Action(input = "http://entrypoint.webservices.library.fr/IConnection/sendResetPasswordLinkRequest", output = "http://entrypoint.webservices.library.fr/IConnection/sendResetPasswordLinkResponse")
     public void sendResetPasswordLink(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns fr.library.wsdl.connect.User
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "userExist", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.connect.UserExist")
+    @ResponseWrapper(localName = "userExistResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.connect.UserExistResponse")
+    @Action(input = "http://entrypoint.webservices.library.fr/IConnection/userExistRequest", output = "http://entrypoint.webservices.library.fr/IConnection/userExistResponse")
+    public User userExist(
         @WebParam(name = "arg0", targetNamespace = "")
         String arg0);
 
@@ -138,6 +134,18 @@ public interface IConnection {
     /**
      * 
      * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "updateUser", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.connect.UpdateUser")
+    @ResponseWrapper(localName = "updateUserResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.connect.UpdateUserResponse")
+    @Action(input = "http://entrypoint.webservices.library.fr/IConnection/updateUserRequest", output = "http://entrypoint.webservices.library.fr/IConnection/updateUserResponse")
+    public void updateUser(
+        @WebParam(name = "arg0", targetNamespace = "")
+        User arg0);
+
+    /**
+     * 
+     * @param arg0
      * @return
      *     returns fr.library.wsdl.connect.User
      * @throws JWTCheckingException_Exception
@@ -157,18 +165,20 @@ public interface IConnection {
 
     /**
      * 
+     * @param arg2
+     * @param arg1
      * @param arg0
-     * @return
-     *     returns fr.library.wsdl.connect.User
      */
     @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "userExist", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.connect.UserExist")
-    @ResponseWrapper(localName = "userExistResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.connect.UserExistResponse")
-    @Action(input = "http://entrypoint.webservices.library.fr/IConnection/userExistRequest", output = "http://entrypoint.webservices.library.fr/IConnection/userExistResponse")
-    public User userExist(
+    @RequestWrapper(localName = "sendMail", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.connect.SendMail")
+    @ResponseWrapper(localName = "sendMailResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.connect.SendMailResponse")
+    @Action(input = "http://entrypoint.webservices.library.fr/IConnection/sendMailRequest", output = "http://entrypoint.webservices.library.fr/IConnection/sendMailResponse")
+    public void sendMail(
         @WebParam(name = "arg0", targetNamespace = "")
-        String arg0);
-
+        String arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        String arg1,
+        @WebParam(name = "arg2", targetNamespace = "")
+        String arg2);
 
 }

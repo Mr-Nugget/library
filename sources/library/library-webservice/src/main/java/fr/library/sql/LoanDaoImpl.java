@@ -531,7 +531,8 @@ public class LoanDaoImpl implements ILoanDao {
 				Document doc = new Document();
 				doc.setId(res.getLong("document_id"));
 				doc.setAuthor(res.getString("author"));
-				doc.setNbstock(res.getInt("nb_stock"));
+				doc.setTotalStock(res.getInt("total_stock"));
+				doc.setCurrentStock(res.getInt("current_stock"));
 				doc.setRef(res.getString("ref"));
 				doc.setTitle(res.getString("title"));
 				

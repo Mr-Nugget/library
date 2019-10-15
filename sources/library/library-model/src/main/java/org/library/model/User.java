@@ -22,6 +22,18 @@ public class User {
 	//Empty constructor
 	public User() {}
 	
+	
+	// Constructor with mailRecall set to true
+		public User(Long id, String firstName, String lastName, String mail, String password, boolean isConnected) {
+			this.id = id;
+			this.firstName = firstName;
+			this.lastName = lastName;
+			this.mail = mail;
+			this.password = password;
+			this.isConnected = isConnected;
+			this.mailRecall = true;
+		}
+	
 	//constructor using fields
 	public User(Long id, String firstName, String lastName, String mail, String password, boolean isConnected, boolean mailRecall) {
 		this.id = id;
