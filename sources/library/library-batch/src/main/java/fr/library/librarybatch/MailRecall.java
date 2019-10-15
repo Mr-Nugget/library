@@ -34,22 +34,22 @@ public class MailRecall {
 	@Autowired
 	IManage service;
 	
+	public MailRecall() {
+		
+	}
+	
 	//cron="0 10 * * 1,5" ? -> Every Mondays and Fridays at 10AM
 	@Scheduled(cron="*/5 * * * * ?")
 	public void task() {
 		StringBuilder message = new StringBuilder();
 		DateFormat simpleFormat = new SimpleDateFormat("dd/MM/yyyy");
 		
-		Map<User, List<Loan>> mapForMail = sortByUser();
+		Map<String, List<Loan>> mapForMail = sortByUser();
 		
-		for(User user : mapForMail.keySet()) {
-			message.append("Bonjour ");
-			message.append(user.getFirstName());
-			message.append(" ");
-			message.append(user.getLastName());
-			message.append(",\n\nUn ou plusieurs de vos prêts arrivent à leur terme.\nMerci de bien vouloir les retourner avant la date indiquée :\n\n");
+		for(String userMail : mapForMail.keySet()) {	
+			message.append("Bonjour,\n\nUn ou plusieurs de vos prêts arrivent à leur terme.\nMerci de bien vouloir les retourner avant la date indiquée :\n\n");
 			
-			List<Loan> listCurrentLoan = mapForMail.get(user);
+			List<Loan> listCurrentLoan = mapForMail.get(userMail);
 			
 			// List all the loan in one mail for each user
 			for(Loan currentLoan : listCurrentLoan) {
@@ -65,29 +65,30 @@ public class MailRecall {
 			message.append("En vous souhaitant une bonne journée,\n\nL'équipe de la bibliothèque.");
 			
 			simpleMail.setText(message.toString());
-			simpleMail.setTo(user.getMail());
+			simpleMail.setTo(userMail);
 			simpleMail.setSubject("[Bibliothèque Municipale] Certains de vos prêts arrivent à expiration");
 			javaMailSender.send(simpleMail);
 			message = new StringBuilder();
 		}
 	}
 	
-	private Map<User, List<Loan>>sortByUser() {
+	// Return a map of email associated with the list of almost expired loans
+	public Map<String, List<Loan>>sortByUser() {
 		List<Loan> list = service.mailRecall();		
-		Map<User, List<Loan>> res = new HashMap<>();
+		Map<String, List<Loan>> res = new HashMap<>();
 		
 		for(Loan loan : list) {
-			if(res.containsKey(loan.getUser())) {
+
+			if(res.containsKey(loan.getUser().getMail())) {
 				// Add the current loan to the user list if he is already in the map
-				res.get(loan.getUser()).add(loan);
+				res.get(loan.getUser().getMail()).add(loan);
 			}else {
 				// If the current user is not present in the map, add a new row
 				List<Loan> lTemp = new ArrayList<Loan>();
 				lTemp.add(loan);
-				res.put(loan.getUser(), lTemp);
+				res.put(loan.getUser().getMail(), lTemp);
 			}
 		}
-		
 		return res;
 	}
 }

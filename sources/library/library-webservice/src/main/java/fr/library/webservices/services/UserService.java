@@ -89,4 +89,8 @@ public class UserService {
 		
 		return dao.createUser(newUser);
 	}
+
+	public static void updateUser(User user) {
+		dao.updateItem(user);
+	}
 }

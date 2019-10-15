@@ -16,10 +16,6 @@ import fr.library.wsdl.search.Document;
 import fr.library.wsdl.search.ISearch;
 import fr.library.wsdl.search.JWTCheckingException_Exception;
 
-
-
-
-
 @Controller
 public class SearchController {
 	

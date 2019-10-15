@@ -5,9 +5,9 @@
     <a href="archivedloans" class="btn btn-light more-infos" role="button" aria-pressed="true">Historique</a>
     <a href="logout" class="btn btn-light more-infos" role="button" aria-pressed="true">Se déconnecter</a>
     <div class="account">
-      <img src="res/profil.png" alt="">
-      <span>${cookie.firstname.value}</span>
-      <span>${cookie.lastname.value}</span>
+    	<a href="account"><img src="res/profil.png" alt=""></a>
+      	<span>${cookie.firstname.value}</span>
+     	<span>${cookie.lastname.value}</span>
     </div>
   </div>
   <div class="search">
@@ -19,4 +19,5 @@
       </select>
       <input id="searchBar" type="text" class="form-control searchBar" placeholder="Rechercher un document" name="value">
       <button type="submit"><i class="fa fa-search"></i></button>
+      </form>
   </div>

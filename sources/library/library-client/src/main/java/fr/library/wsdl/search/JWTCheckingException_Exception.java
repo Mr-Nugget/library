@@ -10,6 +10,7 @@ import javax.xml.ws.WebFault;
  * Generated source version: 2.2
  * 
  */
+@SuppressWarnings("serial")
 @WebFault(name = "JWTCheckingException", targetNamespace = "http://entrypoint.webservices.library.fr/")
 public class JWTCheckingException_Exception
     extends Exception
