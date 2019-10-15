@@ -17,7 +17,9 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
+
 @WebServiceClient(name = "SearchImplService", targetNamespace = "http://entrypoint.webservices.library.fr/", wsdlLocation = "http://localhost:8283/library-webservice/search?wsdl")
+
 public class SearchImplService
     extends Service
 {

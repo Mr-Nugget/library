@@ -76,8 +76,8 @@ public class UserService {
 		} catch (MessagingException e) {
 			System.out.println(e);
 		}
-		
 	}
+	
 	
 	public static Long insertUser(String firstname, String lastname, String mail, String password) {
 		

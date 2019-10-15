@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,8 +28,10 @@
 								<th scope="col">Auteur</th>
 								<th scope="col">Reference</th>
 								<th scope="col">Type</th>
-								<th scope="col">Category</th>
+								<th scope="col">Categorie</th>
 								<th scope="col">Stock</th>
+								<th scope="col">Disponible</th>
+								<th scope="col">Réserver</th>								
 							</tr>
 						</thead>
 						<tbody>
@@ -39,7 +42,17 @@
 									<td>${doc.ref}</td>
 									<td>${doc.type.label}</td>
 									<td>${doc.category.label}</td>
-									<td>${doc.nbstock}</td>
+									<td>${doc.currentStock}</td>
+									<c:choose>
+										<c:when test="${doc.currentStock == 0}">
+											<td id="notAvailable">Disponible le <fmt:formatDate value="${doc.availableDate.toGregorianCalendar().time}" pattern="dd-MM-yyyy" /></td>
+											<td><a href="">Réserver</a></td>
+										</c:when>
+										<c:otherwise>
+											<td id="available">Disponible</td>
+											<td><a href="">-</a></td>
+										</c:otherwise>
+									</c:choose>
 								</tr>
 							</c:forEach>
 						</tbody>

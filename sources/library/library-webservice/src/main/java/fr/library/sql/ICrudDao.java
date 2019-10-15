@@ -7,7 +7,7 @@ import java.util.List;
  *
  * @param <T>
  */
-public interface IScrudDao<T> {   //T can be a User, a Document or a Loan depending on the implementation
+public interface ICrudDao<T> {   //T can be a User, a Document or a Loan depending on the implementation
 	//get an item by its id, return null if there is no item corresponding
 	public T getById(Long id); 
 	//delete item from the table by the item id

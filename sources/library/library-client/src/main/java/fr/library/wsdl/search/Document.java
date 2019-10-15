@@ -3,7 +3,9 @@ package fr.library.wsdl.search;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
@@ -17,11 +19,13 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="author" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="availableDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="category" type="{http://entrypoint.webservices.library.fr/}category" minOccurs="0"/>
+ *         &lt;element name="currentStock" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
- *         &lt;element name="nbstock" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="ref" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="title" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="totalStock" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="type" type="{http://entrypoint.webservices.library.fr/}type" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -34,21 +38,26 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "document", propOrder = {
     "author",
+    "availableDate",
     "category",
+    "currentStock",
     "id",
-    "nbstock",
     "ref",
     "title",
+    "totalStock",
     "type"
 })
 public class Document {
 
     protected String author;
+    @XmlSchemaType(name = "dateTime")
+    protected XMLGregorianCalendar availableDate;
     protected Category category;
+    protected int currentStock;
     protected Long id;
-    protected int nbstock;
     protected String ref;
     protected String title;
+    protected int totalStock;
     protected Type type;
 
     /**
@@ -76,6 +85,30 @@ public class Document {
     }
 
     /**
+     * Obtient la valeur de la propriété availableDate.
+     * 
+     * @return
+     *     possible object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public XMLGregorianCalendar getAvailableDate() {
+        return availableDate;
+    }
+
+    /**
+     * Définit la valeur de la propriété availableDate.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public void setAvailableDate(XMLGregorianCalendar value) {
+        this.availableDate = value;
+    }
+
+    /**
      * Obtient la valeur de la propriété category.
      * 
      * @return
@@ -100,6 +133,22 @@ public class Document {
     }
 
     /**
+     * Obtient la valeur de la propriété currentStock.
+     * 
+     */
+    public int getCurrentStock() {
+        return currentStock;
+    }
+
+    /**
+     * Définit la valeur de la propriété currentStock.
+     * 
+     */
+    public void setCurrentStock(int value) {
+        this.currentStock = value;
+    }
+
+    /**
      * Obtient la valeur de la propriété id.
      * 
      * @return
@@ -121,22 +170,6 @@ public class Document {
      */
     public void setId(Long value) {
         this.id = value;
-    }
-
-    /**
-     * Obtient la valeur de la propriété nbstock.
-     * 
-     */
-    public int getNbstock() {
-        return nbstock;
-    }
-
-    /**
-     * Définit la valeur de la propriété nbstock.
-     * 
-     */
-    public void setNbstock(int value) {
-        this.nbstock = value;
     }
 
     /**
@@ -185,6 +218,22 @@ public class Document {
      */
     public void setTitle(String value) {
         this.title = value;
+    }
+
+    /**
+     * Obtient la valeur de la propriété totalStock.
+     * 
+     */
+    public int getTotalStock() {
+        return totalStock;
+    }
+
+    /**
+     * Définit la valeur de la propriété totalStock.
+     * 
+     */
+    public void setTotalStock(int value) {
+        this.totalStock = value;
     }
 
     /**

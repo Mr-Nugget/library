@@ -17,7 +17,9 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
+
 @WebServiceClient(name = "ConnectionImplService", targetNamespace = "http://entrypoint.webservices.library.fr/", wsdlLocation = "http://localhost:8283/library-webservice/connect?wsdl")
+
 public class ConnectionImplService
     extends Service
 {

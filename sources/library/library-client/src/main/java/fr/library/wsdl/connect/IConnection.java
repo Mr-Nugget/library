@@ -51,7 +51,26 @@ public interface IConnection {
 
     /**
      * 
+
+
+     * @param arg2
      * @param arg1
+     * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "sendMail", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.connect.SendMail")
+    @ResponseWrapper(localName = "sendMailResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.connect.SendMailResponse")
+    @Action(input = "http://entrypoint.webservices.library.fr/IConnection/sendMailRequest", output = "http://entrypoint.webservices.library.fr/IConnection/sendMailResponse")
+    public void sendMail(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        String arg1,
+        @WebParam(name = "arg2", targetNamespace = "")
+        String arg2);
+
+    /**
+     * 
      * @param arg0
      * @return
      *     returns java.lang.String
@@ -95,36 +114,6 @@ public interface IConnection {
     public void sendResetPasswordLink(
         @WebParam(name = "arg0", targetNamespace = "")
         String arg0);
-
-    /**
-     * 
-     * @param arg0
-     */
-    @WebMethod
-    @RequestWrapper(localName = "updateUser", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.connect.UpdateUser")
-    @ResponseWrapper(localName = "updateUserResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.connect.UpdateUserResponse")
-    @Action(input = "http://entrypoint.webservices.library.fr/IConnection/updateUserRequest", output = "http://entrypoint.webservices.library.fr/IConnection/updateUserResponse")
-    public void updateUser(
-        @WebParam(name = "arg0", targetNamespace = "")
-        User arg0);
-
-    /**
-     * 
-     * @param arg2
-     * @param arg1
-     * @param arg0
-     */
-    @WebMethod
-    @RequestWrapper(localName = "sendMail", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.connect.SendMail")
-    @ResponseWrapper(localName = "sendMailResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.connect.SendMailResponse")
-    @Action(input = "http://entrypoint.webservices.library.fr/IConnection/sendMailRequest", output = "http://entrypoint.webservices.library.fr/IConnection/sendMailResponse")
-    public void sendMail(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        String arg1,
-        @WebParam(name = "arg2", targetNamespace = "")
-        String arg2);
 
     /**
      * 
@@ -180,5 +169,6 @@ public interface IConnection {
     public User userExist(
         @WebParam(name = "arg0", targetNamespace = "")
         String arg0);
+
 
 }

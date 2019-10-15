@@ -17,7 +17,9 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "ManageImplService", targetNamespace = "http://entrypoint.webservices.library.fr/", wsdlLocation = "http://localhost:8283/library-webservice/manage?wsdl")
+
+@WebServiceClient(name = "ManageImplService", targetNamespace = "http://entrypoint.webservices.library.fr/", wsdlLocation = "http://localhost:8282/library-webservice/manage?wsdl")
+
 public class ManageImplService
     extends Service
 {
@@ -30,7 +32,9 @@ public class ManageImplService
         URL url = null;
         WebServiceException e = null;
         try {
+
             url = new URL("http://localhost:8283/library-webservice/manage?wsdl");
+
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }
