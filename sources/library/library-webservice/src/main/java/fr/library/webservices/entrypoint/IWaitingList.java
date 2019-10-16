@@ -18,9 +18,9 @@ import org.library.model.WaitingList;
 public interface IWaitingList {
 	// Add a user in the waitinglist of a document and return its ID
 	@WebMethod
-	public Long addUserToList(Document doc, User user);
+	public Long addUserToList(Long docId, Long userId);
 	
 	// Get all the waitingList of a user
 	@WebMethod
-	public List<WaitingList> getAllWaiting(User user);
+	public List<WaitingList> getAllWaiting(Long userId);
 }

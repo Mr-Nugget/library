@@ -23,11 +23,17 @@ public class WaitingListImpl implements IWaitingList {
 	Logger logger = Logger.getLogger(WaitingListImpl.class);
 	
 	@Override
-	public Long addUserToList(Document doc, User user) {
+	public Long addUserToList(Long docId, Long userId) {
 		try {
-			if(doc == null || user == null) {
+			if(docId == null || userId == null) {
 				return null;
 			}else {
+				
+				Document doc = new Document();
+				doc.setId(docId);
+				User user = new User();
+				user.setId(userId);
+				
 				return WaitingListService.addUserToList(doc, user);	
 			}
 		} catch (WaitingListFullException e) {
@@ -37,10 +43,14 @@ public class WaitingListImpl implements IWaitingList {
 	}
 
 	@Override
-	public List<WaitingList> getAllWaiting(User user) {
-		if(user == null) {
+	public List<WaitingList> getAllWaiting(Long userId) {
+		if(userId == null) {
 			return null;
 		}
+		
+		User user = new User();
+		user.setId(userId);
+		
 		return WaitingListService.getAll(user);
 	}
 

@@ -1,6 +1,5 @@
 <div class="container-fluid header">
     <img src="res/library-icon.png">
-    <a href="accessSearch" class="btn btn-light more-infos" role="button" aria-pressed="true">Rechercher</a>
     <a href="currentloans" class="btn btn-light more-infos" role="button" aria-pressed="true">Mes prêts en cours</a>
     <a href="currentbooking" class="btn btn-light more-infos" role="button" aria-pressed="true">Mes réservations</a>
     <a href="archivedloans" class="btn btn-light more-infos" role="button" aria-pressed="true">Historique</a>

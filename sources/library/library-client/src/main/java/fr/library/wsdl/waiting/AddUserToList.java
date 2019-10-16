@@ -16,8 +16,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="arg0" type="{http://entrypoint.webservices.library.fr/}document" minOccurs="0"/>
- *         &lt;element name="arg1" type="{http://entrypoint.webservices.library.fr/}user" minOccurs="0"/>
+ *         &lt;element name="arg0" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
+ *         &lt;element name="arg1" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -33,18 +33,18 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class AddUserToList {
 
-    protected Document arg0;
-    protected User arg1;
+    protected Long arg0;
+    protected Long arg1;
 
     /**
      * Obtient la valeur de la propriété arg0.
      * 
      * @return
      *     possible object is
-     *     {@link Document }
+     *     {@link Long }
      *     
      */
-    public Document getArg0() {
+    public Long getArg0() {
         return arg0;
     }
 
@@ -53,10 +53,10 @@ public class AddUserToList {
      * 
      * @param value
      *     allowed object is
-     *     {@link Document }
+     *     {@link Long }
      *     
      */
-    public void setArg0(Document value) {
+    public void setArg0(Long value) {
         this.arg0 = value;
     }
 
@@ -65,10 +65,10 @@ public class AddUserToList {
      * 
      * @return
      *     possible object is
-     *     {@link User }
+     *     {@link Long }
      *     
      */
-    public User getArg1() {
+    public Long getArg1() {
         return arg1;
     }
 
@@ -77,10 +77,10 @@ public class AddUserToList {
      * 
      * @param value
      *     allowed object is
-     *     {@link User }
+     *     {@link Long }
      *     
      */
-    public void setArg1(User value) {
+    public void setArg1(Long value) {
         this.arg1 = value;
     }
 

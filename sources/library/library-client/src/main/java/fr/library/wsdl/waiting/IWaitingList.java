@@ -39,9 +39,9 @@ public interface IWaitingList {
     @Action(input = "http://entrypoint.webservices.library.fr/IWaitingList/addUserToListRequest", output = "http://entrypoint.webservices.library.fr/IWaitingList/addUserToListResponse")
     public Long addUserToList(
         @WebParam(name = "arg0", targetNamespace = "")
-        Document arg0,
+        Long arg0,
         @WebParam(name = "arg1", targetNamespace = "")
-        User arg1);
+        Long arg1);
 
     /**
      * 
@@ -56,6 +56,6 @@ public interface IWaitingList {
     @Action(input = "http://entrypoint.webservices.library.fr/IWaitingList/getAllWaitingRequest", output = "http://entrypoint.webservices.library.fr/IWaitingList/getAllWaitingResponse")
     public List<WaitingList> getAllWaiting(
         @WebParam(name = "arg0", targetNamespace = "")
-        User arg0);
+        Long arg0);
 
 }
