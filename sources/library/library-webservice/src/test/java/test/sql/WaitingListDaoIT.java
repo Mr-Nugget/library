@@ -2,6 +2,8 @@ package test.sql;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
@@ -110,7 +112,13 @@ public class WaitingListDaoIT {
 	}
 	
 	@Test
-	public final void test7DeleteItem() {
+	public final void test7GetAllWaiting() {
+		List<WaitingList> wlL = dao.getUserReservations(userTestAdd);
+		assertEquals(1, wlL.size());
+	}
+	
+	@Test
+	public final void test8DeleteItem() {
 		dao.deleteItem(waitingList);
 		assertEquals(nbWL, dao.findAll().size());
 	}

@@ -14,6 +14,7 @@ import fr.library.sql.ILoanDao;
 
 @Service("DocumentService")
 public class DocumentService {
+	
 	private static IDocumentDao dao = DaoFactory.getInstance().getDocumentDao();
 	
 	@Autowired

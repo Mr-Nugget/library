@@ -2,6 +2,8 @@ package fr.library.webservices.services;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.library.model.Document;
 import org.library.model.User;
 import org.library.model.WaitingList;
@@ -15,8 +17,8 @@ import fr.library.sql.IWaitingListDao;
 @Service("WaitingListService")
 public class WaitingListService {
 
-	@Autowired
-	private static IWaitingListDao wlDao;
+	@Resource(name="WaitingListDao")
+	private static IWaitingListDao waitingListDao;
 	
 	@Autowired
 	private static ILoanDao loanDao;
@@ -36,20 +38,20 @@ public class WaitingListService {
 			return null;
 		}else if(loanDao.alreadyHaveTheDocument(user, doc)) {
 			return null;
-		}else if(wlDao.alreadyInTheList(doc, user)) {
+		}else if(waitingListDao.alreadyInTheList(doc, user)) {
 			return null;
 		}
 		
 		
-		WaitingList wl = wlDao.getByDocument(doc);
+		WaitingList wl = waitingListDao.getByDocument(doc);
 				
 		if(wl == null) {
-			wlDao.createWaitingList(doc, user);
+			waitingListDao.createWaitingList(doc, user);
 		}else {
 			if(wl.getLastPosition() >= doc.getTotalstock()*2) {
 				throw new WaitingListFullException();
 			}else {
-				wlDao.addUserToList(wl, user);
+				waitingListDao.addUserToList(wl, user);
 			}
 		}
 		
@@ -65,15 +67,16 @@ public class WaitingListService {
 			return null;
 		}else {
 			if(wl.getUsersPositions().isEmpty()) {
-				wlDao.deleteItem(wl);
+				waitingListDao.deleteItem(wl);
 			}else {
-				wlDao.updateItem(wl);
+				waitingListDao.updateItem(wl);
 			}
 		}
 		return user.getId();
 	}
 	
 	public static List<WaitingList> getAll(User user){
-		return wlDao.getUserReservations(user);
+		
+		return waitingListDao.getUserReservations(user);
 	}
 }

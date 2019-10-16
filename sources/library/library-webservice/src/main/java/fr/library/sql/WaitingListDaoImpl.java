@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.apache.log4j.Logger;
 import org.library.model.Document;
 import org.library.model.Position;
 import org.library.model.User;
@@ -21,6 +22,8 @@ import fr.library.helpers.WaitingListRowMapper;
 @Qualifier("WaitingListDao")
 public class WaitingListDaoImpl implements IWaitingListDao {
 
+	private final static Logger logger = Logger.getLogger(IWaitingListDao.class);
+	
 	@Autowired
 	DataSource dataSource;
 
@@ -129,13 +132,14 @@ public class WaitingListDaoImpl implements IWaitingListDao {
 
 	@Override
 	public List<WaitingList> getUserReservations(User user) {
+		System.out.println("HEllo");
 		JdbcTemplate jdbc = new  JdbcTemplate(dataSource);
-		String query = "SELECT wl.id document_id FROM waitingList wl, position p WHERE wl.id = p.list_id AND p.user_id = ?;";
+		String query = "SELECT wl.id, document_id FROM waitingList wl, position p WHERE wl.id = p.list_id AND p.user_id = ?;";
 		List<WaitingList> lWL = null;
 		try {
 			lWL = jdbc.query(query, new Object[] {user.getId()}, new WaitingListRowMapper());
 		} catch (EmptyResultDataAccessException e) {
-
+			logger.error("GetUserReservation", e);
 		}
 		return lWL;
 	}
