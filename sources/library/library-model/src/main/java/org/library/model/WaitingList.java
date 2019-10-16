@@ -3,16 +3,28 @@ package org.library.model;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+
+
 /**
  * describe a WaitingList object for 
  * @author Titouan
  *
  */
+@XmlRootElement(name="WaitingList")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class WaitingList {
-	
+	@XmlElement
 	public Long id;
+	@XmlElement
 	public Document doc;
+	@XmlElement
 	public Map<Integer, User> usersPositions;
+	@XmlElement
 	public Integer lastPosition;
 	
 	public WaitingList() {

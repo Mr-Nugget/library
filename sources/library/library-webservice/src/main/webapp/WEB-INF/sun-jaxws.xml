@@ -7,7 +7,10 @@
 	<endpoint name="ManageImpl"
 		implementation="fr.library.webservices.entrypoint.ManageImpl"
 		url-pattern="/manage" />
-		<endpoint name="ConnectionImpl"
+	<endpoint name="ConnectionImpl"
 		implementation="fr.library.webservices.entrypoint.ConnectionImpl"
 		url-pattern="/connect" />
+	<endpoint name="WaitingListImpl"
+		implementation="fr.library.webservices.entrypoint.WaitingListImpl"
+		url-pattern="/waiting" />
 </endpoints>

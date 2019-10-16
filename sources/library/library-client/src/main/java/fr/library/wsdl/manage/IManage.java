@@ -28,6 +28,26 @@ public interface IManage {
 
     /**
      * 
+     * @param arg0
+     * @return
+     *     returns java.util.List<fr.library.wsdl.manage.Loan>
+     * @throws JWTCheckingException_Exception
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getCurrentLoans", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.manage.GetCurrentLoans")
+    @ResponseWrapper(localName = "getCurrentLoansResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.manage.GetCurrentLoansResponse")
+    @Action(input = "http://entrypoint.webservices.library.fr/IManage/getCurrentLoansRequest", output = "http://entrypoint.webservices.library.fr/IManage/getCurrentLoansResponse", fault = {
+        @FaultAction(className = JWTCheckingException_Exception.class, value = "http://entrypoint.webservices.library.fr/IManage/getCurrentLoans/Fault/JWTCheckingException")
+    })
+    public List<Loan> getCurrentLoans(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0)
+        throws JWTCheckingException_Exception
+    ;
+
+    /**
+     * 
      * @return
      *     returns java.util.List<fr.library.wsdl.manage.Loan>
      */
@@ -40,23 +60,15 @@ public interface IManage {
 
     /**
      * 
-     * @param arg0
      * @return
      *     returns java.util.List<fr.library.wsdl.manage.Loan>
-     * @throws JWTCheckingException_Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getArchivedLoans", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.manage.GetArchivedLoans")
-    @ResponseWrapper(localName = "getArchivedLoansResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.manage.GetArchivedLoansResponse")
-    @Action(input = "http://entrypoint.webservices.library.fr/IManage/getArchivedLoansRequest", output = "http://entrypoint.webservices.library.fr/IManage/getArchivedLoansResponse", fault = {
-        @FaultAction(className = JWTCheckingException_Exception.class, value = "http://entrypoint.webservices.library.fr/IManage/getArchivedLoans/Fault/JWTCheckingException")
-    })
-    public List<Loan> getArchivedLoans(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0)
-        throws JWTCheckingException_Exception
-    ;
+    @RequestWrapper(localName = "mailRecall", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.manage.MailRecall")
+    @ResponseWrapper(localName = "mailRecallResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.manage.MailRecallResponse")
+    @Action(input = "http://entrypoint.webservices.library.fr/IManage/mailRecallRequest", output = "http://entrypoint.webservices.library.fr/IManage/mailRecallResponse")
+    public List<Loan> mailRecall();
 
     /**
      * 
@@ -90,27 +102,15 @@ public interface IManage {
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getCurrentLoans", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.manage.GetCurrentLoans")
-    @ResponseWrapper(localName = "getCurrentLoansResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.manage.GetCurrentLoansResponse")
-    @Action(input = "http://entrypoint.webservices.library.fr/IManage/getCurrentLoansRequest", output = "http://entrypoint.webservices.library.fr/IManage/getCurrentLoansResponse", fault = {
-        @FaultAction(className = JWTCheckingException_Exception.class, value = "http://entrypoint.webservices.library.fr/IManage/getCurrentLoans/Fault/JWTCheckingException")
+    @RequestWrapper(localName = "getArchivedLoans", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.manage.GetArchivedLoans")
+    @ResponseWrapper(localName = "getArchivedLoansResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.manage.GetArchivedLoansResponse")
+    @Action(input = "http://entrypoint.webservices.library.fr/IManage/getArchivedLoansRequest", output = "http://entrypoint.webservices.library.fr/IManage/getArchivedLoansResponse", fault = {
+        @FaultAction(className = JWTCheckingException_Exception.class, value = "http://entrypoint.webservices.library.fr/IManage/getArchivedLoans/Fault/JWTCheckingException")
     })
-    public List<Loan> getCurrentLoans(
+    public List<Loan> getArchivedLoans(
         @WebParam(name = "arg0", targetNamespace = "")
         String arg0)
         throws JWTCheckingException_Exception
     ;
-
-    /**
-     * 
-     * @return
-     *     returns java.util.List<fr.library.wsdl.manage.Loan>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "mailRecall", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.manage.MailRecall")
-    @ResponseWrapper(localName = "mailRecallResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.manage.MailRecallResponse")
-    @Action(input = "http://entrypoint.webservices.library.fr/IManage/mailRecallRequest", output = "http://entrypoint.webservices.library.fr/IManage/mailRecallResponse")
-    public List<Loan> mailRecall();
 
 }

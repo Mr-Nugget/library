@@ -1,5 +1,7 @@
 package fr.library.webservices.services;
 
+import java.util.List;
+
 import org.library.model.Document;
 import org.library.model.User;
 import org.library.model.WaitingList;
@@ -14,10 +16,10 @@ import fr.library.sql.IWaitingListDao;
 public class WaitingListService {
 
 	@Autowired
-	private IWaitingListDao wlDao;
+	private static IWaitingListDao wlDao;
 	
 	@Autowired
-	private ILoanDao loanDao;
+	private static ILoanDao loanDao;
 	
 	/**
 	 * Add a user into the waitingList at the end of it.
@@ -27,7 +29,7 @@ public class WaitingListService {
 	 * @param user
 	 * @return the id of the waitingList
 	 */
-	public Long addUserToList(Document doc, User user) throws WaitingListFullException{
+	public static Long addUserToList(Document doc, User user) throws WaitingListFullException{
 		if(user == null) {
 			return null;
 		}else if(user.getId() == null) {
@@ -54,7 +56,7 @@ public class WaitingListService {
 		return wl.getId();
 	}
 	
-	public Long popTheFirstUserOfTheList(WaitingList wl, User user) {
+	public static Long popTheFirstUserOfTheList(WaitingList wl, User user) {
 		User userRemove = wl.removeTheFirstUser();
 		if(wl.getUsersPositions().isEmpty()) {
 			return null;
@@ -69,5 +71,9 @@ public class WaitingListService {
 			}
 		}
 		return user.getId();
+	}
+	
+	public static List<WaitingList> getAll(User user){
+		return wlDao.getUserReservations(user);
 	}
 }
