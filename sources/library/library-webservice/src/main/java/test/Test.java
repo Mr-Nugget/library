@@ -35,6 +35,7 @@ public class Test {
         doc.setId(new Long(502));
         Date ls = service.getAvailableDate(doc);
         System.out.println(ls);
+        context.close();
 
 	}
 }

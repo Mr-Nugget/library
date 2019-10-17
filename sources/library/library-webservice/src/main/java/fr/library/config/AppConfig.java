@@ -5,6 +5,7 @@ import javax.sql.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import fr.library.helpers.LoadProperties;
@@ -22,7 +23,7 @@ import fr.library.helpers.LoadProperties;
 @ComponentScan("fr.library")
 public class AppConfig {
 	
-	@Bean(name="dataSource")
+	@Bean
 	public DataSource PSQLDataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("org.postgresql.Driver");
@@ -32,5 +33,12 @@ public class AppConfig {
 		
 		return dataSource;
 	}
+	
+	@Bean
+    public JdbcTemplate jdbcTemplate(DataSource dataSource) {
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        jdbcTemplate.setResultsMapCaseInsensitive(true);
+        return jdbcTemplate;
+    }
 	
 }

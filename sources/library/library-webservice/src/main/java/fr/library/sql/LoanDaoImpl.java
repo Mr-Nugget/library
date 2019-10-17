@@ -20,7 +20,6 @@ import org.library.model.Loan;
 import org.library.model.Status;
 import org.library.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -29,7 +28,6 @@ import fr.library.exceptions.LoanStatusException;
 import fr.library.helpers.LoanRowMapper;
 
 @Repository
-@Qualifier("LoanDao")
 public class LoanDaoImpl implements ILoanDao {
 
 	private final static Logger logger =  Logger.getLogger(LoanDaoImpl.class);
