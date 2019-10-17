@@ -8,7 +8,10 @@ import org.apache.log4j.Logger;
 import org.library.model.Document;
 import org.library.model.User;
 import org.library.model.WaitingList;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
 
+import fr.library.config.AppConfig;
 import fr.library.exceptions.WaitingListFullException;
 import fr.library.webservices.services.WaitingListService;
 
@@ -33,10 +36,10 @@ public class WaitingListImpl implements IWaitingList {
 				doc.setId(docId);
 				User user = new User();
 				user.setId(userId);
-				
-				return WaitingListService.addUserToList(doc, user);	
+				// TODO
+				return null;	
 			}
-		} catch (WaitingListFullException e) {
+		} catch (Exception e) {
 			logger.error("The list is full");
 			return null;
 		}
@@ -51,7 +54,12 @@ public class WaitingListImpl implements IWaitingList {
 		User user = new User();
 		user.setId(userId);
 		
-		return WaitingListService.getAll(user);
+		// Load the context
+		AbstractApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+		WaitingListService service = (WaitingListService) context.getBean("WaitingListService");
+		List<WaitingList> res = service.getAll(user);
+		context.close();
+		return res;
 	}
 
 }

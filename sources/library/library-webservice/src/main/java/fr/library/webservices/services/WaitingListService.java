@@ -17,11 +17,11 @@ import fr.library.sql.IWaitingListDao;
 @Service("WaitingListService")
 public class WaitingListService {
 
-	@Resource(name="WaitingListDao")
-	private static IWaitingListDao waitingListDao;
+	@Autowired
+	private IWaitingListDao waitingListDao;
 	
 	@Autowired
-	private static ILoanDao loanDao;
+	private ILoanDao loanDao;
 	
 	/**
 	 * Add a user into the waitingList at the end of it.
@@ -31,7 +31,7 @@ public class WaitingListService {
 	 * @param user
 	 * @return the id of the waitingList
 	 */
-	public static Long addUserToList(Document doc, User user) throws WaitingListFullException{
+	/*public static Long addUserToList(Document doc, User user) throws WaitingListFullException{
 		if(user == null) {
 			return null;
 		}else if(user.getId() == null) {
@@ -73,9 +73,9 @@ public class WaitingListService {
 			}
 		}
 		return user.getId();
-	}
+	}*/
 	
-	public static List<WaitingList> getAll(User user){
+	public List<WaitingList> getAll(User user){
 		
 		return waitingListDao.getUserReservations(user);
 	}

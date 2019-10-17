@@ -19,7 +19,6 @@ import fr.library.helpers.PositionRowMapper;
 import fr.library.helpers.WaitingListRowMapper;
 
 @Repository
-@Qualifier("WaitingListDao")
 public class WaitingListDaoImpl implements IWaitingListDao {
 
 	private final static Logger logger = Logger.getLogger(IWaitingListDao.class);
