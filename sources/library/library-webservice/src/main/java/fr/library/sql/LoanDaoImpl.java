@@ -120,9 +120,10 @@ public class LoanDaoImpl implements ILoanDao {
 				prepared.executeUpdate();
 				
 				//update document stock
-				query = "UPDATE documents SET nb_stock=? WHERE id = ?;";
+				query = "UPDATE documents SET current_stock=? WHERE id = ?;";
 				psUpdateDoc = connect.prepareStatement(query);
-				psUpdateDoc.setInt(1, loan.getDoc().getCurrentstock()+1);
+				int newCurrentStock = loan.getDoc().getCurrentstock().intValue();
+				psUpdateDoc.setInt(1, newCurrentStock);
 				psUpdateDoc.setLong(2, loan.getDoc().getId());
 				psUpdateDoc.executeUpdate();
 				
@@ -243,9 +244,9 @@ public class LoanDaoImpl implements ILoanDao {
 				
 				
 				// Update document status
-				query = "UPDATE documents SET nb_stock=? WHERE id=?";
+				query = "UPDATE documents SET current_stock=? WHERE id=?";
 				ps2 = connect.prepareStatement(query);
-				ps2.setInt(1, doc.getTotalstock()-1);
+				ps2.setInt(1, doc.getCurrentstock() - 1);
 				ps2.setLong(2, doc.getId());
 				ps2.executeUpdate();
 				
@@ -285,6 +286,7 @@ public class LoanDaoImpl implements ILoanDao {
 		}
 		return idReturn;
 	}
+	
 	@Override
 	public Loan getById(Long id) {
 		Connection connect = null;

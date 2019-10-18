@@ -121,7 +121,7 @@ public class Document {
 	@Override
 	public String toString() {
 		return "{id=" + id + ", ref=" + ref + ", title=" + title + ", author=" + author + ", category="
-				+ category + ", type=" + type +" nb_stock="+totalStock+"}";
+				+ category + ", type=" + type +",current_stock"+currentStock+", total_stock="+totalStock+"}";
 	}
 	
 }
