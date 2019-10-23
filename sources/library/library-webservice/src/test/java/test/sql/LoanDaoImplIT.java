@@ -81,12 +81,12 @@ public class LoanDaoImplIT {
 		loanId = loanDao.createLoan(documentTest, userTest);
 		loanSize = loanDao.findAll().size();
 		assertEquals(loanSizeBefore.intValue()+1, loanSize.intValue());
+		
 	}
 	
 	@Test
 	public final void test1GetById() {
 		loanTest = loanDao.getById(loanId);
-		
 		assertEquals(userTest.getId(), loanTest.getUser().getId());
 	}
 	
@@ -126,7 +126,8 @@ public class LoanDaoImplIT {
 		loanTest = loanDao.getById(loanId);
 		assertEquals(Status.CLOTURED, loanTest.getStatus());
 		
-		assertEquals(documentTest.getCurrentstock().intValue() + 1, loanTest.getDoc().getCurrentstock().intValue());
+		// Should be the same stock beacause the document has been booked and returned
+		assertEquals(documentTest.getCurrentstock().intValue(), loanTest.getDoc().getCurrentstock().intValue());
 	}
 	
 	@Test
@@ -138,7 +139,7 @@ public class LoanDaoImplIT {
 
 	@AfterClass
 	public static void setUpAfterClass() {
-		//documentDao.deleteItem(documentTest);
+		documentDao.deleteItem(documentTest);
 		userDao.deleteItem(userTest);
 	}
 

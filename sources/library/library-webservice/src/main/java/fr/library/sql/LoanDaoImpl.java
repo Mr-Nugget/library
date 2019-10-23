@@ -122,7 +122,7 @@ public class LoanDaoImpl implements ILoanDao {
 				//update document stock
 				query = "UPDATE documents SET current_stock=? WHERE id = ?;";
 				psUpdateDoc = connect.prepareStatement(query);
-				int newCurrentStock = loan.getDoc().getCurrentstock().intValue();
+				int newCurrentStock = loan.getDoc().getCurrentstock().intValue() + 1;
 				psUpdateDoc.setInt(1, newCurrentStock);
 				psUpdateDoc.setLong(2, loan.getDoc().getId());
 				psUpdateDoc.executeUpdate();
