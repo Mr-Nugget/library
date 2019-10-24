@@ -25,7 +25,7 @@ public class WaitingListDaoImpl implements IWaitingListDao {
 
 	@Override
 	public WaitingList getById(Long id) {
-		String query = "SELECT * FROM waitingList WHERE id=?;";
+		String query = "SELECT * FROM waitingList wl, documents d WHERE wl.document_id = d.id AND wl.id=?;";
 		String queryPosition = "SELECT * FROM position WHERE list_id=?;";
 		
 
@@ -34,7 +34,7 @@ public class WaitingListDaoImpl implements IWaitingListDao {
 		List<Position> usersPositions = jdbc.query(queryPosition, new Object[] {wl.getId()}, new PositionRowMapper());
 
 		for(Position pos : usersPositions) {
-			wl.getUsersPositions().put(pos.getPosition(), pos.getUser());
+			wl.addUserWithPosition(pos.getUser(), pos.getPosition());
 		}
 
 		return wl;
@@ -57,19 +57,20 @@ public class WaitingListDaoImpl implements IWaitingListDao {
 		
 		String queryPosition = "UPDATE position SET user_id=?, position=?;";
 
-		item.getUsersPositions().forEach(
-				(k,v) -> jdbc.update(queryPosition,v,k));
+		for (int i = 0; i < item.getLastPosition(); i++) {
+			jdbc.update(queryPosition,item.getUsersPositions()[i].getId(), i);
+		}
 	}
 
 	@Override
 	public List<WaitingList> findAll() {
 		
-		String query = "SELECT * FROM waitingList;";
+		String query = "SELECT * FROM waitingList wl, documents d WHERE wl.document_id = d.id;";
 		String queryPosition = "SELECT * FROM position WHERE list_id=?;";
 		List<WaitingList> allWL = jdbc.query(query, new WaitingListRowMapper());
 		for(WaitingList wl : allWL) {
 			Position pos = (Position) jdbc.queryForObject(queryPosition, new Object[] {wl.getId()}, new PositionRowMapper());
-			wl.getUsersPositions().put(pos.getPosition(), pos.getUser());
+			wl.addUserWithPosition(pos.getUser(), pos.getPosition());
 		}
 
 		return allWL;
@@ -80,10 +81,10 @@ public class WaitingListDaoImpl implements IWaitingListDao {
 		
 		String query = "INSERT INTO waitingList (document_id) VALUES(?);";
 		jdbc.update(query, doc.getId());
-		query = "SELECT * FROM waitingList WHERE document_id=?;";
+		query = "SELECT * FROM waitingList wl, documents d WHERE wl.document_id = d.id AND document_id=?;";
 		WaitingList wl = jdbc.queryForObject(query, new Object[] {doc.getId()}, new WaitingListRowMapper());
 		query = "INSERT INTO position (user_id, position, list_id) VALUES(?,?,?);";
-		jdbc.update(query, user.getId(), 1, wl.getId());
+		jdbc.update(query, user.getId(), 0, wl.getId());
 
 		return wl.getId();
 
@@ -100,7 +101,7 @@ public class WaitingListDaoImpl implements IWaitingListDao {
 	@Override
 	public WaitingList getByDocument(Document doc) {
 		
-		String query = "SELECT * FROM waitingList WHERE document_id=?";
+		String query = "SELECT * FROM waitingList wl, documents d WHERE wl.document_id = d.id AND document_id=?";
 		String queryPosition = "SELECT * FROM position WHERE list_id=?;";
 		WaitingList wl = null;
 		try {
@@ -108,7 +109,7 @@ public class WaitingListDaoImpl implements IWaitingListDao {
 			List<Position> usersPositions = jdbc.query(queryPosition, new Object[] {wl.getId()}, new PositionRowMapper());
 
 			for(Position pos : usersPositions) {
-				wl.getUsersPositions().put(pos.getPosition(), pos.getUser());
+				wl.addUserWithPosition(pos.getUser(), pos.getPosition());
 			}
 		} catch (EmptyResultDataAccessException e) {
 
@@ -122,15 +123,16 @@ public class WaitingListDaoImpl implements IWaitingListDao {
 		
 		String query = "INSERT INTO position (user_id, position, list_id) VALUES(?,?,?);";
 
-		jdbc.update(query, user.getId(), wl.getLastPosition() + 1, wl.getId());
+		jdbc.update(query, user.getId(), wl.getLastPosition(), wl.getId());
+		
+		wl.addUserInWaitingList(user);
 
 	}
 
 	@Override
 	public List<WaitingList> getUserReservations(User user) {
-		System.out.println("HEllo");
 		
-		String query = "SELECT wl.id, document_id FROM waitingList wl, position p WHERE wl.id = p.list_id AND p.user_id = ?;";
+		String query = "SELECT * FROM waitingList wl, position p, documents d WHERE wl.id = p.list_id AND wl.document_id = d.id AND p.user_id = ?;";
 		List<WaitingList> lWL = null;
 		try {
 			lWL = jdbc.query(query, new Object[] {user.getId()}, new WaitingListRowMapper());

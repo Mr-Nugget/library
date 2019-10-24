@@ -48,13 +48,14 @@ public class WaitingListDaoIT {
 		category.setId(new Long(0));
 		Type type = new Type();
 		type.setId(new Long(0));
-		docTest = new Document(new Long(-1), "TEST1", "Document test", "tester", category, type, 0, 3);
+		docTest = new Document(new Long(-1), "TEST1", "Document test", "tester", category, type, 3, 0);
 		
 		// Add a 2 users and a document test into the DB
 		userTest.setId(userDao.createUser(userTest));
 		userTestAdd.setId(userDao.createUser(userTestAdd));
 		docTest.setId(documentDao.createDocument(docTest));		
-		waitingList = new WaitingList();
+		
+		waitingList = new WaitingList(docTest);
 		
 	}
 	
@@ -69,7 +70,7 @@ public class WaitingListDaoIT {
 	public final void test1createWaitingList() {
 		
 		nbWL = dao.findAll().size();
-		
+		System.out.println(dao.findAll().get(0).getDoc());
 		Long id = dao.createWaitingList(docTest, userTest);
 		waitingList.setId(id);
 		
@@ -84,9 +85,9 @@ public class WaitingListDaoIT {
 	
 	@Test
 	public final void test3GetById() {
-		waitingList = dao.getById(waitingList.id);
-		assertEquals(1, waitingList.getUsersPositions().size());
-		assertEquals(userTest.getId(), waitingList.getUsersPositions().get(1).getId());
+		waitingList = dao.getById(waitingList.getId());
+		assertEquals(new Integer(1), waitingList.getLastPosition());
+		assertEquals(userTest.getId(), waitingList.getUsersPositions()[0].getId());
 	}
 
 	@Test
@@ -108,7 +109,7 @@ public class WaitingListDaoIT {
 	@Test
 	public final void test6AddUserToList() {
 		dao.addUserToList(waitingList, userTestAdd);
-		assertEquals(2, dao.getById(waitingList.getId()).getUsersPositions().size());		
+		assertEquals(new Integer(2), dao.getById(waitingList.getId()).getLastPosition());		
 	}
 	
 	@Test

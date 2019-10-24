@@ -21,6 +21,7 @@ public class WaitingList {
 	public WaitingList(Document doc) {
 		// Initialize the array with a size of twice the total stock of a document
 		usersPositions = new User[doc.getTotalstock()*2];
+		this.doc = doc;
 		lastPosition = 0;
 	}
 	
@@ -64,8 +65,18 @@ public class WaitingList {
 	public void addUserInWaitingList(User user) {
 		usersPositions[lastPosition] = user;
 		lastPosition ++;
-		
 	}
+	
+	/**
+	 * Add user into the waitingList at a specifif position and increment lastPosition
+	 * @param user
+	 * @param position
+	 */
+	public void addUserWithPosition(User user, Integer position) {
+		usersPositions[position] = user;
+		lastPosition ++;
+	}
+	
 	/**
 	 * remove the first user and update the list
 	 * @return the first user of the waiting list

@@ -63,13 +63,13 @@ public class WaitingListService {
 	
 	public Long popTheFirstUserOfTheList(WaitingList wl, User user) {
 		User userRemove = wl.removeTheFirstUser();
-		if(wl.getUsersPositions().isEmpty()) {
+		if(wl.getLastPosition() == 0) {
 			return null;
 		}
 		else if(userRemove.getId() != user.getId()) {
 			return null;
 		}else {
-			if(wl.getUsersPositions().isEmpty()) {
+			if(wl.getLastPosition() == 0) {
 				waitingListDao.deleteItem(wl);
 			}else {
 				waitingListDao.updateItem(wl);

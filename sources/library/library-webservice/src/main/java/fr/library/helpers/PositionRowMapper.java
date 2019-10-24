@@ -14,6 +14,7 @@ public class PositionRowMapper implements RowMapper<Position> {
 		
 		User user = new User();
 		user.setId(rs.getLong("user_id"));
+		
 		Position pos = new Position(rs.getInt("position"), user);
 		
 		return pos;
