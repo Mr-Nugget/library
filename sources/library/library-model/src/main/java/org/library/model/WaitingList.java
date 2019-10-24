@@ -95,8 +95,22 @@ public class WaitingList {
 		
 		usersPositions[lastPosition] = null;
 		
-		
-		
 		return user;
+	}
+	
+	/**
+	 * Return the postion of one user
+	 * @param user
+	 * @return user postion
+	 */
+	
+	public Integer userPosition(User user) {
+		
+		for(int i = 0; i < lastPosition; i++) {
+			if(usersPositions[i].getId().equals(user.getId())) {
+				return new Integer(i);
+			}
+		}
+		return null;
 	}
 }

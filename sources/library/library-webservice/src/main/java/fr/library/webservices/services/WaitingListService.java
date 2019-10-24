@@ -82,10 +82,6 @@ public class WaitingListService {
 		
 		List<WaitingList> wlL = waitingListDao.getUserReservations(user);
 		
-		for(WaitingList wl : wlL) {
-			wl.setDoc(documentDao.getById(wl.getDoc().getId()));
-		}
-		
 		return wlL;
 	}
 }

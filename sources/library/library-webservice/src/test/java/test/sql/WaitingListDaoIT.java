@@ -70,7 +70,6 @@ public class WaitingListDaoIT {
 	public final void test1createWaitingList() {
 		
 		nbWL = dao.findAll().size();
-		System.out.println(dao.findAll().get(0).getDoc());
 		Long id = dao.createWaitingList(docTest, userTest);
 		waitingList.setId(id);
 		
@@ -116,6 +115,8 @@ public class WaitingListDaoIT {
 	public final void test7GetAllWaiting() {
 		List<WaitingList> wlL = dao.getUserReservations(userTestAdd);
 		assertEquals(1, wlL.size());
+		WaitingList wl = wlL.get(0);
+		assertEquals(userTestAdd.getId(), wl.getUsersPositions()[1].getId());
 	}
 	
 	@Test

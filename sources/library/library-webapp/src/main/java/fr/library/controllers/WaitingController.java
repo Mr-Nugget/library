@@ -1,7 +1,8 @@
 package fr.library.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import fr.library.helpers.UserPosition;
+import fr.library.models.SimplyWaiting;
 import fr.library.wsdl.connect.IConnection;
 import fr.library.wsdl.connect.JWTCheckingException_Exception;
 import fr.library.wsdl.waiting.IWaitingList;
@@ -75,8 +78,16 @@ public class WaitingController {
 					return model;
 				}
 				
-				List<WaitingList> wlRes =  waitingService.getAllWaiting(userJWT.getId());				
-				model.addObject("listRes", wlRes);
+				List<WaitingList> wlRes =  waitingService.getAllWaiting(userJWT.getId());
+				List<SimplyWaiting> swL = new ArrayList<SimplyWaiting>();
+				
+				for(WaitingList wl : wlRes) {
+					Integer position = UserPosition.getUserPosition(wl.getUsersPositions(), userJWT) + 1;
+					swL.add(new SimplyWaiting(wl.getDoc().getTitle(), wl.getDoc().getAuthor(), wl.getDoc().getRef(), wl.getDoc().getAvailableDate(), position));
+				}
+				
+				model.addObject("listRes", swL);
+				
 				model.setViewName("reservation");
 							
 				return model;

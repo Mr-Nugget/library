@@ -25,7 +25,6 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     private final static QName _GetAllWaiting_QNAME = new QName("http://entrypoint.webservices.library.fr/", "getAllWaiting");
-    private final static QName _WaitingList_QNAME = new QName("http://entrypoint.webservices.library.fr/", "WaitingList");
     private final static QName _GetAllWaitingResponse_QNAME = new QName("http://entrypoint.webservices.library.fr/", "getAllWaitingResponse");
     private final static QName _AddUserToList_QNAME = new QName("http://entrypoint.webservices.library.fr/", "addUserToList");
     private final static QName _AddUserToListResponse_QNAME = new QName("http://entrypoint.webservices.library.fr/", "addUserToListResponse");
@@ -35,22 +34,6 @@ public class ObjectFactory {
      * 
      */
     public ObjectFactory() {
-    }
-
-    /**
-     * Create an instance of {@link WaitingList }
-     * 
-     */
-    public WaitingList createWaitingList() {
-        return new WaitingList();
-    }
-
-    /**
-     * Create an instance of {@link WaitingList.UsersPositions }
-     * 
-     */
-    public WaitingList.UsersPositions createWaitingListUsersPositions() {
-        return new WaitingList.UsersPositions();
     }
 
     /**
@@ -86,6 +69,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link WaitingList }
+     * 
+     */
+    public WaitingList createWaitingList() {
+        return new WaitingList();
+    }
+
+    /**
      * Create an instance of {@link Document }
      * 
      */
@@ -118,29 +109,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link WaitingList.UsersPositions.Entry }
-     * 
-     */
-    public WaitingList.UsersPositions.Entry createWaitingListUsersPositionsEntry() {
-        return new WaitingList.UsersPositions.Entry();
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetAllWaiting }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://entrypoint.webservices.library.fr/", name = "getAllWaiting")
     public JAXBElement<GetAllWaiting> createGetAllWaiting(GetAllWaiting value) {
         return new JAXBElement<GetAllWaiting>(_GetAllWaiting_QNAME, GetAllWaiting.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link WaitingList }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://entrypoint.webservices.library.fr/", name = "WaitingList")
-    public JAXBElement<WaitingList> createWaitingList(WaitingList value) {
-        return new JAXBElement<WaitingList>(_WaitingList_QNAME, WaitingList.class, null, value);
     }
 
     /**

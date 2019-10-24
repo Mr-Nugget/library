@@ -19,31 +19,10 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="doc" type="{http://entrypoint.webservices.library.fr/}document" minOccurs="0"/>
- *         &lt;element name="usersPositions">
- *           &lt;complexType>
- *             &lt;complexContent>
- *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                 &lt;sequence>
- *                   &lt;element name="entry" maxOccurs="unbounded" minOccurs="0">
- *                     &lt;complexType>
- *                       &lt;complexContent>
- *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                           &lt;sequence>
- *                             &lt;element name="key" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
- *                             &lt;element name="value" type="{http://entrypoint.webservices.library.fr/}user" minOccurs="0"/>
- *                           &lt;/sequence>
- *                         &lt;/restriction>
- *                       &lt;/complexContent>
- *                     &lt;/complexType>
- *                   &lt;/element>
- *                 &lt;/sequence>
- *               &lt;/restriction>
- *             &lt;/complexContent>
- *           &lt;/complexType>
- *         &lt;/element>
+ *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="lastPosition" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+ *         &lt;element name="usersPositions" type="{http://entrypoint.webservices.library.fr/}user" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -54,42 +33,18 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "waitingList", propOrder = {
-    "id",
     "doc",
-    "usersPositions",
-    "lastPosition"
+    "id",
+    "lastPosition",
+    "usersPositions"
 })
 public class WaitingList {
 
-    protected Long id;
     protected Document doc;
-    @XmlElement(required = true)
-    protected WaitingList.UsersPositions usersPositions;
+    protected Long id;
     protected Integer lastPosition;
-
-    /**
-     * Obtient la valeur de la propriété id.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Long }
-     *     
-     */
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * Définit la valeur de la propriété id.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Long }
-     *     
-     */
-    public void setId(Long value) {
-        this.id = value;
-    }
+    @XmlElement(nillable = true)
+    protected List<User> usersPositions;
 
     /**
      * Obtient la valeur de la propriété doc.
@@ -116,27 +71,27 @@ public class WaitingList {
     }
 
     /**
-     * Obtient la valeur de la propriété usersPositions.
+     * Obtient la valeur de la propriété id.
      * 
      * @return
      *     possible object is
-     *     {@link WaitingList.UsersPositions }
+     *     {@link Long }
      *     
      */
-    public WaitingList.UsersPositions getUsersPositions() {
-        return usersPositions;
+    public Long getId() {
+        return id;
     }
 
     /**
-     * Définit la valeur de la propriété usersPositions.
+     * Définit la valeur de la propriété id.
      * 
      * @param value
      *     allowed object is
-     *     {@link WaitingList.UsersPositions }
+     *     {@link Long }
      *     
      */
-    public void setUsersPositions(WaitingList.UsersPositions value) {
-        this.usersPositions = value;
+    public void setId(Long value) {
+        this.id = value;
     }
 
     /**
@@ -163,155 +118,33 @@ public class WaitingList {
         this.lastPosition = value;
     }
 
-
     /**
-     * <p>Classe Java pour anonymous complex type.
+     * Gets the value of the usersPositions property.
      * 
-     * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the usersPositions property.
      * 
+     * <p>
+     * For example, to add a new item, do as follows:
      * <pre>
-     * &lt;complexType>
-     *   &lt;complexContent>
-     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *       &lt;sequence>
-     *         &lt;element name="entry" maxOccurs="unbounded" minOccurs="0">
-     *           &lt;complexType>
-     *             &lt;complexContent>
-     *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *                 &lt;sequence>
-     *                   &lt;element name="key" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
-     *                   &lt;element name="value" type="{http://entrypoint.webservices.library.fr/}user" minOccurs="0"/>
-     *                 &lt;/sequence>
-     *               &lt;/restriction>
-     *             &lt;/complexContent>
-     *           &lt;/complexType>
-     *         &lt;/element>
-     *       &lt;/sequence>
-     *     &lt;/restriction>
-     *   &lt;/complexContent>
-     * &lt;/complexType>
+     *    getUsersPositions().add(newItem);
      * </pre>
      * 
      * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link User }
+     * 
+     * 
      */
-    @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "", propOrder = {
-        "entry"
-    })
-    public static class UsersPositions {
-
-        protected List<WaitingList.UsersPositions.Entry> entry;
-
-        /**
-         * Gets the value of the entry property.
-         * 
-         * <p>
-         * This accessor method returns a reference to the live list,
-         * not a snapshot. Therefore any modification you make to the
-         * returned list will be present inside the JAXB object.
-         * This is why there is not a <CODE>set</CODE> method for the entry property.
-         * 
-         * <p>
-         * For example, to add a new item, do as follows:
-         * <pre>
-         *    getEntry().add(newItem);
-         * </pre>
-         * 
-         * 
-         * <p>
-         * Objects of the following type(s) are allowed in the list
-         * {@link WaitingList.UsersPositions.Entry }
-         * 
-         * 
-         */
-        public List<WaitingList.UsersPositions.Entry> getEntry() {
-            if (entry == null) {
-                entry = new ArrayList<WaitingList.UsersPositions.Entry>();
-            }
-            return this.entry;
+    public List<User> getUsersPositions() {
+        if (usersPositions == null) {
+            usersPositions = new ArrayList<User>();
         }
-
-
-        /**
-         * <p>Classe Java pour anonymous complex type.
-         * 
-         * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
-         * 
-         * <pre>
-         * &lt;complexType>
-         *   &lt;complexContent>
-         *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-         *       &lt;sequence>
-         *         &lt;element name="key" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
-         *         &lt;element name="value" type="{http://entrypoint.webservices.library.fr/}user" minOccurs="0"/>
-         *       &lt;/sequence>
-         *     &lt;/restriction>
-         *   &lt;/complexContent>
-         * &lt;/complexType>
-         * </pre>
-         * 
-         * 
-         */
-        @XmlAccessorType(XmlAccessType.FIELD)
-        @XmlType(name = "", propOrder = {
-            "key",
-            "value"
-        })
-        public static class Entry {
-
-            protected Integer key;
-            protected User value;
-
-            /**
-             * Obtient la valeur de la propriété key.
-             * 
-             * @return
-             *     possible object is
-             *     {@link Integer }
-             *     
-             */
-            public Integer getKey() {
-                return key;
-            }
-
-            /**
-             * Définit la valeur de la propriété key.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link Integer }
-             *     
-             */
-            public void setKey(Integer value) {
-                this.key = value;
-            }
-
-            /**
-             * Obtient la valeur de la propriété value.
-             * 
-             * @return
-             *     possible object is
-             *     {@link User }
-             *     
-             */
-            public User getValue() {
-                return value;
-            }
-
-            /**
-             * Définit la valeur de la propriété value.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link User }
-             *     
-             */
-            public void setValue(User value) {
-                this.value = value;
-            }
-
-        }
-
+        return this.usersPositions;
     }
 
 }

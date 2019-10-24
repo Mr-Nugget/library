@@ -28,6 +28,7 @@
 							<tr>
 								<th scope="col">Titre</th>
 								<th scope="col">Auteur</th>
+								<th scope="col">Référence</th>
 								<th scope="col">Date de retour</th>
 								<th scope="col">Position dans la file</th>
 							</tr>
@@ -35,11 +36,12 @@
 						<tbody>
 							<c:forEach items="${listRes}" var="resa">
 								<tr>
-									<td>${resa.doc.title}</td>
-									<td>${resa.doc.author}</td>
-									<td><fmt:formatDate value="${resa.doc.availableDate.toGregorianCalendar().time}"
+									<td>${resa.title}</td>
+									<td>${resa.author}</td>
+									<td>${resa.ref}</td>
+									<td><fmt:formatDate value="${resa.returnDate.toGregorianCalendar().time}"
 											pattern="dd-MM-yyyy" /></td>
-									<td>1</td>
+									<td>${resa.position }</td>
 								</tr>
 							</c:forEach>
 						</tbody>

@@ -69,8 +69,11 @@ public class WaitingListDaoImpl implements IWaitingListDao {
 		String queryPosition = "SELECT * FROM position WHERE list_id=?;";
 		List<WaitingList> allWL = jdbc.query(query, new WaitingListRowMapper());
 		for(WaitingList wl : allWL) {
-			Position pos = (Position) jdbc.queryForObject(queryPosition, new Object[] {wl.getId()}, new PositionRowMapper());
-			wl.addUserWithPosition(pos.getUser(), pos.getPosition());
+			List<Position> usersPositions = jdbc.query(queryPosition, new Object[] {wl.getId()}, new PositionRowMapper());
+
+			for(Position pos : usersPositions) {
+				wl.addUserWithPosition(pos.getUser(), pos.getPosition());
+			}
 		}
 
 		return allWL;
@@ -133,9 +136,18 @@ public class WaitingListDaoImpl implements IWaitingListDao {
 	public List<WaitingList> getUserReservations(User user) {
 		
 		String query = "SELECT * FROM waitingList wl, position p, documents d WHERE wl.id = p.list_id AND wl.document_id = d.id AND p.user_id = ?;";
+		String queryPosition = "SELECT * FROM position WHERE list_id=?;";
 		List<WaitingList> lWL = null;
+		List<Position> lPosition = null;
 		try {
 			lWL = jdbc.query(query, new Object[] {user.getId()}, new WaitingListRowMapper());
+			
+			for(WaitingList wl : lWL) {
+				lPosition = jdbc.query(queryPosition, new Object[] {wl.getId()}, new PositionRowMapper());
+				for(Position pos : lPosition) {
+					wl.addUserWithPosition(pos.getUser(), pos.getPosition());
+				}
+			}
 		} catch (EmptyResultDataAccessException e) {
 			logger.error("GetUserReservation", e);
 		}
