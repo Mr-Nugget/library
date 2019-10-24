@@ -87,6 +87,18 @@ public interface IConnection {
     /**
      * 
      * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "sendResetPasswordLink", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.connect.SendResetPasswordLink")
+    @ResponseWrapper(localName = "sendResetPasswordLinkResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.connect.SendResetPasswordLinkResponse")
+    @Action(input = "http://entrypoint.webservices.library.fr/IConnection/sendResetPasswordLinkRequest", output = "http://entrypoint.webservices.library.fr/IConnection/sendResetPasswordLinkResponse")
+    public void sendResetPasswordLink(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
      * @return
      *     returns fr.library.wsdl.connect.User
      */
@@ -168,17 +180,5 @@ public interface IConnection {
     public void updateUser(
         @WebParam(name = "arg0", targetNamespace = "")
         User arg0);
-
-    /**
-     * 
-     * @param arg0
-     */
-    @WebMethod
-    @RequestWrapper(localName = "sendResetPasswordLink", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.connect.SendResetPasswordLink")
-    @ResponseWrapper(localName = "sendResetPasswordLinkResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.connect.SendResetPasswordLinkResponse")
-    @Action(input = "http://entrypoint.webservices.library.fr/IConnection/sendResetPasswordLinkRequest", output = "http://entrypoint.webservices.library.fr/IConnection/sendResetPasswordLinkResponse")
-    public void sendResetPasswordLink(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0);
 
 }

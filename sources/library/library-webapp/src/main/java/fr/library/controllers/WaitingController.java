@@ -1,5 +1,8 @@
 package fr.library.controllers;
 
+import java.util.List;
+import java.util.Map;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import fr.library.wsdl.connect.IConnection;
 import fr.library.wsdl.connect.JWTCheckingException_Exception;
 import fr.library.wsdl.waiting.IWaitingList;
+import fr.library.wsdl.waiting.WaitingList;
 import fr.library.wsdl.connect.User;
 
 @Controller
@@ -54,5 +58,27 @@ public class WaitingController {
 		}
 		
 		return model;
+	}
+	
+	@GetMapping("/reservation")
+	public ModelAndView myReservations(@CookieValue(value="jwtCookie") String jwtCookie) {
+		// Return a model and view to redirect to another controller
+				ModelAndView model = new ModelAndView();
+				User userJWT;
+				try {
+					// Check if the token is still OK
+					userJWT = userService.getUser(jwtCookie);
+					
+				} catch (JWTCheckingException_Exception e) {
+					logger.error("Erreur de connection", e);
+					model.setViewName("redirect:/connection");
+					return model;
+				}
+				
+				List<WaitingList> wlRes =  waitingService.getAllWaiting(userJWT.getId());				
+				model.addObject("listRes", wlRes);
+				model.setViewName("reservation");
+							
+				return model;
 	}
 }

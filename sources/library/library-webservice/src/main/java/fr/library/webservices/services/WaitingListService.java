@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.library.exceptions.WaitingListFullException;
+import fr.library.sql.DaoFactory;
+import fr.library.sql.IDocumentDao;
 import fr.library.sql.ILoanDao;
 import fr.library.sql.IWaitingListDao;
 
@@ -21,6 +23,8 @@ public class WaitingListService {
 	
 	@Autowired
 	private ILoanDao loanDao;
+	
+	private IDocumentDao documentDao = DaoFactory.getInstance().getDocumentDao();
 	
 	/**
 	 * Add a user into the waitingList at the end of it.
@@ -76,6 +80,12 @@ public class WaitingListService {
 	
 	public List<WaitingList> getAll(User user){
 		
-		return waitingListDao.getUserReservations(user);
+		List<WaitingList> wlL = waitingListDao.getUserReservations(user);
+		
+		for(WaitingList wl : wlL) {
+			wl.setDoc(documentDao.getById(wl.getDoc().getId()));
+		}
+		
+		return wlL;
 	}
 }

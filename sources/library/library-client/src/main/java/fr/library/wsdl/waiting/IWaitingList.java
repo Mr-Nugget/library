@@ -27,6 +27,21 @@ public interface IWaitingList {
 
     /**
      * 
+     * @param arg0
+     * @return
+     *     returns java.util.List<fr.library.wsdl.waiting.WaitingList>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getAllWaiting", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.waiting.GetAllWaiting")
+    @ResponseWrapper(localName = "getAllWaitingResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.waiting.GetAllWaitingResponse")
+    @Action(input = "http://entrypoint.webservices.library.fr/IWaitingList/getAllWaitingRequest", output = "http://entrypoint.webservices.library.fr/IWaitingList/getAllWaitingResponse")
+    public List<WaitingList> getAllWaiting(
+        @WebParam(name = "arg0", targetNamespace = "")
+        Long arg0);
+
+    /**
+     * 
      * @param arg1
      * @param arg0
      * @return
@@ -42,20 +57,5 @@ public interface IWaitingList {
         Long arg0,
         @WebParam(name = "arg1", targetNamespace = "")
         Long arg1);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns java.util.List<fr.library.wsdl.waiting.WaitingList>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getAllWaiting", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.waiting.GetAllWaiting")
-    @ResponseWrapper(localName = "getAllWaitingResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.waiting.GetAllWaitingResponse")
-    @Action(input = "http://entrypoint.webservices.library.fr/IWaitingList/getAllWaitingRequest", output = "http://entrypoint.webservices.library.fr/IWaitingList/getAllWaitingResponse")
-    public List<WaitingList> getAllWaiting(
-        @WebParam(name = "arg0", targetNamespace = "")
-        Long arg0);
 
 }

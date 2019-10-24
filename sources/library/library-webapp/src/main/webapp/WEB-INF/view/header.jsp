@@ -1,7 +1,7 @@
 <div class="container-fluid header">
     <img src="res/library-icon.png">
     <a href="currentloans" class="btn btn-light more-infos" role="button" aria-pressed="true">Mes prêts en cours</a>
-    <a href="currentbooking" class="btn btn-light more-infos" role="button" aria-pressed="true">Mes réservations</a>
+    <a href="reservation" class="btn btn-light more-infos" role="button" aria-pressed="true">Mes réservations</a>
     <a href="archivedloans" class="btn btn-light more-infos" role="button" aria-pressed="true">Historique</a>
     <a href="logout" class="btn btn-light more-infos" role="button" aria-pressed="true">Se déconnecter</a>
     <div class="account">
