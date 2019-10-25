@@ -51,6 +51,7 @@ public class WaitingController {
 		
 		
 		Long WLId = waitingService.addUserToList(docId, userJWT.getId());
+		logger.info("WL id value in webapp : " + WLId);
 		
 		if(WLId == null) {
 			logger.info("Erreur lors de l'inscription en file d'attente");
@@ -80,6 +81,7 @@ public class WaitingController {
 				
 				List<WaitingList> wlRes =  waitingService.getAllWaiting(userJWT.getId());
 				List<SimplyWaiting> swL = new ArrayList<SimplyWaiting>();
+				
 				
 				for(WaitingList wl : wlRes) {
 					Integer position = UserPosition.getUserPosition(wl.getUsersPositions(), userJWT) + 1;

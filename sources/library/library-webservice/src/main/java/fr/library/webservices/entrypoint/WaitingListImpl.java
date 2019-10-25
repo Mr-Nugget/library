@@ -13,6 +13,7 @@ import org.springframework.context.support.AbstractApplicationContext;
 
 import fr.library.config.AppConfig;
 import fr.library.exceptions.WaitingListFullException;
+import fr.library.webservices.services.DocumentService;
 import fr.library.webservices.services.WaitingListService;
 /**
  * IWaitingList service implementation
@@ -40,6 +41,7 @@ public class WaitingListImpl implements IWaitingList {
 				Long res = null;
 				try {
 					res = service.addUserToList(doc, user);
+					logger.info("WL id in webservice : " + res);
 				} catch (WaitingListFullException e) {
 					logger.error("The list if full",e);
 				}
@@ -59,7 +61,13 @@ public class WaitingListImpl implements IWaitingList {
 		user.setId(userId);
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
 		WaitingListService service = (WaitingListService) context.getBean("WLService");
+		DocumentService docService = (DocumentService) context.getBean("DocumentService");
 		List<WaitingList> res = service.getAll(user);
+		
+		// Get the available date for all the document of the WL
+		for(WaitingList wl : res) {
+			wl.getDoc().setAvailableDate(docService.getAvailableDate(wl.getDoc()));
+		}
 		context.close();
 		return res;
 	}
