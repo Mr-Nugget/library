@@ -12,6 +12,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.support.AbstractApplicationContext;
 
 import fr.library.config.AppConfig;
+import fr.library.exceptions.UserNotInTheListException;
 import fr.library.exceptions.WaitingListFullException;
 import fr.library.webservices.services.DocumentService;
 import fr.library.webservices.services.WaitingListService;
@@ -70,6 +71,26 @@ public class WaitingListImpl implements IWaitingList {
 		}
 		context.close();
 		return res;
+	}
+
+	@Override
+	public void cancelAReservation(Long docId, Long userId) throws UserNotInTheListException {
+		if(userId == null || docId == null) {
+			return;
+		}
+		
+		User user = new User();
+		user.setId(userId);
+		Document doc = new Document();
+		doc.setId(docId);
+		// Load spring context
+		AbstractApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+		WaitingListService service = (WaitingListService) context.getBean("WLService");
+		
+		service.cancelAReservation(doc, user);
+		
+		context.close();
+		
 	}
 
 }

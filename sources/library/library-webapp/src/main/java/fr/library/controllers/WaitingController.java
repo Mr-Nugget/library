@@ -3,6 +3,7 @@ package fr.library.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ws.rs.CookieParam;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import fr.library.models.SimplyWaiting;
 import fr.library.wsdl.connect.IConnection;
 import fr.library.wsdl.connect.JWTCheckingException_Exception;
 import fr.library.wsdl.waiting.IWaitingList;
+import fr.library.wsdl.waiting.UserNotInTheListException_Exception;
 import fr.library.wsdl.waiting.WaitingList;
 import fr.library.wsdl.connect.User;
 
@@ -85,7 +87,7 @@ public class WaitingController {
 				
 				for(WaitingList wl : wlRes) {
 					Integer position = UserPosition.getUserPosition(wl.getUsersPositions(), userJWT) + 1;
-					swL.add(new SimplyWaiting(wl.getDoc().getTitle(), wl.getDoc().getAuthor(), wl.getDoc().getRef(), wl.getDoc().getAvailableDate(), position));
+					swL.add(new SimplyWaiting(wl.getId(), wl.getDoc().getId(), wl.getDoc().getTitle(), wl.getDoc().getAuthor(), wl.getDoc().getRef(), wl.getDoc().getAvailableDate(), position));
 				}
 				
 				model.addObject("listRes", swL);
@@ -93,5 +95,33 @@ public class WaitingController {
 				model.setViewName("reservation");
 							
 				return model;
+	}
+	
+	@GetMapping("/cancelReservation")
+	public ModelAndView cancelReservation(@CookieParam(value="jwtCookie") String jwtCookie,
+										  @RequestParam(value="docId") Long docId) {
+		ModelAndView model = new ModelAndView();
+		User userJWT;
+		try {
+			// Check if the token is still OK
+			userJWT = userService.getUser(jwtCookie);
+			
+		} catch (JWTCheckingException_Exception e) {
+			logger.error("Erreur de connection", e);
+			model.setViewName("redirect:/connection");
+			return model;
+		}
+		
+		try {
+			waitingService.cancelAReservation(docId, userJWT.getId());
+		} catch (UserNotInTheListException_Exception e) {
+			logger.error("UserNotInTheList", e);
+			model.setViewName("cancelError");
+			return model;
+		}
+		
+		model.setViewName("cancelConfirm");
+		
+		return model;
 	}
 }

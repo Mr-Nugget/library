@@ -8,6 +8,7 @@ import org.library.model.WaitingList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import fr.library.exceptions.UserNotInTheListException;
 import fr.library.exceptions.WaitingListFullException;
 import fr.library.sql.ILoanDao;
 import fr.library.sql.IWaitingListDao;
@@ -54,7 +55,12 @@ public class WaitingListService {
 			}
 		}
 	}
-	
+	/**
+	 * Eject the user at position 1 in the waitingList
+	 * @param wl
+	 * @param user
+	 * @return
+	 */
 	public Long popTheFirstUserOfTheList(WaitingList wl, User user) {
 		User userRemove = wl.removeTheFirstUser();
 		if(wl.getLastPosition() == 0) {
@@ -71,11 +77,40 @@ public class WaitingListService {
 		}
 		return user.getId();
 	}
-	
+	/**
+	 * Get all the reservation for a user
+	 * @param user
+	 * @return
+	 */
 	public List<WaitingList> getAll(User user){
 		
 		List<WaitingList> wlL = waitingListDao.getUserReservations(user);
 		
 		return wlL;
+	}
+	
+	/**
+	 * Cancel a reservation, can throw Exception if the user is not in the list
+	 * @param document
+	 * @param user
+	 * @throws UserNotInTheListException
+	 */
+	public void cancelAReservation(Document document, User user) throws UserNotInTheListException {
+		WaitingList wl = waitingListDao.getByDocument(document);
+		
+		Integer userPosition = wl.userPosition(user);
+		
+		if(userPosition == null) {
+			throw new UserNotInTheListException();
+		}else {
+			wl.ejectUserByPosition(userPosition);
+			// Delete the WL if the there is no reservation anymore
+			if(wl.getLastPosition() == 0) {
+				waitingListDao.deleteItem(wl);
+			// Update the positions otherwise
+			}else {
+				waitingListDao.updateItem(wl);
+			}
+		}
 	}
 }

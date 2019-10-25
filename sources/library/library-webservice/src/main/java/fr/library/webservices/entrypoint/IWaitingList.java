@@ -5,9 +5,9 @@ import java.util.List;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 
-import org.library.model.Document;
-import org.library.model.User;
 import org.library.model.WaitingList;
+
+import fr.library.exceptions.UserNotInTheListException;
 
 /**
  * Webservice interface for waitingList objects
@@ -23,4 +23,8 @@ public interface IWaitingList {
 	// Get all the waitingList of a user
 	@WebMethod
 	public List<WaitingList> getAllWaiting(Long userId);
+	
+	// Cancel a reservation of a user
+	@WebMethod
+	public void cancelAReservation(Long docId, Long userId) throws UserNotInTheListException;
 }

@@ -25,8 +25,11 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     private final static QName _GetAllWaiting_QNAME = new QName("http://entrypoint.webservices.library.fr/", "getAllWaiting");
+    private final static QName _CancelAReservation_QNAME = new QName("http://entrypoint.webservices.library.fr/", "cancelAReservation");
+    private final static QName _CancelAReservationResponse_QNAME = new QName("http://entrypoint.webservices.library.fr/", "cancelAReservationResponse");
     private final static QName _GetAllWaitingResponse_QNAME = new QName("http://entrypoint.webservices.library.fr/", "getAllWaitingResponse");
     private final static QName _AddUserToList_QNAME = new QName("http://entrypoint.webservices.library.fr/", "addUserToList");
+    private final static QName _UserNotInTheListException_QNAME = new QName("http://entrypoint.webservices.library.fr/", "UserNotInTheListException");
     private final static QName _AddUserToListResponse_QNAME = new QName("http://entrypoint.webservices.library.fr/", "addUserToListResponse");
 
     /**
@@ -53,11 +56,35 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link CancelAReservation }
+     * 
+     */
+    public CancelAReservation createCancelAReservation() {
+        return new CancelAReservation();
+    }
+
+    /**
+     * Create an instance of {@link CancelAReservationResponse }
+     * 
+     */
+    public CancelAReservationResponse createCancelAReservationResponse() {
+        return new CancelAReservationResponse();
+    }
+
+    /**
      * Create an instance of {@link GetAllWaiting }
      * 
      */
     public GetAllWaiting createGetAllWaiting() {
         return new GetAllWaiting();
+    }
+
+    /**
+     * Create an instance of {@link UserNotInTheListException }
+     * 
+     */
+    public UserNotInTheListException createUserNotInTheListException() {
+        return new UserNotInTheListException();
     }
 
     /**
@@ -118,6 +145,24 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link CancelAReservation }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://entrypoint.webservices.library.fr/", name = "cancelAReservation")
+    public JAXBElement<CancelAReservation> createCancelAReservation(CancelAReservation value) {
+        return new JAXBElement<CancelAReservation>(_CancelAReservation_QNAME, CancelAReservation.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link CancelAReservationResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://entrypoint.webservices.library.fr/", name = "cancelAReservationResponse")
+    public JAXBElement<CancelAReservationResponse> createCancelAReservationResponse(CancelAReservationResponse value) {
+        return new JAXBElement<CancelAReservationResponse>(_CancelAReservationResponse_QNAME, CancelAReservationResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetAllWaitingResponse }{@code >}}
      * 
      */
@@ -133,6 +178,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://entrypoint.webservices.library.fr/", name = "addUserToList")
     public JAXBElement<AddUserToList> createAddUserToList(AddUserToList value) {
         return new JAXBElement<AddUserToList>(_AddUserToList_QNAME, AddUserToList.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link UserNotInTheListException }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://entrypoint.webservices.library.fr/", name = "UserNotInTheListException")
+    public JAXBElement<UserNotInTheListException> createUserNotInTheListException(UserNotInTheListException value) {
+        return new JAXBElement<UserNotInTheListException>(_UserNotInTheListException_QNAME, UserNotInTheListException.class, null, value);
     }
 
     /**

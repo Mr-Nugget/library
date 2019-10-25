@@ -6,6 +6,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 public class SimplyWaiting {
 	
+	private Long id;
+	private Long docId;
 	private String title;
 	private String author;
 	private String ref;
@@ -13,7 +15,9 @@ public class SimplyWaiting {
 	private Integer position;
 	
 	
-	public SimplyWaiting(String title, String author, String ref, XMLGregorianCalendar returnDate, Integer position) {
+	public SimplyWaiting(Long id, Long docId, String title, String author, String ref, XMLGregorianCalendar returnDate, Integer position) {
+		this.id = id;
+		this.docId = docId;
 		this.title = title;
 		this.author = author;
 		this.ref = ref;
@@ -21,6 +25,22 @@ public class SimplyWaiting {
 		this.position = position;
 	}
 	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Long getDocId() {
+		return docId;
+	}
+
+	public void setDocId(Long docId) {
+		this.docId = docId;
+	}
+
 	public String getTitle() {
 		return title;
 	}

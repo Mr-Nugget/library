@@ -8,6 +8,7 @@ import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.ws.Action;
+import javax.xml.ws.FaultAction;
 import javax.xml.ws.RequestWrapper;
 import javax.xml.ws.ResponseWrapper;
 
@@ -57,5 +58,25 @@ public interface IWaitingList {
         Long arg0,
         @WebParam(name = "arg1", targetNamespace = "")
         Long arg1);
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     * @throws UserNotInTheListException_Exception
+     */
+    @WebMethod
+    @RequestWrapper(localName = "cancelAReservation", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.waiting.CancelAReservation")
+    @ResponseWrapper(localName = "cancelAReservationResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.waiting.CancelAReservationResponse")
+    @Action(input = "http://entrypoint.webservices.library.fr/IWaitingList/cancelAReservationRequest", output = "http://entrypoint.webservices.library.fr/IWaitingList/cancelAReservationResponse", fault = {
+        @FaultAction(className = UserNotInTheListException_Exception.class, value = "http://entrypoint.webservices.library.fr/IWaitingList/cancelAReservation/Fault/UserNotInTheListException")
+    })
+    public void cancelAReservation(
+        @WebParam(name = "arg0", targetNamespace = "")
+        Long arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        Long arg1)
+        throws UserNotInTheListException_Exception
+    ;
 
 }

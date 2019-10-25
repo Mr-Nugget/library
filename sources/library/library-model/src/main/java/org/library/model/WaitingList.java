@@ -113,4 +113,11 @@ public class WaitingList {
 		}
 		return null;
 	}
+
+	public void ejectUserByPosition(Integer userPosition) {
+		for(int i = userPosition; i < lastPosition - 1; i++) {
+			usersPositions[i] = usersPositions[i+1];
+		}
+		lastPosition --;
+	}
 }

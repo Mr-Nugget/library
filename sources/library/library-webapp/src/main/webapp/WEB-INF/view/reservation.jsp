@@ -31,6 +31,7 @@
 								<th scope="col">Référence</th>
 								<th scope="col">Date de retour</th>
 								<th scope="col">Position dans la file</th>
+								<th scope="col">Annuler</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -42,6 +43,7 @@
 									<td><fmt:formatDate value="${resa.returnDate.toGregorianCalendar().time}"
 											pattern="dd-MM-yyyy" /></td>
 									<td>${resa.position }</td>
+									<td><a href="cancelReservation/?docId="${resa.docId}>Annuler</a></td>
 								</tr>
 							</c:forEach>
 						</tbody>
