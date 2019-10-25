@@ -44,4 +44,11 @@ public interface IWaitingListDao extends ICrudDao<WaitingList> {
 	 * @return a list of waitingList
 	 */
 	public List<WaitingList> getUserReservations(User user);
+
+	/**
+	 * Remove an user from the waitingList and update positions
+	 * @param wl
+	 * @param user
+	 */
+	void removeAnUserFromList(WaitingList wl, User user);
 }

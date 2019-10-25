@@ -3,8 +3,6 @@ package fr.library.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.ws.rs.CookieParam;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,6 +31,7 @@ public class WaitingController {
 	
 	Logger logger = Logger.getLogger(WaitingController.class);
 	
+	
 	@GetMapping("/addToList")
 	public ModelAndView addToList(
 			@CookieValue(value="jwtCookie") String jwtCookie,
@@ -56,12 +55,13 @@ public class WaitingController {
 		logger.info("WL id value in webapp : " + WLId);
 		
 		if(WLId == null) {
-			logger.info("Erreur lors de l'inscription en file d'attente");
-			model.setViewName("waitingError");
+			model.addObject("message", "Une erreur s'est produite. La liste d'attente est peut-etre pleine, vous y êtes déjà enregistré ou vous possédez déjà un exemplaire du document.");
 			
 		}else {
-			model.setViewName("waitingConfirm");
+			model.addObject("message", "Votre demande réservation a bien été prise en compte. Vous pouvez suivre l'évolution des réservations dans l'onglet \"Mes Réservation\".");
 		}
+		
+		model.setViewName("message");
 		
 		return model;
 	}
@@ -98,8 +98,9 @@ public class WaitingController {
 	}
 	
 	@GetMapping("/cancelReservation")
-	public ModelAndView cancelReservation(@CookieParam(value="jwtCookie") String jwtCookie,
+	public ModelAndView cancelReservation(@CookieValue(value="jwtCookie") String jwtCookie,
 										  @RequestParam(value="docId") Long docId) {
+		
 		ModelAndView model = new ModelAndView();
 		User userJWT;
 		try {
@@ -116,11 +117,12 @@ public class WaitingController {
 			waitingService.cancelAReservation(docId, userJWT.getId());
 		} catch (UserNotInTheListException_Exception e) {
 			logger.error("UserNotInTheList", e);
-			model.setViewName("cancelError");
+			model.addObject("message", "Une erreur s'est produite lors de l'annulation de votre réservation. Veuillez ré-essayer plus tard.");
+			model.setViewName("message");
 			return model;
 		}
-		
-		model.setViewName("cancelConfirm");
+		model.addObject("message", "L'annulation de votre réservation a bien été prise en compte !");
+		model.setViewName("message");
 		
 		return model;
 	}

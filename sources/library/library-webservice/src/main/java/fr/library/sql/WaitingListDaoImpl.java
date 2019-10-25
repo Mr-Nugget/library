@@ -55,10 +55,23 @@ public class WaitingListDaoImpl implements IWaitingListDao {
 	@Override
 	public void updateItem(WaitingList item) {
 		
-		String queryPosition = "UPDATE position SET user_id=?, position=?;";
+		String queryPosition = "UPDATE position SET position=? WHERE list_id= ? AND user_id= ?;";
 
 		for (int i = 0; i < item.getLastPosition(); i++) {
-			jdbc.update(queryPosition,item.getUsersPositions()[i].getId(), i);
+			jdbc.update(queryPosition, i, item.getId(), item.getUsersPositions()[i].getId());
+		}
+	}
+	
+	@Override
+	public void removeAnUserFromList(WaitingList wl, User user) {
+		String queryDelete = "DELETE FROM position WHERE list_id=? AND user_id = ?;";
+		
+		jdbc.update(queryDelete, wl.getId(), user.getId());
+		
+		String queryPosition = "UPDATE position SET position=? WHERE list_id= ? AND user_id= ?;";
+
+		for (int i = 0; i < wl.getLastPosition(); i++) {
+			jdbc.update(queryPosition, i, wl.getId(), wl.getUsersPositions()[i].getId());
 		}
 	}
 

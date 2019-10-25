@@ -120,7 +120,21 @@ public class WaitingListDaoIT {
 	}
 	
 	@Test
-	public final void test8DeleteItem() {
+	public final void test8removeAnUserFromTheList() {
+		WaitingList wl = dao.getById(waitingList.getId());
+		
+		Integer position = wl.userPosition(userTestAdd);
+		wl.ejectUserByPosition(position);
+		dao.removeAnUserFromList(wl, userTestAdd);
+		
+		 wl = dao.getById(waitingList.getId());
+
+		 assertNull(wl.userPosition(userTestAdd));
+		
+	}
+	
+	@Test
+	public final void test9DeleteItem() {
 		dao.deleteItem(waitingList);
 		assertEquals(nbWL, dao.findAll().size());
 	}

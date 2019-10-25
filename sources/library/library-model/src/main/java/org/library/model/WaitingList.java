@@ -119,5 +119,6 @@ public class WaitingList {
 			usersPositions[i] = usersPositions[i+1];
 		}
 		lastPosition --;
+		usersPositions[lastPosition] = null;
 	}
 }

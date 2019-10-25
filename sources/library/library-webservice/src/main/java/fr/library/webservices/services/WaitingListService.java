@@ -107,9 +107,9 @@ public class WaitingListService {
 			// Delete the WL if the there is no reservation anymore
 			if(wl.getLastPosition() == 0) {
 				waitingListDao.deleteItem(wl);
-			// Update the positions otherwise
+			// Update the positions otherwise and remove
 			}else {
-				waitingListDao.updateItem(wl);
+				waitingListDao.removeAnUserFromList(wl, user);
 			}
 		}
 	}

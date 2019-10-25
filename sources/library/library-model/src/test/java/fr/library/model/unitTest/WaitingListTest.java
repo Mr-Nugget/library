@@ -73,11 +73,13 @@ public class WaitingListTest {
 		// Remove all users
 		wl.removeTheFirstUser();
 		assertEquals("user3", wl.getUsersPositions()[0].getFirstName());
-		wl.removeTheFirstUser();
-		assertEquals("user4", wl.getUsersPositions()[0].getFirstName());
-		wl.removeTheFirstUser();
-		
-		assertNull(wl.removeTheFirstUser());
 	}
 
+	@Test
+	public final void test4ejectUserByPosition() {
+		Integer position = wl.userPosition(user4);
+		wl.ejectUserByPosition(position);
+		assertEquals("user3", wl.getUsersPositions()[0].getFirstName());
+		assertNull(wl.userPosition(user4));
+	}
 }

@@ -43,7 +43,7 @@
 									<td><fmt:formatDate value="${resa.returnDate.toGregorianCalendar().time}"
 											pattern="dd-MM-yyyy" /></td>
 									<td>${resa.position }</td>
-									<td><a href="cancelReservation/?docId="${resa.docId}>Annuler</a></td>
+									<td><a href="cancelReservation?docId=${resa.docId}">Annuler</a></td>
 								</tr>
 							</c:forEach>
 						</tbody>
