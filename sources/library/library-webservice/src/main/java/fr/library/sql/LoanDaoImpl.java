@@ -576,10 +576,10 @@ public class LoanDaoImpl implements ILoanDao {
 	@Override
 	public Boolean alreadyHaveTheDocument(User user, Document doc) {
 		JdbcTemplate jdbc = new JdbcTemplate(dataSource);
-		String query = "SELECT * FROM loans WHERE document_id=? AND user_id=? AND (status=1 OR status=2);";
-		Loan loanExist = jdbc.queryForObject(query, new Object[] {doc.getId(), user.getId()}, new LoanRowMapper());
+		String query = "SELECT COUNT(*) FROM loans WHERE document_id=? AND user_id=? AND (status=1 OR status=2);";
+		Integer loanExist = jdbc.queryForObject(query, new Object[] {doc.getId(), user.getId()}, Integer.class);
 		
-		return loanExist != null;
+		return loanExist > 0;
 	}
 
 

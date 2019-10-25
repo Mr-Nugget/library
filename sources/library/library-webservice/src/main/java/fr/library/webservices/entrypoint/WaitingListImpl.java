@@ -12,6 +12,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.support.AbstractApplicationContext;
 
 import fr.library.config.AppConfig;
+import fr.library.exceptions.WaitingListFullException;
 import fr.library.webservices.services.WaitingListService;
 /**
  * IWaitingList service implementation
@@ -25,7 +26,7 @@ public class WaitingListImpl implements IWaitingList {
 	
 	@Override
 	public Long addUserToList(Long docId, Long userId) {
-		try {
+
 			if(docId == null || userId == null) {
 				return null;
 			}else {
@@ -36,14 +37,16 @@ public class WaitingListImpl implements IWaitingList {
 				user.setId(userId);
 				AbstractApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
 				WaitingListService service = (WaitingListService) context.getBean("WLService");
-				Long res = service.addUserToList(doc, user);
+				Long res = null;
+				try {
+					res = service.addUserToList(doc, user);
+				} catch (WaitingListFullException e) {
+					logger.error("The list if full",e);
+				}
 				context.close();
 				return res;	
 			}
-		} catch (Exception e) {
-			logger.error("The list is full");
-			return null;
-		}
+
 	}
 
 	@Override
