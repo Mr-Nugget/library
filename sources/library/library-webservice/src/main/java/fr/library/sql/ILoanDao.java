@@ -52,4 +52,10 @@ public interface ILoanDao extends ICrudDao<Loan>{
 	 * @return
 	 */
 	public Boolean alreadyHaveTheDocument(User user, Document doc);
+	
+	/**
+	 * Clotured loans awaiting expired
+	 * @return 
+	 */
+	public List<Loan> cloturedAfterTwoDays();
 }

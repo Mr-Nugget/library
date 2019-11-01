@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -583,4 +584,21 @@ public class LoanDaoImpl implements ILoanDao {
 	}
 
 
+	@Override
+	public List<Loan> cloturedAfterTwoDays() {
+		JdbcTemplate jdbc = new JdbcTemplate(dataSource);
+		String query = "SELECT * FROM loans WHERE status = 4 AND begindate = ?;";
+		
+		LocalDate date = LocalDate.now().minusDays(2);
+		java.sql.Date twoDaysAgo = java.sql.Date.valueOf(date);
+		
+		List<Loan> listExpired = jdbc.query(query, new Object[] {twoDaysAgo}, new LoanRowMapper());
+		
+		query = "UPDATE loans SET status = 3 WHERE status = 4 AND begindate = ?;";
+		
+		jdbc.update(query, new Object[] {twoDaysAgo});
+		
+		return listExpired;
+		
+		}
 }

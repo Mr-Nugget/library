@@ -1,8 +1,10 @@
 package fr.library.webservices.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.library.model.Document;
+import org.library.model.Loan;
 import org.library.model.User;
 import org.library.model.WaitingList;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -112,5 +114,30 @@ public class WaitingListService {
 				waitingListDao.removeAnUserFromList(wl, user);
 			}
 		}
+	}
+	
+	/**
+	 * Set clotured to user's loans who haven't get the document after 48h of reservation.
+	 * Create a new loans with status "awaiting" and update the waiting list.
+	 * @return list of users with new loan
+	 */
+	public List<User> removeUserAfterTowDays(){
+		List<Loan> listOfExpiredLoans = loanDao.cloturedAfterTwoDays();
+		List<WaitingList> wlList = new ArrayList<>();
+		
+		for(Loan loan : listOfExpiredLoans) {
+			WaitingList wlTemp = waitingListDao.getByDocument(loan.getDoc());
+			if(wlTemp == null) {
+				
+			}else if(wlTemp.getUsersPositions().length == 0) {
+				waitingListDao.deleteItem(wlTemp);
+			}else {
+				wlList.add(wlTemp);
+			}
+		}
+		
+		
+		
+		return null;
 	}
 }
