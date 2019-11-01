@@ -123,7 +123,8 @@ public class WaitingListService {
 	 */
 	public List<User> removeUserAfterTowDays(){
 		List<Loan> listOfExpiredLoans = loanDao.cloturedAfterTwoDays();
-		List<WaitingList> wlList = new ArrayList<>();
+		
+		List<User> userList = new ArrayList<>();
 		
 		for(Loan loan : listOfExpiredLoans) {
 			WaitingList wlTemp = waitingListDao.getByDocument(loan.getDoc());
@@ -132,12 +133,10 @@ public class WaitingListService {
 			}else if(wlTemp.getUsersPositions().length == 0) {
 				waitingListDao.deleteItem(wlTemp);
 			}else {
-				wlList.add(wlTemp);
+				userList.add(wlTemp.removeTheFirstUser());
+				waitingListDao.updateItem(wlTemp);
 			}
 		}
-		
-		
-		
-		return null;
+		return userList;
 	}
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 
+import org.library.model.User;
 import org.library.model.WaitingList;
 
 import fr.library.exceptions.UserNotInTheListException;
@@ -27,4 +28,11 @@ public interface IWaitingList {
 	// Cancel a reservation of a user
 	@WebMethod
 	public void cancelAReservation(Long docId, Long userId) throws UserNotInTheListException;
+	
+	/**
+	 * Set loans awaiting to clotured after two days of reservation and return a list of new user number one on the list
+	 * @return List<User>
+	 */
+	@WebMethod
+	public List<User> updateListAfterTwoDays();
 }

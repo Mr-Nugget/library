@@ -93,4 +93,17 @@ public class WaitingListImpl implements IWaitingList {
 		
 	}
 
+	@Override
+	public List<User> updateListAfterTwoDays() {
+		// Load spring context
+		AbstractApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+		WaitingListService service = (WaitingListService) context.getBean("WLService");
+				
+		List<User> lRes = service.removeUserAfterTowDays();
+				
+		context.close();
+		
+		return lRes;
+	}
+
 }
