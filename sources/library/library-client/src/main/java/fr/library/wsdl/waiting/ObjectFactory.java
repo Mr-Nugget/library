@@ -114,6 +114,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Loan }
+     * 
+     */
+    public Loan createLoan() {
+        return new Loan();
+    }
+
+    /**
      * Create an instance of {@link WaitingList }
      * 
      */

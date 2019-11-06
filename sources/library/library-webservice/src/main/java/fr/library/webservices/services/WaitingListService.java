@@ -124,7 +124,7 @@ public class WaitingListService {
 	 * @return list of users with new loan
 	 * @throws DocumentNotAvailableException 
 	 */
-	public List<Loan> removeUserAfterTowDays() throws DocumentNotAvailableException{
+	public List<Loan> removeUserAfterTowDays(){
 		List<Loan> listOfExpiredLoans = loanDao.cloturedAfterTwoDays();
 		
 		List<Loan> newLoanList = new ArrayList<>();
@@ -139,8 +139,11 @@ public class WaitingListService {
 			}else {
 				userTemp = wlTemp.removeTheFirstUser();
 				waitingListDao.updateItem(wlTemp);
-				Long newLoanId = loanDao.createLoan(loan.getDoc(), userTemp, Status.AWAITING);
-				newLoanList.add(loanDao.getById(newLoanId));
+				Long newLoanId = null;
+				try {
+					newLoanId = loanDao.createLoan(loan.getDoc(), userTemp, Status.AWAITING);
+					newLoanList.add(loanDao.getById(newLoanId));
+				} catch (DocumentNotAvailableException e) {}
 			}
 		}
 		return newLoanList;

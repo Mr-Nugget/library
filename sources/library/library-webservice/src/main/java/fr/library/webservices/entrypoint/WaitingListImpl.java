@@ -96,7 +96,7 @@ public class WaitingListImpl implements IWaitingList {
 	}
 
 	@Override
-	public List<Loan> updateListAfterTwoDays() throws DocumentNotAvailableException {
+	public List<Loan> updateListAfterTwoDays() {
 		// Load spring context
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
 		WaitingListService service = (WaitingListService) context.getBean("WLService");

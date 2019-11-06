@@ -8,7 +8,6 @@ import javax.jws.WebService;
 import org.library.model.Loan;
 import org.library.model.WaitingList;
 
-import fr.library.exceptions.DocumentNotAvailableException;
 import fr.library.exceptions.UserNotInTheListException;
 
 /**
@@ -35,5 +34,5 @@ public interface IWaitingList {
 	 * @return List<Loan>
 	 */
 	@WebMethod
-	public List<Loan> updateListAfterTwoDays() throws DocumentNotAvailableException;
+	public List<Loan> updateListAfterTwoDays();
 }

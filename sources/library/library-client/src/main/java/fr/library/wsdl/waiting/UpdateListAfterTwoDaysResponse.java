@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="return" type="{http://entrypoint.webservices.library.fr/}user" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="return" type="{http://entrypoint.webservices.library.fr/}loan" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlType;
 public class UpdateListAfterTwoDaysResponse {
 
     @XmlElement(name = "return")
-    protected List<User> _return;
+    protected List<Loan> _return;
 
     /**
      * Gets the value of the return property.
@@ -55,13 +55,13 @@ public class UpdateListAfterTwoDaysResponse {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link User }
+     * {@link Loan }
      * 
      * 
      */
-    public List<User> getReturn() {
+    public List<Loan> getReturn() {
         if (_return == null) {
-            _return = new ArrayList<User>();
+            _return = new ArrayList<Loan>();
         }
         return this._return;
     }

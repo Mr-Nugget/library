@@ -49,14 +49,14 @@ public interface IWaitingList {
     /**
      * 
      * @return
-     *     returns java.util.List<fr.library.wsdl.waiting.User>
+     *     returns java.util.List<fr.library.wsdl.waiting.Loan>
      */
     @WebMethod
     @WebResult(targetNamespace = "")
     @RequestWrapper(localName = "updateListAfterTwoDays", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.waiting.UpdateListAfterTwoDays")
     @ResponseWrapper(localName = "updateListAfterTwoDaysResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.waiting.UpdateListAfterTwoDaysResponse")
     @Action(input = "http://entrypoint.webservices.library.fr/IWaitingList/updateListAfterTwoDaysRequest", output = "http://entrypoint.webservices.library.fr/IWaitingList/updateListAfterTwoDaysResponse")
-    public List<User> updateListAfterTwoDays();
+    public List<Loan> updateListAfterTwoDays();
 
     /**
      * 
