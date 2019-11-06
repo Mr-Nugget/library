@@ -587,18 +587,21 @@ public class LoanDaoImpl implements ILoanDao {
 	@Override
 	public List<Loan> cloturedAfterTwoDays() {
 		JdbcTemplate jdbc = new JdbcTemplate(dataSource);
-		String query = "SELECT * FROM loans WHERE status = 4 AND begindate = ?;";
+		
+		// Status 4 = AWAITING
+		String query = "SELECT * FROM loans WHERE status = 4 AND start_date <= ?;";
 		
 		LocalDate date = LocalDate.now().minusDays(2);
 		java.sql.Date twoDaysAgo = java.sql.Date.valueOf(date);
 		
 		List<Loan> listExpired = jdbc.query(query, new Object[] {twoDaysAgo}, new LoanRowMapper());
 		
-		query = "UPDATE loans SET status = 3 WHERE status = 4 AND begindate = ?;";
+		// Status 3 = CLOTURED
+		query = "UPDATE loans SET status = 0 WHERE status = 4 AND start_date <= ?;";
 		
 		jdbc.update(query, new Object[] {twoDaysAgo});
 		
 		return listExpired;
 		
-		}
+	}
 }

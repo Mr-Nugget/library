@@ -2,6 +2,7 @@ package test.sql;
 
 import static org.junit.Assert.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -44,6 +45,7 @@ public class LoanDaoImplIT {
 	private static Long loanId;
 	private static Loan loanTest;
 	private static User userTest;
+	private static User userTest2;
 	private static Document documentTest;
 	
 	private static Integer loanSize;
@@ -58,7 +60,16 @@ public class LoanDaoImplIT {
 		userTest.setMailRecall(true);
 		userTest.setPassword("1234");
 		
+		userTest2 = new User();
+		userTest2.setFirstName("Test");
+		userTest2.setLastName("Test");
+		userTest2.setMail("test@test.com");
+		userTest2.setConnected(false);
+		userTest2.setMailRecall(true);
+		userTest2.setPassword("1234");
+		
 		userTest.setId(userDao.createUser(userTest));
+		userTest2.setId(userDao.createUser(userTest2));
 		
 		documentTest = new Document();
 		documentTest.setAuthor("AuthorTest");
@@ -131,6 +142,29 @@ public class LoanDaoImplIT {
 	}
 	
 	@Test
+	public final void test6cloturedAfterTwoDays() throws DocumentNotAvailableException {
+		Long loanAWaitingId = loanDao.createLoan(documentTest, userTest2);
+		Loan loanAWaiting = loanDao.getById(loanAWaitingId);
+				
+		LocalDate date = LocalDate.now().minusDays(2);
+		Date twoDaysAgo = java.sql.Date.valueOf(date);
+		
+		loanAWaiting.setStatus(Status.AWAITING);
+		loanAWaiting.setBeginDate(twoDaysAgo);
+		loanDao.updateItem(loanAWaiting);
+		
+		List<Loan> lExpired = loanDao.cloturedAfterTwoDays();
+				
+		loanAWaiting = loanDao.getById(loanAWaitingId);
+		
+		assertEquals(Status.CLOTURED, loanAWaiting.getStatus());
+		
+		assertTrue(lExpired.contains(loanAWaiting));
+		
+		loanDao.deleteItem(loanAWaiting);
+	}
+	
+	@Test
 	public final void test99DeleteLoan() {
 		loanDao.deleteItem(loanTest);
 		
@@ -141,6 +175,7 @@ public class LoanDaoImplIT {
 	public static void setUpAfterClass() {
 		documentDao.deleteItem(documentTest);
 		userDao.deleteItem(userTest);
+		userDao.deleteItem(userTest2);
 	}
 
 }
