@@ -6,12 +6,14 @@ import javax.jws.WebService;
 
 import org.apache.log4j.Logger;
 import org.library.model.Document;
+import org.library.model.Loan;
 import org.library.model.User;
 import org.library.model.WaitingList;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 
 import fr.library.config.AppConfig;
+import fr.library.exceptions.DocumentNotAvailableException;
 import fr.library.exceptions.UserNotInTheListException;
 import fr.library.exceptions.WaitingListFullException;
 import fr.library.webservices.services.DocumentService;
@@ -94,12 +96,12 @@ public class WaitingListImpl implements IWaitingList {
 	}
 
 	@Override
-	public List<User> updateListAfterTwoDays() {
+	public List<Loan> updateListAfterTwoDays() throws DocumentNotAvailableException {
 		// Load spring context
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
 		WaitingListService service = (WaitingListService) context.getBean("WLService");
 				
-		List<User> lRes = service.removeUserAfterTowDays();
+		List<Loan> lRes = service.removeUserAfterTowDays();
 				
 		context.close();
 		

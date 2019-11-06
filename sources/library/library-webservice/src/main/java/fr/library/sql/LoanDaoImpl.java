@@ -26,6 +26,7 @@ import org.springframework.stereotype.Repository;
 
 import fr.library.exceptions.DocumentNotAvailableException;
 import fr.library.exceptions.LoanStatusException;
+import fr.library.helpers.LoanCompleteRowMapper;
 import fr.library.helpers.LoanRowMapper;
 
 @Repository
@@ -202,7 +203,7 @@ public class LoanDaoImpl implements ILoanDao {
 	}
 
 	@Override
-	public Long createLoan(Document doc, User user) throws DocumentNotAvailableException {
+	public Long createLoan(Document doc, User user, Status status) throws DocumentNotAvailableException {
 		Connection connect = null;
 		PreparedStatement prepared = null, ps2 = null, psId=null;
 		ResultSet res = null;
@@ -230,7 +231,7 @@ public class LoanDaoImpl implements ILoanDao {
 				prepared.setLong(2, user.getId());
 				prepared.setString(3, dateFormat.format(today_date));
 				prepared.setString(4, dateFormat.format(end_date));
-				prepared.setInt(5, Status.IN_PROGRESS.getId());
+				prepared.setInt(5, status.getId());
 				prepared.executeUpdate();
 				
 				//Get the id of the new loan
@@ -589,17 +590,23 @@ public class LoanDaoImpl implements ILoanDao {
 		JdbcTemplate jdbc = new JdbcTemplate(dataSource);
 		
 		// Status 4 = AWAITING
-		String query = "SELECT * FROM loans WHERE status = 4 AND start_date <= ?;";
+		String query = "SELECT l.id, l.user_id, l.document_id, l.start_date, l.end_date, l.status, d.title, d.author, d.ref, d.total_stock, d.category_id, d.type_id, d.current_stock FROM loans l, documents d WHERE l.document_id = d.id AND l.status = 4 AND l.start_date <= ?;";
 		
 		LocalDate date = LocalDate.now().minusDays(2);
 		java.sql.Date twoDaysAgo = java.sql.Date.valueOf(date);
 		
-		List<Loan> listExpired = jdbc.query(query, new Object[] {twoDaysAgo}, new LoanRowMapper());
+		List<Loan> listExpired = jdbc.query(query, new Object[] {twoDaysAgo}, new LoanCompleteRowMapper());
 		
 		// Status 3 = CLOTURED
 		query = "UPDATE loans SET status = 0 WHERE status = 4 AND start_date <= ?;";
 		
 		jdbc.update(query, new Object[] {twoDaysAgo});
+		
+		// Update documents stock
+		query = "UPDATE documents SET current_stock = ? WHERE id=?;";
+		for(Loan loan : listExpired) {
+			jdbc.update(query, new Object[] {loan.getDoc().getCurrentstock()+1, loan.getDoc().getId()});
+		}
 		
 		return listExpired;
 		

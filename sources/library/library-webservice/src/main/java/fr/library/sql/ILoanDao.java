@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.library.model.Document;
 import org.library.model.Loan;
+import org.library.model.Status;
 import org.library.model.User;
 
 import fr.library.exceptions.DocumentNotAvailableException;
@@ -30,7 +31,7 @@ public interface ILoanDao extends ICrudDao<Loan>{
 	public void returnDocument(Loan loan) throws LoanStatusException; 
 	
 	 // Create a new Loan depending on a user and a document and return the id of the new loan, throw an exception if the document is not available
-	public Long createLoan(Document doc, User user) throws DocumentNotAvailableException;
+	public Long createLoan(Document doc, User user, Status status) throws DocumentNotAvailableException;
 	
 	// Get a list of expired loans -> endDate < today
 	public List<Loan> getExpiredLoans();

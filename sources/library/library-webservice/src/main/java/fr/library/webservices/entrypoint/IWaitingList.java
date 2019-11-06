@@ -5,9 +5,10 @@ import java.util.List;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 
-import org.library.model.User;
+import org.library.model.Loan;
 import org.library.model.WaitingList;
 
+import fr.library.exceptions.DocumentNotAvailableException;
 import fr.library.exceptions.UserNotInTheListException;
 
 /**
@@ -30,9 +31,9 @@ public interface IWaitingList {
 	public void cancelAReservation(Long docId, Long userId) throws UserNotInTheListException;
 	
 	/**
-	 * Set loans awaiting to clotured after two days of reservation and return a list of new user number one on the list
-	 * @return List<User>
+	 * Set loans awaiting to clotured after two days of reservation and return a list of new loan awaiting with number one on the list
+	 * @return List<Loan>
 	 */
 	@WebMethod
-	public List<User> updateListAfterTwoDays();
+	public List<Loan> updateListAfterTwoDays() throws DocumentNotAvailableException;
 }

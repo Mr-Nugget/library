@@ -89,7 +89,7 @@ public class LoanDaoImplIT {
 	@Test
 	public final void test0CreateLoan() throws DocumentNotAvailableException {
 		Integer loanSizeBefore = loanDao.findAll().size();
-		loanId = loanDao.createLoan(documentTest, userTest);
+		loanId = loanDao.createLoan(documentTest, userTest, Status.IN_PROGRESS);
 		loanSize = loanDao.findAll().size();
 		assertEquals(loanSizeBefore.intValue()+1, loanSize.intValue());
 		
@@ -143,13 +143,12 @@ public class LoanDaoImplIT {
 	
 	@Test
 	public final void test6cloturedAfterTwoDays() throws DocumentNotAvailableException {
-		Long loanAWaitingId = loanDao.createLoan(documentTest, userTest2);
+		Long loanAWaitingId = loanDao.createLoan(documentTest, userTest2, Status.AWAITING);
 		Loan loanAWaiting = loanDao.getById(loanAWaitingId);
 				
 		LocalDate date = LocalDate.now().minusDays(2);
 		Date twoDaysAgo = java.sql.Date.valueOf(date);
 		
-		loanAWaiting.setStatus(Status.AWAITING);
 		loanAWaiting.setBeginDate(twoDaysAgo);
 		loanDao.updateItem(loanAWaiting);
 		

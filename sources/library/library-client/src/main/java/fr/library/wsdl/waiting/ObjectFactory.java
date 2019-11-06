@@ -25,8 +25,10 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     private final static QName _GetAllWaiting_QNAME = new QName("http://entrypoint.webservices.library.fr/", "getAllWaiting");
+    private final static QName _UpdateListAfterTwoDaysResponse_QNAME = new QName("http://entrypoint.webservices.library.fr/", "updateListAfterTwoDaysResponse");
     private final static QName _CancelAReservation_QNAME = new QName("http://entrypoint.webservices.library.fr/", "cancelAReservation");
     private final static QName _CancelAReservationResponse_QNAME = new QName("http://entrypoint.webservices.library.fr/", "cancelAReservationResponse");
+    private final static QName _UpdateListAfterTwoDays_QNAME = new QName("http://entrypoint.webservices.library.fr/", "updateListAfterTwoDays");
     private final static QName _GetAllWaitingResponse_QNAME = new QName("http://entrypoint.webservices.library.fr/", "getAllWaitingResponse");
     private final static QName _AddUserToList_QNAME = new QName("http://entrypoint.webservices.library.fr/", "addUserToList");
     private final static QName _UserNotInTheListException_QNAME = new QName("http://entrypoint.webservices.library.fr/", "UserNotInTheListException");
@@ -56,6 +58,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link UpdateListAfterTwoDays }
+     * 
+     */
+    public UpdateListAfterTwoDays createUpdateListAfterTwoDays() {
+        return new UpdateListAfterTwoDays();
+    }
+
+    /**
      * Create an instance of {@link CancelAReservation }
      * 
      */
@@ -77,6 +87,14 @@ public class ObjectFactory {
      */
     public GetAllWaiting createGetAllWaiting() {
         return new GetAllWaiting();
+    }
+
+    /**
+     * Create an instance of {@link UpdateListAfterTwoDaysResponse }
+     * 
+     */
+    public UpdateListAfterTwoDaysResponse createUpdateListAfterTwoDaysResponse() {
+        return new UpdateListAfterTwoDaysResponse();
     }
 
     /**
@@ -112,19 +130,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Category }
-     * 
-     */
-    public Category createCategory() {
-        return new Category();
-    }
-
-    /**
      * Create an instance of {@link Type }
      * 
      */
     public Type createType() {
         return new Type();
+    }
+
+    /**
+     * Create an instance of {@link Category }
+     * 
+     */
+    public Category createCategory() {
+        return new Category();
     }
 
     /**
@@ -145,6 +163,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link UpdateListAfterTwoDaysResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://entrypoint.webservices.library.fr/", name = "updateListAfterTwoDaysResponse")
+    public JAXBElement<UpdateListAfterTwoDaysResponse> createUpdateListAfterTwoDaysResponse(UpdateListAfterTwoDaysResponse value) {
+        return new JAXBElement<UpdateListAfterTwoDaysResponse>(_UpdateListAfterTwoDaysResponse_QNAME, UpdateListAfterTwoDaysResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link CancelAReservation }{@code >}}
      * 
      */
@@ -160,6 +187,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://entrypoint.webservices.library.fr/", name = "cancelAReservationResponse")
     public JAXBElement<CancelAReservationResponse> createCancelAReservationResponse(CancelAReservationResponse value) {
         return new JAXBElement<CancelAReservationResponse>(_CancelAReservationResponse_QNAME, CancelAReservationResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link UpdateListAfterTwoDays }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://entrypoint.webservices.library.fr/", name = "updateListAfterTwoDays")
+    public JAXBElement<UpdateListAfterTwoDays> createUpdateListAfterTwoDays(UpdateListAfterTwoDays value) {
+        return new JAXBElement<UpdateListAfterTwoDays>(_UpdateListAfterTwoDays_QNAME, UpdateListAfterTwoDays.class, null, value);
     }
 
     /**

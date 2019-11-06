@@ -5,11 +5,13 @@ import java.util.List;
 
 import org.library.model.Document;
 import org.library.model.Loan;
+import org.library.model.Status;
 import org.library.model.User;
 import org.library.model.WaitingList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import fr.library.exceptions.DocumentNotAvailableException;
 import fr.library.exceptions.UserNotInTheListException;
 import fr.library.exceptions.WaitingListFullException;
 import fr.library.sql.ILoanDao;
@@ -120,11 +122,13 @@ public class WaitingListService {
 	 * Set clotured to user's loans who haven't get the document after 48h of reservation.
 	 * Create a new loans with status "awaiting" and update the waiting list.
 	 * @return list of users with new loan
+	 * @throws DocumentNotAvailableException 
 	 */
-	public List<User> removeUserAfterTowDays(){
+	public List<Loan> removeUserAfterTowDays() throws DocumentNotAvailableException{
 		List<Loan> listOfExpiredLoans = loanDao.cloturedAfterTwoDays();
 		
-		List<User> userList = new ArrayList<>();
+		List<Loan> newLoanList = new ArrayList<>();
+		User userTemp;
 		
 		for(Loan loan : listOfExpiredLoans) {
 			WaitingList wlTemp = waitingListDao.getByDocument(loan.getDoc());
@@ -133,10 +137,12 @@ public class WaitingListService {
 			}else if(wlTemp.getUsersPositions().length == 0) {
 				waitingListDao.deleteItem(wlTemp);
 			}else {
-				userList.add(wlTemp.removeTheFirstUser());
+				userTemp = wlTemp.removeTheFirstUser();
 				waitingListDao.updateItem(wlTemp);
+				Long newLoanId = loanDao.createLoan(loan.getDoc(), userTemp, Status.AWAITING);
+				newLoanList.add(loanDao.getById(newLoanId));
 			}
 		}
-		return userList;
+		return newLoanList;
 	}
 }
