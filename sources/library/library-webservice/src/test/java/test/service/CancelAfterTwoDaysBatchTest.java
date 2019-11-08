@@ -98,12 +98,14 @@ public class CancelAfterTwoDaysBatchTest {
 		loanExpired = new Loan();
 				
 		Long loanId = loanDao.createLoan(docTest, userExpired, Status.AWAITING);
-		loanExpired.setId(loanId);
+		loanExpired = loanDao.getById(loanId);
 		
 		LocalDate date = LocalDate.now().minusDays(2);
 		Date twoDaysAgo = java.sql.Date.valueOf(date);
-				
+		
 		loanExpired.setBeginDate(twoDaysAgo);
+		
+		loanDao.updateItem(loanExpired);
 				
 		// Add userAwaiting in the waitingList of the same document
 		waitingListTest = new WaitingList(docTest);
@@ -114,6 +116,8 @@ public class CancelAfterTwoDaysBatchTest {
 	public final void test1Service() {
 		newReservations = wlService.removeUserAfterTowDays();
 		assertFalse(newReservations.isEmpty());
+		assertEquals(userAwaiting.getId(),newReservations.get(0).getUser().getId());
+		assertEquals(newReservations.get(0).getStatus(), Status.AWAITING);
 	}
 	
 	@Test

@@ -133,7 +133,7 @@ public class WaitingListService {
 		for(Loan loan : listOfExpiredLoans) {
 			WaitingList wlTemp = waitingListDao.getByDocument(loan.getDoc());
 			if(wlTemp == null) {
-				
+				System.out.println("WL null");
 			}else if(wlTemp.getUsersPositions().length == 0) {
 				waitingListDao.deleteItem(wlTemp);
 			}else {
@@ -143,7 +143,9 @@ public class WaitingListService {
 				try {
 					newLoanId = loanDao.createLoan(loan.getDoc(), userTemp, Status.AWAITING);
 					newLoanList.add(loanDao.getById(newLoanId));
-				} catch (DocumentNotAvailableException e) {}
+				} catch (DocumentNotAvailableException e) {
+					System.out.println("Document Not Available");
+				}
 			}
 		}
 		return newLoanList;

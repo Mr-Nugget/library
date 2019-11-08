@@ -608,6 +608,7 @@ public class LoanDaoImpl implements ILoanDao {
 		query = "UPDATE documents SET current_stock = ? WHERE id=?;";
 		for(Loan loan : listExpired) {
 			jdbc.update(query, new Object[] {loan.getDoc().getCurrentstock()+1, loan.getDoc().getId()});
+			loan.getDoc().setCurrentstock(loan.getDoc().getCurrentstock() + 1);
 		}
 		
 		return listExpired;
