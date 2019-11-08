@@ -208,6 +208,8 @@ public class LoanDaoImpl implements ILoanDao {
 		PreparedStatement prepared = null, ps2 = null, psId=null;
 		ResultSet res = null;
 		Long idReturn = null;
+		
+		
 		if(doc.getCurrentstock()>0) {
 
 			String query ="INSERT INTO loans(document_id, user_id, start_date, end_date, status) VALUES(?,?,TO_DATE(?, 'YYYY/MM/DD'),TO_DATE(?, 'YYYY/MM/DD'),?);";
