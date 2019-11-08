@@ -61,6 +61,18 @@ public interface IWaitingList {
     /**
      * 
      * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "returnDocument", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.waiting.ReturnDocument")
+    @ResponseWrapper(localName = "returnDocumentResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.waiting.ReturnDocumentResponse")
+    @Action(input = "http://entrypoint.webservices.library.fr/IWaitingList/returnDocumentRequest", output = "http://entrypoint.webservices.library.fr/IWaitingList/returnDocumentResponse")
+    public void returnDocument(
+        @WebParam(name = "arg0", targetNamespace = "")
+        Long arg0);
+
+    /**
+     * 
+     * @param arg0
      * @return
      *     returns java.util.List<fr.library.wsdl.waiting.WaitingList>
      */

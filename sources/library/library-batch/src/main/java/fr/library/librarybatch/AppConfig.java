@@ -27,8 +27,6 @@ import fr.library.wsdl.waiting.WaitingListImplService;
 @Configuration
 public class AppConfig {
 	
-
-	
 	@Bean
 	public JavaMailSender getJavaMailSender() {
 	    JavaMailSenderImpl mailSender = new JavaMailSenderImpl();

@@ -22,7 +22,7 @@ public class ReservationAffectation {
 	@Autowired
 	IWaitingList service;
 	
-	@Scheduled(cron="* * * * * 0")
+	@Scheduled(cron="*/5 * * * * ?")
 	public void task() {
 		List<Loan> lnewLoan = service.updateListAfterTwoDays();
 		StringBuilder message = new StringBuilder();

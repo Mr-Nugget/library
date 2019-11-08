@@ -9,23 +9,36 @@ import org.library.model.Status;
 import org.library.model.User;
 import org.library.model.WaitingList;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import fr.library.exceptions.DocumentNotAvailableException;
+import fr.library.exceptions.LoanStatusException;
 import fr.library.exceptions.UserNotInTheListException;
 import fr.library.exceptions.WaitingListFullException;
+import fr.library.sql.DaoFactory;
 import fr.library.sql.ILoanDao;
+import fr.library.sql.IUserDao;
 import fr.library.sql.IWaitingListDao;
 
 
 @Service("WLService")
 public class WaitingListService {
 
+	private IUserDao userDao = DaoFactory.getInstance().getUserDao();
+	
 	@Autowired
 	private IWaitingListDao waitingListDao;
 	
 	@Autowired
 	private ILoanDao loanDao;
+	
+	@Autowired
+	SimpleMailMessage simpleMail;
+	
+	@Autowired
+	JavaMailSender javaMailSender;
 		
 	/**
 	 * Add a user into the waitingList at the end of it.
@@ -150,4 +163,46 @@ public class WaitingListService {
 		}
 		return newLoanList;
 	}
+	
+	public User returnADocument(Long loanId) throws LoanStatusException, DocumentNotAvailableException {
+		if(loanId == null) {
+			return null;
+		}
+		
+		Loan loanReturning = loanDao.getById(loanId);
+		
+		if(loanReturning == null) {
+			return null;
+		}
+		
+		WaitingList wl = waitingListDao.getByDocument(loanReturning.getDoc());
+		loanDao.returnDocument(loanReturning);
+		User userRes = null;
+		if(wl != null) {
+			if(wl.getLastPosition() > 0) {
+				userRes = wl.removeTheFirstUser();
+				userRes = userDao.getById(userRes.getId());
+				waitingListDao.updateItem(wl);
+				loanDao.createLoan(loanReturning.getDoc(), userRes, Status.AWAITING);
+				StringBuilder message = new StringBuilder();
+				
+				message.append("Bonjour ");
+				message.append(userRes.getFirstName());
+				message.append(" ");
+				message.append(userRes.getLastName());
+				message.append(",\n\n");
+				message.append("Vous vous êtes inscrit sur la liste d'attente pour l'ouvrage suivant : ");
+				message.append(loanReturning.getDoc().getTitle());
+				message.append(". L'exemplaire vous attend a la bibliothèque, merci de venir le récupérer sous 48h. Le délais expiré, la réservation ne sera plus effective.\n\nCordialement,\n\nL'équipe de la bibliothèque.");
+				
+				simpleMail.setText(message.toString());
+				simpleMail.setTo(userRes.getMail());
+				javaMailSender.send(simpleMail);
+				
+			}
+		}
+
+		return userRes;
+	}
+	
 }

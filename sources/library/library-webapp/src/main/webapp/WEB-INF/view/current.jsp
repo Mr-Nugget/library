@@ -53,6 +53,9 @@
 												<c:when test="${loan.status == 'LATE'}">
 													<td style="color:red">Prêt en retard !</td>
 												</c:when>
+												<c:when test="${loan.status == 'AWAITING'}">
+													<td style="color:red">A récupérer !</td>
+												</c:when>
 												<c:otherwise>
 													<td>Déjà Prolongé</td>												
 												</c:otherwise>

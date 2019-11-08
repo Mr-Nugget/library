@@ -126,4 +126,10 @@ public class WaitingController {
 		
 		return model;
 	}
+	
+	@GetMapping("/returnDocument")
+	public String returnDocument(@RequestParam(value="loanId")Long loanId) {
+		waitingService.returnDocument(loanId);
+		return "returnDocument";
+	}
 }

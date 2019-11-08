@@ -14,6 +14,7 @@ import org.springframework.context.support.AbstractApplicationContext;
 
 import fr.library.config.AppConfig;
 import fr.library.exceptions.DocumentNotAvailableException;
+import fr.library.exceptions.LoanStatusException;
 import fr.library.exceptions.UserNotInTheListException;
 import fr.library.exceptions.WaitingListFullException;
 import fr.library.webservices.services.DocumentService;
@@ -106,6 +107,23 @@ public class WaitingListImpl implements IWaitingList {
 		context.close();
 		
 		return lRes;
+	}
+
+	@Override
+	public void returnDocument(Long loanId) {
+		AbstractApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+		WaitingListService service = (WaitingListService) context.getBean("WLService");
+		try {
+			service.returnADocument(loanId);
+		} catch (LoanStatusException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (DocumentNotAvailableException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		context.close();
+		
 	}
 
 }

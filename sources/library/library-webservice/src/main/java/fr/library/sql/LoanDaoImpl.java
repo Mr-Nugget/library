@@ -128,7 +128,7 @@ public class LoanDaoImpl implements ILoanDao {
 				psUpdateDoc.setInt(1, newCurrentStock);
 				psUpdateDoc.setLong(2, loan.getDoc().getId());
 				psUpdateDoc.executeUpdate();
-				
+				loan.getDoc().setCurrentstock(loan.getDoc().getCurrentstock() + 1);
 				connect.commit();
 
 			}catch(SQLException e) {
@@ -167,7 +167,7 @@ public class LoanDaoImpl implements ILoanDao {
 		PreparedStatement prepared = null;
 		ResultSet res = null;
 		//select only document with EXTENDED or IN PROGRESS status
-		String query = "SELECT * FROM loans AS l, documents AS d WHERE l.document_id=d.id AND l.user_id= ? AND (l.status=1 OR l.status=2);";
+		String query = "SELECT * FROM loans AS l, documents AS d WHERE l.document_id=d.id AND l.user_id= ? AND (l.status=1 OR l.status=2 OR l.status=4);";
 
 		try {
 			connect = DaoConnection.getInstance().getConnection();

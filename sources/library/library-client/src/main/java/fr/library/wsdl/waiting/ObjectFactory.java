@@ -25,6 +25,7 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     private final static QName _GetAllWaiting_QNAME = new QName("http://entrypoint.webservices.library.fr/", "getAllWaiting");
+    private final static QName _ReturnDocument_QNAME = new QName("http://entrypoint.webservices.library.fr/", "returnDocument");
     private final static QName _UpdateListAfterTwoDaysResponse_QNAME = new QName("http://entrypoint.webservices.library.fr/", "updateListAfterTwoDaysResponse");
     private final static QName _CancelAReservation_QNAME = new QName("http://entrypoint.webservices.library.fr/", "cancelAReservation");
     private final static QName _CancelAReservationResponse_QNAME = new QName("http://entrypoint.webservices.library.fr/", "cancelAReservationResponse");
@@ -33,6 +34,7 @@ public class ObjectFactory {
     private final static QName _AddUserToList_QNAME = new QName("http://entrypoint.webservices.library.fr/", "addUserToList");
     private final static QName _UserNotInTheListException_QNAME = new QName("http://entrypoint.webservices.library.fr/", "UserNotInTheListException");
     private final static QName _AddUserToListResponse_QNAME = new QName("http://entrypoint.webservices.library.fr/", "addUserToListResponse");
+    private final static QName _ReturnDocumentResponse_QNAME = new QName("http://entrypoint.webservices.library.fr/", "returnDocumentResponse");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: fr.library.wsdl.waiting
@@ -90,6 +92,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ReturnDocument }
+     * 
+     */
+    public ReturnDocument createReturnDocument() {
+        return new ReturnDocument();
+    }
+
+    /**
      * Create an instance of {@link UpdateListAfterTwoDaysResponse }
      * 
      */
@@ -111,6 +121,14 @@ public class ObjectFactory {
      */
     public AddUserToListResponse createAddUserToListResponse() {
         return new AddUserToListResponse();
+    }
+
+    /**
+     * Create an instance of {@link ReturnDocumentResponse }
+     * 
+     */
+    public ReturnDocumentResponse createReturnDocumentResponse() {
+        return new ReturnDocumentResponse();
     }
 
     /**
@@ -168,6 +186,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://entrypoint.webservices.library.fr/", name = "getAllWaiting")
     public JAXBElement<GetAllWaiting> createGetAllWaiting(GetAllWaiting value) {
         return new JAXBElement<GetAllWaiting>(_GetAllWaiting_QNAME, GetAllWaiting.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ReturnDocument }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://entrypoint.webservices.library.fr/", name = "returnDocument")
+    public JAXBElement<ReturnDocument> createReturnDocument(ReturnDocument value) {
+        return new JAXBElement<ReturnDocument>(_ReturnDocument_QNAME, ReturnDocument.class, null, value);
     }
 
     /**
@@ -240,6 +267,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://entrypoint.webservices.library.fr/", name = "addUserToListResponse")
     public JAXBElement<AddUserToListResponse> createAddUserToListResponse(AddUserToListResponse value) {
         return new JAXBElement<AddUserToListResponse>(_AddUserToListResponse_QNAME, AddUserToListResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ReturnDocumentResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://entrypoint.webservices.library.fr/", name = "returnDocumentResponse")
+    public JAXBElement<ReturnDocumentResponse> createReturnDocumentResponse(ReturnDocumentResponse value) {
+        return new JAXBElement<ReturnDocumentResponse>(_ReturnDocumentResponse_QNAME, ReturnDocumentResponse.class, null, value);
     }
 
 }

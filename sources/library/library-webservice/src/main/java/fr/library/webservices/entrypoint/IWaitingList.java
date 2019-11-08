@@ -35,4 +35,7 @@ public interface IWaitingList {
 	 */
 	@WebMethod
 	public List<Loan> updateListAfterTwoDays();
+	
+	@WebMethod
+	public void returnDocument(Long loanId);
 }
