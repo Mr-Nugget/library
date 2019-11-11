@@ -22,6 +22,9 @@ public interface IConnection {
 	// Get user thanks to jwt.get("idUser")
 	@WebMethod
 	public User getUser(String jwt) throws JWTCheckingException;
+	// Update a user informations
+	@WebMethod
+	public void updateUser(User user);
 	// Check if a user exists by login
 	@WebMethod
 	public User userExist(String mail);

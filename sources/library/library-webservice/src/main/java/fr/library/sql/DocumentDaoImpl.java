@@ -74,7 +74,8 @@ public class DocumentDaoImpl implements IDocumentDao {
 						res.getString("author"),
 						cat,
 						type,
-						res.getInt("nb_stock"));
+						res.getInt("total_stock"),
+						res.getInt("current_stock"));
 
 				l_docs.add(doc_stock);
 
@@ -157,7 +158,8 @@ public class DocumentDaoImpl implements IDocumentDao {
 						res.getString("author"),
 						cat,
 						type,
-						res.getInt("nb_stock"));
+						res.getInt("total_stock"),
+						res.getInt("current_stock"));
 
 			}
 
@@ -228,7 +230,7 @@ public class DocumentDaoImpl implements IDocumentDao {
 	public void updateItem(Document item) {
 		Connection connect = null;
 		PreparedStatement prepared = null;
-		String query = "UPDATE documents SET title=?, author=?, ref=?, category_id=?, type_id=?, nb_stock=? WHERE id=?;"; //update query
+		String query = "UPDATE documents SET title=?, author=?, ref=?, category_id=?, type_id=?, current_stock=?, total_stock=? WHERE id=?;"; //update query
 
 		try {
 			connect = DaoConnection.getInstance().getConnection();
@@ -238,8 +240,9 @@ public class DocumentDaoImpl implements IDocumentDao {
 			prepared.setString(3, item.getRef());
 			prepared.setLong(4, item.getCategory().getId());
 			prepared.setLong(5, item.getType().getId());
-			prepared.setInt(6, item.getNbstock());
-			prepared.setLong(7, item.getId());
+			prepared.setInt(6, item.getCurrentstock());
+			prepared.setInt(7,  item.getTotalstock());
+			prepared.setLong(8, item.getId());
 
 			prepared.executeUpdate();
 
@@ -301,7 +304,8 @@ public class DocumentDaoImpl implements IDocumentDao {
 						res.getString("author"),
 						cat,
 						type,
-						res.getInt("nb_stock"));
+						res.getInt("total_stock"),
+						res.getInt("current_stock"));
 
 
 				list_docs.add(doc_stock);
@@ -350,7 +354,7 @@ public class DocumentDaoImpl implements IDocumentDao {
 		Connection connect = null;
 		PreparedStatement prepared = null, ps_id = null;
 		ResultSet res = null;
-		String query = "INSERT INTO documents(author, title, ref, category_id, type_id, nb_stock) VALUES(?,?,?,?,?,?)";
+		String query = "INSERT INTO documents(author, title, ref, category_id, type_id, current_stock, total_stock) VALUES(?,?,?,?,?,?,?)";
 		Long id_doc = null;
 		try {
 			connect = DaoConnection.getInstance().getConnection();
@@ -360,7 +364,8 @@ public class DocumentDaoImpl implements IDocumentDao {
 			prepared.setString(3, doc.getRef());
 			prepared.setLong(4, doc.getCategory().getId());
 			prepared.setLong(5, doc.getType().getId());
-			prepared.setInt(6, doc.getNbstock());
+			prepared.setInt(6, doc.getCurrentstock());
+			prepared.setInt(7, doc.getTotalstock());
 			prepared.executeUpdate();
 
 			//get the id of the new document

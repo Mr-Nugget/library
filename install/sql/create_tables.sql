@@ -32,7 +32,8 @@ CREATE TABLE documents(
   title VARCHAR(100) NOT NULL,
   author VARCHAR(50) NOT NULL,
   ref VARCHAR(10) NOT NULL,
-  nb_stock INT NOT NULL,
+  current_stock INT NOT NULL,
+  total_stock INT NOT NULL,
   category_id BIGINT REFERENCES categories (id) NOT NULL,
   type_id BIGINT REFERENCES types (id) NOT NULL
 );
@@ -47,3 +48,19 @@ CREATE TABLE loans(
   end_date DATE NOT NULL,
   status INT NOT NULL
 );
+
+--Table : Waiting List
+
+CREATE TABLE waitingList(
+  id BIGSERIAL PRIMARY KEY NOT NULL,
+  document_id BIGINT REFERENCES documents(id) NOT NULL
+);
+
+--Table position
+
+CREATE TABLE position(
+  id BIGSERIAL PRIMARY KEY NOT NULL,
+  user_id BIGINT REFERENCES users(id) NOT NULL,
+  position BIGINT NOT NULL,
+  list_id BIGINT REFERENCES waitingList(id)
+)

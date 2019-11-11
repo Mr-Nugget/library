@@ -29,7 +29,7 @@ public class UserDaoImpl implements IUserDao {
 		Connection connect = null;
 		PreparedStatement prepared = null, ps_id = null;
 		ResultSet res = null;
-		String queryInsert = "INSERT INTO users(firstname, lastname, mail, password, connected) VALUES(?,?,?,?,?)";
+		String queryInsert = "INSERT INTO users(firstname, lastname, mail, password, connected, mailrecall) VALUES(?,?,?,?,?,?)";
 		String queryId = "SELECT id FROM users WHERE lastname=? AND firstName=? AND mail=?;";
 		Long id_user = null;
 		try {
@@ -40,6 +40,7 @@ public class UserDaoImpl implements IUserDao {
 			prepared.setString(3, user.getMail());
 			prepared.setString(4, user.getPassword());
 			prepared.setBoolean(5, false); //set to false during register
+			prepared.setBoolean(6, true); //set to true by default
 			prepared.executeUpdate();
 
 			// Get the id of the new user
@@ -97,7 +98,8 @@ public class UserDaoImpl implements IUserDao {
 						res.getString("lastname"),
 						res.getString("mail"),
 						res.getString("password"),
-						res.getBoolean("connected"));
+						res.getBoolean("connected"),
+						res.getBoolean("mailRecall"));
 			}
 
 		} catch (SQLException e) {
@@ -155,7 +157,7 @@ public class UserDaoImpl implements IUserDao {
 	public void updateItem(User user) {
 		Connection connect = null;
 		PreparedStatement prepared = null;
-		String query = "UPDATE users SET firstname=?, lastname=?, mail=?, password=?, connected=? WHERE id=?;";
+		String query = "UPDATE users SET firstname=?, lastname=?, mail=?, password=?, connected=?, mailrecall=? WHERE id=?;";
 
 		try {
 			connect = DaoConnection.getInstance().getConnection();
@@ -165,7 +167,8 @@ public class UserDaoImpl implements IUserDao {
 			prepared.setString(3, user.getMail());
 			prepared.setString(4, user.getPassword());
 			prepared.setBoolean(5, user.isConnected());
-			prepared.setLong(6, user.getId());
+			prepared.setBoolean(6, user.isMailRecall());
+			prepared.setLong(7, user.getId());
 			prepared.executeUpdate();
 		} catch (SQLException e) {
 			logger.error("UpdateItem : ",e);
@@ -205,7 +208,8 @@ public class UserDaoImpl implements IUserDao {
 						res.getString("lastname"),
 						res.getString("mail"), 
 						res.getString("password"), 
-						res.getBoolean("connected")));
+						res.getBoolean("connected"),
+						res.getBoolean("mailRecall")));
 			}
 		} catch (SQLException e) {
 			logger.error("FindAll : ",e);
@@ -250,6 +254,7 @@ public class UserDaoImpl implements IUserDao {
 				userReturn.setPassword(res.getString("password"));
 				userReturn.setMail(res.getString("mail"));
 				userReturn.setConnected(res.getBoolean("connected"));
+				userReturn.setMailRecall(res.getBoolean("mailRecall"));
 			}
 		} catch (SQLException e) {
 			logger.error("UserExists",e);

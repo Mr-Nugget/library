@@ -29,6 +29,7 @@ public class ObjectFactory {
     private final static QName _Logout_QNAME = new QName("http://entrypoint.webservices.library.fr/", "logout");
     private final static QName _UserExistResponse_QNAME = new QName("http://entrypoint.webservices.library.fr/", "userExistResponse");
     private final static QName _Register_QNAME = new QName("http://entrypoint.webservices.library.fr/", "register");
+    private final static QName _UpdateUserResponse_QNAME = new QName("http://entrypoint.webservices.library.fr/", "updateUserResponse");
     private final static QName _UserExist_QNAME = new QName("http://entrypoint.webservices.library.fr/", "userExist");
     private final static QName _SendResetPasswordLinkResponse_QNAME = new QName("http://entrypoint.webservices.library.fr/", "sendResetPasswordLinkResponse");
     private final static QName _SendMailResponse_QNAME = new QName("http://entrypoint.webservices.library.fr/", "sendMailResponse");
@@ -41,6 +42,7 @@ public class ObjectFactory {
     private final static QName _ResetPassword_QNAME = new QName("http://entrypoint.webservices.library.fr/", "resetPassword");
     private final static QName _Login_QNAME = new QName("http://entrypoint.webservices.library.fr/", "login");
     private final static QName _SendMail_QNAME = new QName("http://entrypoint.webservices.library.fr/", "sendMail");
+    private final static QName _UpdateUser_QNAME = new QName("http://entrypoint.webservices.library.fr/", "updateUser");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: fr.library.wsdl.connect
@@ -114,6 +116,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link UpdateUser }
+     * 
+     */
+    public UpdateUser createUpdateUser() {
+        return new UpdateUser();
+    }
+
+    /**
      * Create an instance of {@link Login }
      * 
      */
@@ -159,6 +169,14 @@ public class ObjectFactory {
      */
     public SendResetPasswordLinkResponse createSendResetPasswordLinkResponse() {
         return new SendResetPasswordLinkResponse();
+    }
+
+    /**
+     * Create an instance of {@link UpdateUserResponse }
+     * 
+     */
+    public UpdateUserResponse createUpdateUserResponse() {
+        return new UpdateUserResponse();
     }
 
     /**
@@ -236,6 +254,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://entrypoint.webservices.library.fr/", name = "register")
     public JAXBElement<Register> createRegister(Register value) {
         return new JAXBElement<Register>(_Register_QNAME, Register.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link UpdateUserResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://entrypoint.webservices.library.fr/", name = "updateUserResponse")
+    public JAXBElement<UpdateUserResponse> createUpdateUserResponse(UpdateUserResponse value) {
+        return new JAXBElement<UpdateUserResponse>(_UpdateUserResponse_QNAME, UpdateUserResponse.class, null, value);
     }
 
     /**
@@ -344,6 +371,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://entrypoint.webservices.library.fr/", name = "sendMail")
     public JAXBElement<SendMail> createSendMail(SendMail value) {
         return new JAXBElement<SendMail>(_SendMail_QNAME, SendMail.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link UpdateUser }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://entrypoint.webservices.library.fr/", name = "updateUser")
+    public JAXBElement<UpdateUser> createUpdateUser(UpdateUser value) {
+        return new JAXBElement<UpdateUser>(_UpdateUser_QNAME, UpdateUser.class, null, value);
     }
 
 }

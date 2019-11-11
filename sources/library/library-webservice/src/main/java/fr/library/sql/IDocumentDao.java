@@ -10,7 +10,7 @@ import org.library.model.Document;
  * @author Titouan
  *
  */
-public interface IDocumentDao extends IScrudDao<Document> {
+public interface IDocumentDao extends ICrudDao<Document> {
 
 	//constant to use the parameter criteria in searchByCriteria
 	public final String AUTHOR = "author"; 

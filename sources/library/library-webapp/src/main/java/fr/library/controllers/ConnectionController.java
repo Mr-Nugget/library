@@ -1,5 +1,7 @@
 package fr.library.controllers;
 
+
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import fr.library.wsdl.connect.IConnection;
 import fr.library.wsdl.connect.JWTCheckingException_Exception;
 import fr.library.wsdl.connect.User;
+
 import io.jsonwebtoken.ExpiredJwtException;
 
 
@@ -277,5 +280,48 @@ public class ConnectionController {
 		service.register(firstname, lastname, mail, password);
 		
 		return "confirm";
+	}
+	
+	@GetMapping("/account")
+	public String account(ModelMap model,
+			@CookieValue(value="jwtCookie") String jwtCookie
+			) {
+		
+		User currentUser;
+		try {
+			currentUser = service.getUser(jwtCookie);
+		} catch (JWTCheckingException_Exception e) {
+			logger.error("current Loans", e);
+			return "login";
+		}
+		
+		model.addAttribute("mailRecall", currentUser.isMailRecall());
+		return "account";
+	}
+	
+	@GetMapping("/confirmRecall")
+	public ModelAndView confirmRecall(@RequestParam(value="mailRecall", required=true) String mailRecall,
+								@CookieValue(value="jwtCookie") String jwtCookie) {
+		
+		Boolean mailRecallBool = Boolean.parseBoolean(mailRecall);
+		System.out.println(mailRecallBool);
+		// Use ModelAndView object to redirect to another controller
+		ModelAndView model = new ModelAndView();
+		User currentUser;
+		try {
+			currentUser = service.getUser(jwtCookie);
+		} catch (JWTCheckingException_Exception e) {
+			logger.error("current Loans", e);
+			model.setViewName("redirect:/connection");
+			return model;
+		}
+		
+		currentUser.setMailRecall(mailRecallBool);
+		
+		service.updateUser(currentUser);
+		
+		
+		model.setViewName("redirect:/account");
+		return model;
 	}
 }

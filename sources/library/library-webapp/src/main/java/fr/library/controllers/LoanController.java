@@ -18,11 +18,6 @@ import fr.library.wsdl.manage.IManage;
 import fr.library.wsdl.manage.JWTCheckingException_Exception;
 import fr.library.wsdl.manage.Loan;
 
-
-
-
-
-
 /***
  * Controllers for Loans actions
  * @author Titouan

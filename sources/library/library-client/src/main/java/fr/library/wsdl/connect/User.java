@@ -21,6 +21,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="lastName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="mail" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="mailRecall" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *         &lt;element name="password" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -37,6 +38,7 @@ import javax.xml.bind.annotation.XmlType;
     "id",
     "lastName",
     "mail",
+    "mailRecall",
     "password"
 })
 public class User {
@@ -46,6 +48,7 @@ public class User {
     protected Long id;
     protected String lastName;
     protected String mail;
+    protected boolean mailRecall;
     protected String password;
 
     /**
@@ -158,6 +161,22 @@ public class User {
      */
     public void setMail(String value) {
         this.mail = value;
+    }
+
+    /**
+     * Obtient la valeur de la propriété mailRecall.
+     * 
+     */
+    public boolean isMailRecall() {
+        return mailRecall;
+    }
+
+    /**
+     * Définit la valeur de la propriété mailRecall.
+     * 
+     */
+    public void setMailRecall(boolean value) {
+        this.mailRecall = value;
     }
 
     /**

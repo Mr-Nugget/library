@@ -7,7 +7,7 @@ import org.library.model.User;
  * @author Titouan
  *
  */
-public interface IUserDao extends IScrudDao<User>{
+public interface IUserDao extends ICrudDao<User>{
 	/**
 	 * create a new user into the table users
 	 * @param user

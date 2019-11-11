@@ -1,10 +1,13 @@
 package fr.library.webservices.entrypoint;
 
 import java.util.List;
+
+
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 
 import org.library.model.Loan;
+
 
 import fr.library.exceptions.JWTCheckingException;
 
@@ -31,6 +34,9 @@ public interface IManage {
 	// Get the list of expired loans -> endDate < Today
 	@WebMethod
 	public List<Loan> loanExpired();
-
+	
+	// Get a map of user/list of almost expired loan for recall
+	@WebMethod
+	public List<Loan> mailRecall();
 	
 }

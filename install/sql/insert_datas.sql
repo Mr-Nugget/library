@@ -17,20 +17,20 @@ INSERT INTO types(id, label, description) VALUES(3, 'Article','a piece of writin
 
 --INSERT SOME DOCUMENT EXAMPLES
 
-INSERT INTO documents (title, author, category_id, type_id, ref, nb_stock) VALUES('Les fourmis', 'Bernard Werber', 0, 0,'RW163', 4);
-INSERT INTO documents (title, author, category_id, type_id, ref, nb_stock) VALUES('Le Seigneur des Anneaux : La communauté de l''anneau', 'JRR Tolkien', 0, 0,'RT42', 5);
-INSERT INTO documents (title, author, category_id, type_id, ref, nb_stock) VALUES('Le Hobbit', 'JRR Tolkien', 0, 0,'RW164', 3);
-INSERT INTO documents (title, author, category_id, type_id, ref, nb_stock) VALUES('Les Rois Maudits', 'Maurice Druon', 1, 0,'HM45', 11);
-INSERT INTO documents (title, author, category_id, type_id, ref, nb_stock) VALUES('Harry Potter à l''école des Sorciers', 'JK Rowling', 0, 0,'RJ4', 16);
-INSERT INTO documents (title, author, category_id, type_id, ref, nb_stock) VALUES('Les dix petits nègres', 'Agatha Christie', 0, 0,'RC85', 45);
-INSERT INTO documents (title, author, category_id, type_id, ref, nb_stock) VALUES('Millenium', 'Stieg Larsson', 0, 0,'RL45', 11);
+INSERT INTO documents (title, author, category_id, type_id, ref, current_stock, total_stock) VALUES('Les fourmis', 'Bernard Werber', 0, 0,'RW163', 5, 5);
+INSERT INTO documents (title, author, category_id, type_id, ref, current_stock, total_stock) VALUES('Le Seigneur des Anneaux : La communauté de l''anneau', 'JRR Tolkien', 0, 0,'RT42', 5, 5);
+INSERT INTO documents (title, author, category_id, type_id, ref, current_stock, total_stock) VALUES('Le Hobbit', 'JRR Tolkien', 0, 0,'RW164', 3, 3);
+INSERT INTO documents (title, author, category_id, type_id, ref, current_stock, total_stock) VALUES('Les Rois Maudits', 'Maurice Druon', 1, 0,'HM45', 6, 6);
+INSERT INTO documents (title, author, category_id, type_id, ref, current_stock, total_stock) VALUES('Harry Potter à l''école des Sorciers', 'JK Rowling', 0, 0,'RJ4', 4, 4);
+INSERT INTO documents (title, author, category_id, type_id, ref, current_stock, total_stock) VALUES('Les dix petits nègres', 'Agatha Christie', 0, 0,'RC85', 4, 4);
+INSERT INTO documents (title, author, category_id, type_id, ref, current_stock, total_stock) VALUES('Millenium', 'Stieg Larsson', 0, 0,'RL45', 10, 10);
 
 --EXAMPLES FOR Test
-INSERT INTO documents (id, title, author, category_id, type_id, ref, nb_stock) VALUES(500, 'Test in progress 1', 'Openclassrooms', 0, 0,'T001', 10);
-INSERT INTO documents (id, title, author, category_id, type_id, ref, nb_stock) VALUES(501, 'Test in progress 2', 'Openclassrooms', 0, 0,'T002', 2);
-INSERT INTO documents (id, title, author, category_id, type_id, ref, nb_stock) VALUES(502, 'Test extended', 'Openclassrooms', 1, 2,'T003', 4);
-INSERT INTO documents (id, title, author, category_id, type_id, ref, nb_stock) VALUES(503, 'Test in archived 1', 'Openclassrooms', 1, 1,'T004', 2);
-INSERT INTO documents (id, title, author, category_id, type_id, ref, nb_stock) VALUES(504, 'Test in archived 2', 'Openclassrooms', 2, 2,'T005', 6);
+INSERT INTO documents (id, title, author, category_id, type_id, ref, current_stock, total_stock) VALUES(500, 'Test in progress 1', 'Openclassrooms', 0, 0,'T001', 3, 4);
+INSERT INTO documents (id, title, author, category_id, type_id, ref, current_stock, total_stock) VALUES(501, 'Test in progress 2', 'Openclassrooms', 0, 0,'T002', 6, 7);
+INSERT INTO documents (id, title, author, category_id, type_id, ref, current_stock, total_stock) VALUES(502, 'Test extended', 'Openclassrooms', 1, 2,'T003', 2, 3);
+INSERT INTO documents (id, title, author, category_id, type_id, ref, current_stock, total_stock) VALUES(503, 'Test in archived 1', 'Openclassrooms', 1, 1,'T004', 0, 1);
+INSERT INTO documents (id, title, author, category_id, type_id, ref, current_stock, total_stock) VALUES(504, 'Test in archived 2', 'Openclassrooms', 2, 2,'T005', 1, 2);
 
 --INSERT USERS EXAMPLES
 
