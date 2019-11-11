@@ -17,6 +17,8 @@ import fr.library.wsdl.manage.IManage;
 import fr.library.wsdl.manage.ManageImplService;
 import fr.library.wsdl.search.ISearch;
 import fr.library.wsdl.search.SearchImplService;
+import fr.library.wsdl.waiting.IWaitingList;
+import fr.library.wsdl.waiting.WaitingListImplService;
 
 /**
  * Spring java configuration instead of library-servlet.xml
@@ -61,7 +63,12 @@ public class SpringWebConfig implements WebMvcConfigurer {
 	public IConnection connectionService() {
 		ConnectionImplService connect = new ConnectionImplService();
 		return connect.getConnectionImplPort();
-
+	}
+	
+	@Bean
+	public IWaitingList waitingListService() {
+		WaitingListImplService waiting = new WaitingListImplService();
+		return waiting.getWaitingListImplPort();
 	}
 
 }

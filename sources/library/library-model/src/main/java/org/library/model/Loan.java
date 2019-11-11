@@ -82,5 +82,55 @@ public class Loan {
 				+ endDate + ", status=" + status + "}";
 	}
 	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((beginDate == null) ? 0 : beginDate.hashCode());
+		result = prime * result + ((doc == null) ? 0 : doc.hashCode());
+		result = prime * result + ((endDate == null) ? 0 : endDate.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((status == null) ? 0 : status.hashCode());
+		result = prime * result + ((user == null) ? 0 : user.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof Loan))
+			return false;
+		Loan other = (Loan) obj;
+		if (beginDate == null) {
+			if (other.beginDate != null)
+				return false;
+		} else if (!beginDate.equals(other.beginDate))
+			return false;
+		if (doc == null) {
+			if (other.doc != null)
+				return false;
+		} else if (!doc.getId().equals(other.doc.getId()))
+			return false;
+		if (endDate == null) {
+			if (other.endDate != null)
+				return false;
+		} else if (!endDate.equals(other.endDate))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (user == null) {
+			if (other.user != null)
+				return false;
+		} else if (!user.getId().equals(other.user.getId()))
+			return false;
+		return true;
+	}
+	
 	
 }

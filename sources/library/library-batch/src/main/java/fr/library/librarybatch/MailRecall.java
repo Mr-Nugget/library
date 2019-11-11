@@ -14,7 +14,6 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import fr.library.wsdl.manage.User;
 import fr.library.wsdl.manage.IManage;
 import fr.library.wsdl.manage.Loan;
 

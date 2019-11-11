@@ -51,7 +51,6 @@ public class DocumentDaoImplTest {
 		assertEquals(documentTest.getRef(), documentGetById.getRef());
 		assertEquals(categoryId, documentGetById.getCategory().getId());
 		assertEquals(typeId, documentGetById.getType().getId());
-		assertEquals(documentTest.getNbstock(), documentGetById.getNbstock());
 	}
 
 	@Test
@@ -65,10 +64,10 @@ public class DocumentDaoImplTest {
 	@Test
 	public final void test4UpdateItem() {
 		
-		documentTest.setNbstock(2);
+		documentTest.setCurrentstock(new Integer(2));
 		documentDao.updateItem(documentTest);
 		Document documentUpdate = documentDao.getById(documentTest.getId());
-		assertEquals(documentUpdate.getNbstock(), 2);
+		assertEquals(documentUpdate.getCurrentstock(), new Integer(2));
 	}
 
 	@Test
@@ -83,7 +82,8 @@ public class DocumentDaoImplTest {
 		documentTest = new Document();
 		documentTest.setAuthor("AuthorTest");
 		documentTest.setTitle("TitleTest");
-		documentTest.setNbstock(1);
+		documentTest.setCurrentstock(new Integer(1));
+		documentTest.setTotalstock(new Integer(5));
 		documentTest.setRef("0000");
 		Category cat = documentDao.findAll().get(0).getCategory();
 		categoryId = cat.getId();
