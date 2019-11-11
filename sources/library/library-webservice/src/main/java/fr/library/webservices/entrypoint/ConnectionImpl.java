@@ -95,4 +95,8 @@ public class ConnectionImpl implements IConnection {
 		}
 		return null;
 	}
+	@Override
+	public void updateUser(User user) {
+		UserService.updateUser(user);
+	}
 }

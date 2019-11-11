@@ -49,7 +49,18 @@
 												aria-pressed="true">Cliquez pour prolonger</a></td>
 										</c:when>
 										<c:otherwise>
-											<td>Déjà Prolongé</td>
+											<c:choose>
+												<c:when test="${loan.status == 'LATE'}">
+													<td style="color:red">Prêt en retard !</td>
+												</c:when>
+												<c:when test="${loan.status == 'AWAITING'}">
+													<td style="color:red">A récupérer !</td>
+												</c:when>
+												<c:otherwise>
+													<td>Déjà Prolongé</td>												
+												</c:otherwise>
+											</c:choose>
+
 										</c:otherwise>
 									</c:choose>
 								</tr>

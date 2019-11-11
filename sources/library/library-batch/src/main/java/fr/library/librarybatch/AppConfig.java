@@ -12,6 +12,8 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import fr.library.tools.LoadProperties;
 import fr.library.wsdl.manage.IManage;
 import fr.library.wsdl.manage.ManageImplService;
+import fr.library.wsdl.waiting.IWaitingList;
+import fr.library.wsdl.waiting.WaitingListImplService;
 
 
 
@@ -24,8 +26,6 @@ import fr.library.wsdl.manage.ManageImplService;
 
 @Configuration
 public class AppConfig {
-	
-
 	
 	@Bean
 	public JavaMailSender getJavaMailSender() {
@@ -59,6 +59,11 @@ public class AppConfig {
 	public IManage manageLoanservice() {
 		ManageImplService manage = new ManageImplService();
 		return manage.getManageImplPort();
-		
+	}
+	
+	@Bean
+	public IWaitingList waitingListService() {
+		WaitingListImplService wl = new WaitingListImplService();
+		return wl.getWaitingListImplPort();
 	}
 }

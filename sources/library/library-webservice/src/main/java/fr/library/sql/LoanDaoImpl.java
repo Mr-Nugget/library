@@ -1,29 +1,42 @@
 package fr.library.sql;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
+import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
 import org.library.model.Document;
 import org.library.model.Loan;
 import org.library.model.Status;
 import org.library.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import fr.library.exceptions.DocumentNotAvailableException;
 import fr.library.exceptions.LoanStatusException;
+import fr.library.helpers.LoanCompleteRowMapper;
+import fr.library.helpers.LoanRowMapper;
 
+@Repository
 public class LoanDaoImpl implements ILoanDao {
 
 	private final static Logger logger =  Logger.getLogger(LoanDaoImpl.class);
 
+	@Autowired
+	private DataSource dataSource;
+	
 	public LoanDaoImpl() {}
 	
 	
@@ -72,8 +85,9 @@ public class LoanDaoImpl implements ILoanDao {
 		Loan loan = getById(loanId);
 		Date date = loan.getEndDate();
 		Status status = loan.getStatus();
-
-		if(status.equals(Status.IN_PROGRESS)) {
+		Date today = new Date();
+		
+		if(status.equals(Status.IN_PROGRESS) && loan.getEndDate().after(today)) {
 
 			Calendar cal = Calendar.getInstance(); // creates calendar
 			cal.setTime(date); // sets calendar time/date
@@ -83,7 +97,7 @@ public class LoanDaoImpl implements ILoanDao {
 
 			updateItem(loan);
 		}else {
-			throw new LoanStatusException("You can't extend a document more than once");
+			throw new LoanStatusException("Error extendLoan");
 		}
 	}
 
@@ -108,12 +122,13 @@ public class LoanDaoImpl implements ILoanDao {
 				prepared.executeUpdate();
 				
 				//update document stock
-				query = "UPDATE documents SET nb_stock=? WHERE id = ?;";
+				query = "UPDATE documents SET current_stock=? WHERE id = ?;";
 				psUpdateDoc = connect.prepareStatement(query);
-				psUpdateDoc.setInt(1, loan.getDoc().getNbstock()+1);
+				int newCurrentStock = loan.getDoc().getCurrentstock().intValue() + 1;
+				psUpdateDoc.setInt(1, newCurrentStock);
 				psUpdateDoc.setLong(2, loan.getDoc().getId());
 				psUpdateDoc.executeUpdate();
-				
+				loan.getDoc().setCurrentstock(loan.getDoc().getCurrentstock() + 1);
 				connect.commit();
 
 			}catch(SQLException e) {
@@ -152,7 +167,7 @@ public class LoanDaoImpl implements ILoanDao {
 		PreparedStatement prepared = null;
 		ResultSet res = null;
 		//select only document with EXTENDED or IN PROGRESS status
-		String query = "SELECT * FROM loans AS l, documents AS d WHERE l.document_id=d.id AND l.user_id= ? AND (l.status=1 OR l.status=2);";
+		String query = "SELECT * FROM loans AS l, documents AS d WHERE l.document_id=d.id AND l.user_id= ? AND (l.status=1 OR l.status=2 OR l.status=4);";
 
 		try {
 			connect = DaoConnection.getInstance().getConnection();
@@ -188,12 +203,14 @@ public class LoanDaoImpl implements ILoanDao {
 	}
 
 	@Override
-	public Long createLoan(Document doc, User user) throws DocumentNotAvailableException {
+	public Long createLoan(Document doc, User user, Status status) throws DocumentNotAvailableException {
 		Connection connect = null;
 		PreparedStatement prepared = null, ps2 = null, psId=null;
 		ResultSet res = null;
 		Long idReturn = null;
-		if(doc.getNbstock()>0) {
+		
+		
+		if(doc.getCurrentstock()>0) {
 
 			String query ="INSERT INTO loans(document_id, user_id, start_date, end_date, status) VALUES(?,?,TO_DATE(?, 'YYYY/MM/DD'),TO_DATE(?, 'YYYY/MM/DD'),?);";
 			try {
@@ -216,7 +233,7 @@ public class LoanDaoImpl implements ILoanDao {
 				prepared.setLong(2, user.getId());
 				prepared.setString(3, dateFormat.format(today_date));
 				prepared.setString(4, dateFormat.format(end_date));
-				prepared.setInt(5, Status.IN_PROGRESS.getId());
+				prepared.setInt(5, status.getId());
 				prepared.executeUpdate();
 				
 				//Get the id of the new loan
@@ -231,9 +248,9 @@ public class LoanDaoImpl implements ILoanDao {
 				
 				
 				// Update document status
-				query = "UPDATE documents SET nb_stock=? WHERE id=?";
+				query = "UPDATE documents SET current_stock=? WHERE id=?";
 				ps2 = connect.prepareStatement(query);
-				ps2.setInt(1, doc.getNbstock()-1);
+				ps2.setInt(1, doc.getCurrentstock() - 1);
 				ps2.setLong(2, doc.getId());
 				ps2.executeUpdate();
 				
@@ -273,6 +290,7 @@ public class LoanDaoImpl implements ILoanDao {
 		}
 		return idReturn;
 	}
+	
 	@Override
 	public Loan getById(Long id) {
 		Connection connect = null;
@@ -477,5 +495,123 @@ public class LoanDaoImpl implements ILoanDao {
 			}
 		}
 		return listRes;
+	}
+
+
+	@Override
+
+	public List<Loan> forMailRecall() {
+		Date today = new Date();
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(today);
+		calendar.add(Calendar.DAY_OF_MONTH, 5);
+		java.sql.Date todayPlus5 = new java.sql.Date(calendar.getTime().getTime());
+		
+		Connection connection = null;
+		PreparedStatement prepared = null;
+		ResultSet res = null;
+		
+		String query = "SELECT * FROM users u, loans l, documents d WHERE l.user_id = u.id AND l.document_id = d.id AND l.end_date <= ? AND l.end_date > NOW() AND u.mailrecall=true AND l.status = 1;";
+		
+		List<Loan> listReturn = new ArrayList<>();
+		
+		try {
+			connection = DaoConnection.getInstance().getConnection();
+			prepared = connection.prepareStatement(query);
+			prepared.setDate(1, todayPlus5);
+			res = prepared.executeQuery();
+			
+			while(res.next()) {
+				
+				User user = new User();
+				user.setId(res.getLong("user_id"));
+				user.setFirstName(res.getString("firstname"));
+				user.setLastName(res.getString("lastname"));
+				user.setPassword(res.getString("password"));
+				user.setConnected(res.getBoolean("connected"));
+				user.setMailRecall(true);
+				user.setMail(res.getString("mail"));
+				
+				Document doc = new Document();
+				doc.setId(res.getLong("document_id"));
+				doc.setAuthor(res.getString("author"));
+				doc.setTotalstock(res.getInt("total_stock"));
+				doc.setCurrentstock(res.getInt("current_stock"));
+				doc.setRef(res.getString("ref"));
+				doc.setTitle(res.getString("title"));
+				
+				Loan loan = new Loan();
+				loan.setBeginDate(res.getDate("start_date"));
+				loan.setEndDate(res.getDate("end_date"));
+				loan.setId(res.getLong("id"));
+				loan.setUser(user);
+				loan.setDoc(doc);
+
+				listReturn.add(loan);
+			}
+		} catch (SQLException e) {
+			logger.error("forMailRecall", e);
+		}finally {
+			try {
+				if(res!=null) {
+					res.close();
+				}
+				if(prepared!=null) {
+					prepared.close();
+				}
+				if(connection!=null) {
+					connection.close();
+				}
+			}catch(SQLException e) {
+				logger.error("Close closeable mailRecall", e);
+			}
+		}
+		return listReturn;
+	}
+
+	public List<Loan> getLoansByDocument(Document doc) {
+		JdbcTemplate jdbc = new JdbcTemplate(dataSource);
+		// Add parameters
+		List<Loan> ls = jdbc.query("SELECT * FROM loans WHERE document_id=?", new Object[] {doc.getId()}, new LoanRowMapper());
+		return ls;
+	}
+
+
+	@Override
+	public Boolean alreadyHaveTheDocument(User user, Document doc) {
+		JdbcTemplate jdbc = new JdbcTemplate(dataSource);
+		String query = "SELECT COUNT(*) FROM loans WHERE document_id=? AND user_id=? AND (status=1 OR status=2);";
+		Integer loanExist = jdbc.queryForObject(query, new Object[] {doc.getId(), user.getId()}, Integer.class);
+		
+		return loanExist > 0;
+	}
+
+
+	@Override
+	public List<Loan> cloturedAfterTwoDays() {
+		JdbcTemplate jdbc = new JdbcTemplate(dataSource);
+		
+		// Status 4 = AWAITING
+		String query = "SELECT l.id, l.user_id, l.document_id, l.start_date, l.end_date, l.status, d.title, d.author, d.ref, d.total_stock, d.category_id, d.type_id, d.current_stock FROM loans l, documents d WHERE l.document_id = d.id AND l.status = 4 AND l.start_date <= ?;";
+		
+		LocalDate date = LocalDate.now().minusDays(2);
+		java.sql.Date twoDaysAgo = java.sql.Date.valueOf(date);
+		
+		List<Loan> listExpired = jdbc.query(query, new Object[] {twoDaysAgo}, new LoanCompleteRowMapper());
+		
+		// Status 3 = CLOTURED
+		query = "UPDATE loans SET status = 0 WHERE status = 4 AND start_date <= ?;";
+		
+		jdbc.update(query, new Object[] {twoDaysAgo});
+		
+		// Update documents stock
+		query = "UPDATE documents SET current_stock = ? WHERE id=?;";
+		for(Loan loan : listExpired) {
+			jdbc.update(query, new Object[] {loan.getDoc().getCurrentstock()+1, loan.getDoc().getId()});
+			loan.getDoc().setCurrentstock(loan.getDoc().getCurrentstock() + 1);
+		}
+		
+		return listExpired;
+		
 	}
 }

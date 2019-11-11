@@ -1,5 +1,6 @@
 package fr.library.sql;
 
+
 /*
  * DAO Factory, to get access to a unique instance of the tables DAO (user, document, loan)
  */
@@ -9,6 +10,7 @@ public class DaoFactory {
 	private  IDocumentDao documentDao = null;
 	private  ILoanDao loanDao = null;
 	private  IUserDao userDao = null;
+	private  IWaitingListDao waitingListDao = null;
 	private static DaoFactory instance = null;
 
 	
@@ -46,6 +48,15 @@ public class DaoFactory {
 		} else {
 			loanDao = new LoanDaoImpl();
 			return loanDao;
+		}
+	}
+	
+	public IWaitingListDao getWaitingListDao() {
+		if (waitingListDao != null) {
+			return waitingListDao;
+		} else {
+			waitingListDao = new WaitingListDaoImpl();
+			return waitingListDao;
 		}
 	}
 

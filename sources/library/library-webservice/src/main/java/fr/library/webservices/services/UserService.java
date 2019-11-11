@@ -76,8 +76,8 @@ public class UserService {
 		} catch (MessagingException e) {
 			System.out.println(e);
 		}
-		
 	}
+	
 	
 	public static Long insertUser(String firstname, String lastname, String mail, String password) {
 		
@@ -88,5 +88,9 @@ public class UserService {
 		newUser.setPassword(password);
 		
 		return dao.createUser(newUser);
+	}
+
+	public static void updateUser(User user) {
+		dao.updateItem(user);
 	}
 }
