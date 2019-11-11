@@ -127,7 +127,7 @@ On y trouve également les "Controllers", implémentés et paramétrés à l'aid
 
 #### **Le batch**
 
-Le module library-batch est une application lancée à l'aide du framework SpringBoot qui fait appel à un Scheduler qui va lancer une tâche tous les Lundi, Mercredi et Vendredi pour envoyer un mail de rappel aux utilisateurs dont la date de retour de prêts est expirée. Tout le corps de la tâche se trouve dans la méthode task, notamment la requête à la base de données pour récupérer ces utilisateurs grâce à Spring JDBC. et l'envoie des mail avec Spring Mail. On y retrouve également les configurations nécessaires par annotation dans la classe AppConfig.
+Le module library-batch est une application lancée à l'aide du framework SpringBoot qui fait appel à un Scheduler qui va lancer une plusieurs tâches à temps régulier. La première pour envoyer un mail de rappel aux utilisateurs dont la date de retour de prêts est expirée. La deuxième envoit un rappel aux utilisateurs dont la date de retour de prêt arrive à son terme. Et la troisième va mettre a jour la file d'attente d'un ouvrage indisponible si un utilisateur n'est pas venu chercher à temps sa réservation. Tout le corps de la tâche se trouve dans la méthode task des trois classes. On y retrouve également les configurations nécessaires par annotation dans la classe AppConfig.
 
 #### **Modèle**
 
