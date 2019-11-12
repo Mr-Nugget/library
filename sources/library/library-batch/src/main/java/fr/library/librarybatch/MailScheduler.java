@@ -34,8 +34,8 @@ public class MailScheduler {
 	IManage service;
 
 	private static Logger logger = Logger.getLogger(MailScheduler.class);
-	//cron="0 10 * * 1,5" ? -> Every Mondays and Fridays at 10AM
-	@Scheduled(cron="* * * * * 0")
+	//cron="0 10 * * 1,5 ?" -> Every Mondays and Fridays at 10AM
+	@Scheduled(cron="0 10 * * 1,5 ?")
 	public void task() {
 		StringBuilder message = new StringBuilder();
 		DateFormat simpleFormat = new SimpleDateFormat("dd/MM/yyyy");

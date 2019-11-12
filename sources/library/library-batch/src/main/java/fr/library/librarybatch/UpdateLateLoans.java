@@ -14,7 +14,7 @@ public class UpdateLateLoans {
 
 	private static Logger logger = Logger.getLogger(UpdateLateLoans.class);
 	//cron="0 0 * * *" ? -> Everyday at midnight
-	@Scheduled(cron="* * * * * 0")
+	@Scheduled(cron="0 0 0 * * ?")
 	public void task() {
 		service.updateLateLoans();
 		logger.info("Update late loans OK");
