@@ -87,4 +87,8 @@ public class ManageImpl implements IManage{
 	public List<Loan> mailRecall() {
 		return LoanService.mailRecall();
 	}
+	@Override
+	public void updateLateLoans() {
+		LoanService.updateLateLoans();
+	}
 }

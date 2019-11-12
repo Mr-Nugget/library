@@ -18,22 +18,53 @@ import fr.library.exceptions.LoanStatusException;
  */
 public interface ILoanDao extends ICrudDao<Loan>{
 	
-	// Return the list of all the archived loans of a user
+	/**
+	 * Return the list of all the archived loans of a user
+	 * @param userId
+	 * @return
+	 */
 	public List<Loan> getListArchived(Long userId); 
 	
-	// Return the list of the loans in_progress of a user
+	/**
+	 * Return the list of the loans in_progress of a user
+	 * @param userId
+	 * @return
+	 */
 	public List<Loan> getListCurrent(Long userId); 
 	
-	// Add 4 weeks to the end date of a loan and change the status to EXTENDED
+	/**
+	 *  Add 4 weeks to the end date of a loan and change the status to EXTENDED
+	 * @param loanId
+	 * @throws LoanStatusException
+	 */
 	public void extendLoan(Long loanId) throws LoanStatusException;
 	
-	// Set the status to CLOTURED and change the end_date
+	/**
+	 * Update the loans with endate < today
+	 */
+	public void updateLateLoans();
+	
+	/**
+	 * Set the status to CLOTURED and change the end_date
+	 * @param loan
+	 * @throws LoanStatusException
+	 */
 	public void returnDocument(Loan loan) throws LoanStatusException; 
 	
-	 // Create a new Loan depending on a user and a document and return the id of the new loan, throw an exception if the document is not available
+	/**
+	 * Create a new Loan depending on a user and a document and return the id of the new loan, throw an exception if the document is not available
+	 * @param doc
+	 * @param user
+	 * @param status
+	 * @return
+	 * @throws DocumentNotAvailableException
+	 */
 	public Long createLoan(Document doc, User user, Status status) throws DocumentNotAvailableException;
 	
-	// Get a list of expired loans -> endDate < today
+	/**
+	 * Get a list of expired loans -> endDate < today
+	 * @return
+	 */
 	public List<Loan> getExpiredLoans();
 	
 
@@ -43,7 +74,11 @@ public interface ILoanDao extends ICrudDao<Loan>{
 	 */
 	public List<Loan> forMailRecall();
 
-	// Return when the document will be available if there is no more stock
+	/**
+	 * Return when the document will be available if there is no more stock
+	 * @param doc
+	 * @return
+	 */
 	public List<Loan> getLoansByDocument(Document doc);
 	
 	/**

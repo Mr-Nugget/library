@@ -60,15 +60,21 @@ public interface IWaitingList {
 
     /**
      * 
+     * @param arg1
      * @param arg0
+     * @return
+     *     returns java.lang.Long
      */
     @WebMethod
-    @RequestWrapper(localName = "returnDocument", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.waiting.ReturnDocument")
-    @ResponseWrapper(localName = "returnDocumentResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.waiting.ReturnDocumentResponse")
-    @Action(input = "http://entrypoint.webservices.library.fr/IWaitingList/returnDocumentRequest", output = "http://entrypoint.webservices.library.fr/IWaitingList/returnDocumentResponse")
-    public void returnDocument(
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "addUserToList", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.waiting.AddUserToList")
+    @ResponseWrapper(localName = "addUserToListResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.waiting.AddUserToListResponse")
+    @Action(input = "http://entrypoint.webservices.library.fr/IWaitingList/addUserToListRequest", output = "http://entrypoint.webservices.library.fr/IWaitingList/addUserToListResponse")
+    public Long addUserToList(
         @WebParam(name = "arg0", targetNamespace = "")
-        Long arg0);
+        Long arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        Long arg1);
 
     /**
      * 
@@ -87,20 +93,14 @@ public interface IWaitingList {
 
     /**
      * 
-     * @param arg1
      * @param arg0
-     * @return
-     *     returns java.lang.Long
      */
     @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "addUserToList", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.waiting.AddUserToList")
-    @ResponseWrapper(localName = "addUserToListResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.waiting.AddUserToListResponse")
-    @Action(input = "http://entrypoint.webservices.library.fr/IWaitingList/addUserToListRequest", output = "http://entrypoint.webservices.library.fr/IWaitingList/addUserToListResponse")
-    public Long addUserToList(
+    @RequestWrapper(localName = "returnDocument", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.waiting.ReturnDocument")
+    @ResponseWrapper(localName = "returnDocumentResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.waiting.ReturnDocumentResponse")
+    @Action(input = "http://entrypoint.webservices.library.fr/IWaitingList/returnDocumentRequest", output = "http://entrypoint.webservices.library.fr/IWaitingList/returnDocumentResponse")
+    public void returnDocument(
         @WebParam(name = "arg0", targetNamespace = "")
-        Long arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        Long arg1);
+        Long arg0);
 
 }
