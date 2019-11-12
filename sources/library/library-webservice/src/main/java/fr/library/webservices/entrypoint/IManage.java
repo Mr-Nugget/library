@@ -30,7 +30,11 @@ public interface IManage {
 	// Add 4 more week to endDate of a loan if it is not already extended
 	@WebMethod
 	public boolean extendLoan(String jwt, Long loanId) throws JWTCheckingException;
-
+	
+	// Update late loans : set status from 1 or 2 to 3 if end_date < today
+	@WebMethod
+	public void updateLateLoans();
+	
 	// Get the list of expired loans -> endDate < Today
 	@WebMethod
 	public List<Loan> loanExpired();

@@ -166,8 +166,8 @@ public class LoanDaoImpl implements ILoanDao {
 		Connection connect = null;
 		PreparedStatement prepared = null;
 		ResultSet res = null;
-		//select only document with EXTENDED or IN PROGRESS status
-		String query = "SELECT * FROM loans AS l, documents AS d WHERE l.document_id=d.id AND l.user_id= ? AND (l.status=1 OR l.status=2 OR l.status=4);";
+		//select only document with EXTENDED, IN PROGRESS or AWAITING status
+		String query = "SELECT * FROM loans AS l, documents AS d WHERE l.document_id=d.id AND l.user_id= ? AND (l.status=1 OR l.status=2 OR l.status = 3 OR l.status=4);";
 
 		try {
 			connect = DaoConnection.getInstance().getConnection();
@@ -394,7 +394,17 @@ public class LoanDaoImpl implements ILoanDao {
 			}
 		}
 	}
+	
 
+
+	@Override
+	public void updateLateLoans() {
+		JdbcTemplate jdbc = new JdbcTemplate(dataSource);
+		
+		String query = "UPDATE loans SET status = 3 WHERE end_date <= NOW() AND (status = 1 OR status = 2);";
+		
+		jdbc.update(query);
+	}
 
 	@Override
 	public List<Loan> findAll() {
@@ -614,4 +624,5 @@ public class LoanDaoImpl implements ILoanDao {
 		return listExpired;
 		
 	}
+
 }

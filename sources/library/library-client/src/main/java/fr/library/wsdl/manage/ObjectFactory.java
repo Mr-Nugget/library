@@ -24,13 +24,15 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _GetCurrentLoans_QNAME = new QName("http://entrypoint.webservices.library.fr/", "getCurrentLoans");
+    private final static QName _MailRecall_QNAME = new QName("http://entrypoint.webservices.library.fr/", "mailRecall");
+    private final static QName _UpdateLateLoansResponse_QNAME = new QName("http://entrypoint.webservices.library.fr/", "updateLateLoansResponse");
     private final static QName _LoanExpired_QNAME = new QName("http://entrypoint.webservices.library.fr/", "loanExpired");
     private final static QName _GetArchivedLoansResponse_QNAME = new QName("http://entrypoint.webservices.library.fr/", "getArchivedLoansResponse");
-    private final static QName _GetCurrentLoans_QNAME = new QName("http://entrypoint.webservices.library.fr/", "getCurrentLoans");
     private final static QName _LoanExpiredResponse_QNAME = new QName("http://entrypoint.webservices.library.fr/", "loanExpiredResponse");
-    private final static QName _MailRecall_QNAME = new QName("http://entrypoint.webservices.library.fr/", "mailRecall");
     private final static QName _JWTCheckingException_QNAME = new QName("http://entrypoint.webservices.library.fr/", "JWTCheckingException");
     private final static QName _GetCurrentLoansResponse_QNAME = new QName("http://entrypoint.webservices.library.fr/", "getCurrentLoansResponse");
+    private final static QName _UpdateLateLoans_QNAME = new QName("http://entrypoint.webservices.library.fr/", "updateLateLoans");
     private final static QName _ExtendLoan_QNAME = new QName("http://entrypoint.webservices.library.fr/", "extendLoan");
     private final static QName _ExtendLoanResponse_QNAME = new QName("http://entrypoint.webservices.library.fr/", "extendLoanResponse");
     private final static QName _GetArchivedLoans_QNAME = new QName("http://entrypoint.webservices.library.fr/", "getArchivedLoans");
@@ -60,14 +62,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetCurrentLoans }
-     * 
-     */
-    public GetCurrentLoans createGetCurrentLoans() {
-        return new GetCurrentLoans();
-    }
-
-    /**
      * Create an instance of {@link LoanExpiredResponse }
      * 
      */
@@ -76,19 +70,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link MailRecall }
-     * 
-     */
-    public MailRecall createMailRecall() {
-        return new MailRecall();
-    }
-
-    /**
      * Create an instance of {@link GetArchivedLoansResponse }
      * 
      */
     public GetArchivedLoansResponse createGetArchivedLoansResponse() {
         return new GetArchivedLoansResponse();
+    }
+
+    /**
+     * Create an instance of {@link UpdateLateLoansResponse }
+     * 
+     */
+    public UpdateLateLoansResponse createUpdateLateLoansResponse() {
+        return new UpdateLateLoansResponse();
     }
 
     /**
@@ -124,11 +118,35 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link UpdateLateLoans }
+     * 
+     */
+    public UpdateLateLoans createUpdateLateLoans() {
+        return new UpdateLateLoans();
+    }
+
+    /**
      * Create an instance of {@link ExtendLoan }
      * 
      */
     public ExtendLoan createExtendLoan() {
         return new ExtendLoan();
+    }
+
+    /**
+     * Create an instance of {@link GetCurrentLoans }
+     * 
+     */
+    public GetCurrentLoans createGetCurrentLoans() {
+        return new GetCurrentLoans();
+    }
+
+    /**
+     * Create an instance of {@link MailRecall }
+     * 
+     */
+    public MailRecall createMailRecall() {
+        return new MailRecall();
     }
 
     /**
@@ -172,6 +190,33 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetCurrentLoans }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://entrypoint.webservices.library.fr/", name = "getCurrentLoans")
+    public JAXBElement<GetCurrentLoans> createGetCurrentLoans(GetCurrentLoans value) {
+        return new JAXBElement<GetCurrentLoans>(_GetCurrentLoans_QNAME, GetCurrentLoans.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link MailRecall }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://entrypoint.webservices.library.fr/", name = "mailRecall")
+    public JAXBElement<MailRecall> createMailRecall(MailRecall value) {
+        return new JAXBElement<MailRecall>(_MailRecall_QNAME, MailRecall.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link UpdateLateLoansResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://entrypoint.webservices.library.fr/", name = "updateLateLoansResponse")
+    public JAXBElement<UpdateLateLoansResponse> createUpdateLateLoansResponse(UpdateLateLoansResponse value) {
+        return new JAXBElement<UpdateLateLoansResponse>(_UpdateLateLoansResponse_QNAME, UpdateLateLoansResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link LoanExpired }{@code >}}
      * 
      */
@@ -190,30 +235,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetCurrentLoans }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://entrypoint.webservices.library.fr/", name = "getCurrentLoans")
-    public JAXBElement<GetCurrentLoans> createGetCurrentLoans(GetCurrentLoans value) {
-        return new JAXBElement<GetCurrentLoans>(_GetCurrentLoans_QNAME, GetCurrentLoans.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link LoanExpiredResponse }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://entrypoint.webservices.library.fr/", name = "loanExpiredResponse")
     public JAXBElement<LoanExpiredResponse> createLoanExpiredResponse(LoanExpiredResponse value) {
         return new JAXBElement<LoanExpiredResponse>(_LoanExpiredResponse_QNAME, LoanExpiredResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link MailRecall }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://entrypoint.webservices.library.fr/", name = "mailRecall")
-    public JAXBElement<MailRecall> createMailRecall(MailRecall value) {
-        return new JAXBElement<MailRecall>(_MailRecall_QNAME, MailRecall.class, null, value);
     }
 
     /**
@@ -232,6 +259,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://entrypoint.webservices.library.fr/", name = "getCurrentLoansResponse")
     public JAXBElement<GetCurrentLoansResponse> createGetCurrentLoansResponse(GetCurrentLoansResponse value) {
         return new JAXBElement<GetCurrentLoansResponse>(_GetCurrentLoansResponse_QNAME, GetCurrentLoansResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link UpdateLateLoans }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://entrypoint.webservices.library.fr/", name = "updateLateLoans")
+    public JAXBElement<UpdateLateLoans> createUpdateLateLoans(UpdateLateLoans value) {
+        return new JAXBElement<UpdateLateLoans>(_UpdateLateLoans_QNAME, UpdateLateLoans.class, null, value);
     }
 
     /**

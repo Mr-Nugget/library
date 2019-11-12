@@ -45,4 +45,8 @@ public class LoanService {
 	public static List<Loan> mailRecall(){
 		return dao.forMailRecall();
 	}
+	
+	public static void updateLateLoans() {
+		dao.updateLateLoans();
+	}
 }
