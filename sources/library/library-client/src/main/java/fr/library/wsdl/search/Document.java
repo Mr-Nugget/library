@@ -24,6 +24,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="currentstock" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="ref" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="resa" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="title" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="totalstock" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *         &lt;element name="type" type="{http://entrypoint.webservices.library.fr/}type" minOccurs="0"/>
@@ -43,6 +44,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "currentstock",
     "id",
     "ref",
+    "resa",
     "title",
     "totalstock",
     "type"
@@ -56,6 +58,7 @@ public class Document {
     protected Integer currentstock;
     protected Long id;
     protected String ref;
+    protected int resa;
     protected String title;
     protected Integer totalstock;
     protected Type type;
@@ -202,6 +205,22 @@ public class Document {
      */
     public void setRef(String value) {
         this.ref = value;
+    }
+
+    /**
+     * Obtient la valeur de la propriété resa.
+     * 
+     */
+    public int getResa() {
+        return resa;
+    }
+
+    /**
+     * Définit la valeur de la propriété resa.
+     * 
+     */
+    public void setResa(int value) {
+        this.resa = value;
     }
 
     /**

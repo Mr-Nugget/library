@@ -455,7 +455,7 @@ public class LoanDaoImpl implements ILoanDao {
 		PreparedStatement prepared = null;
 		ResultSet res = null;
 		List<Loan> listRes = new ArrayList<>();
-		String query = "SELECT document_id, user_id, l.id, lastname, firstname, mail, title, author, start_date, end_date, status, ref FROM users u, loans l, documents d WHERE u.id = l.user_id AND d.id = l.document_id AND (l.status = 1 OR l.status = 2) AND l.end_date <= NOW();";
+		String query = "SELECT document_id, user_id, l.id, lastname, firstname, mail, title, author, start_date, end_date, status, ref FROM users u, loans l, documents d WHERE u.id = l.user_id AND d.id = l.document_id AND (l.status = 1 OR l.status = 2 OR l.status = 3) AND l.end_date <= NOW();";
 		
 		try{
 			connection = DaoConnection.getInstance().getConnection();
@@ -521,7 +521,7 @@ public class LoanDaoImpl implements ILoanDao {
 		PreparedStatement prepared = null;
 		ResultSet res = null;
 		
-		String query = "SELECT * FROM users u, loans l, documents d WHERE l.user_id = u.id AND l.document_id = d.id AND l.end_date <= ? AND l.end_date > NOW() AND u.mailrecall=true AND l.status = 1;";
+		String query = "SELECT * FROM users u, loans l, documents d WHERE l.user_id = u.id AND l.document_id = d.id AND l.end_date <= ? AND l.end_date > NOW() AND u.mailrecall=true AND (l.status = 1 OR l.status = 2);";
 		
 		List<Loan> listReturn = new ArrayList<>();
 		

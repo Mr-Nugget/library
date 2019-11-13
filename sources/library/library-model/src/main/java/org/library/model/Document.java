@@ -26,6 +26,8 @@ public class Document {
 	private Integer currentStock;
 	// Available date
 	private Date availableDate;
+	// Nb resa
+	private int resa;
 
 	
 	//Constructor with all fields
@@ -39,6 +41,16 @@ public class Document {
 		this.totalStock = totalStock;
 		this.currentStock = currentStock;
 		this.availableDate = null;
+		this.resa = 0;
+	}
+	
+	
+	
+	
+
+	//empty constructor
+	public Document() {
+		
 	}
 	
 	public Date getAvailableDate() {
@@ -48,10 +60,13 @@ public class Document {
 	public void setAvailableDate(Date availableDate) {
 		this.availableDate = availableDate;
 	}
-
-	//empty constructor
-	public Document() {
-		
+	
+	public int getResa() {
+		return resa;
+	}
+	
+	public void setResa(int resa) {
+		this.resa = resa;
 	}
 
 	public Integer getTotalstock() {

@@ -31,6 +31,7 @@
 								<th scope="col">Categorie</th>
 								<th scope="col">Stock</th>
 								<th scope="col">Disponible</th>
+								<th scope="col">Nb Résa</th>
 								<th scope="col">Réserver</th>								
 							</tr>
 						</thead>
@@ -46,10 +47,12 @@
 									<c:choose>
 										<c:when test="${doc.currentstock == 0}">
 											<td id="notAvailable">Disponible le <fmt:formatDate value="${doc.availableDate.toGregorianCalendar().time}" pattern="dd-MM-yyyy" /></td>
+											<td>${doc.resa}</td>
 											<td><a href="addToList?docId=${doc.id}">Réserver</a></td>
 										</c:when>
 										<c:otherwise>
 											<td id="available">Disponible</td>
+											<td>X</td>
 											<td>X</td>
 										</c:otherwise>
 									</c:choose>

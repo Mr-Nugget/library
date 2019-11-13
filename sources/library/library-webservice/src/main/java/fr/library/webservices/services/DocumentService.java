@@ -5,12 +5,14 @@ import java.util.List;
 
 import org.library.model.Document;
 import org.library.model.Loan;
+import org.library.model.WaitingList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.library.sql.DaoFactory;
 import fr.library.sql.IDocumentDao;
 import fr.library.sql.ILoanDao;
+import fr.library.sql.IWaitingListDao;
 
 @Service("DocumentService")
 public class DocumentService {
@@ -19,6 +21,9 @@ public class DocumentService {
 	
 	@Autowired
 	private ILoanDao loanDao;
+	
+	@Autowired
+	private IWaitingListDao wlDao;
 	
 	/**
 	 * Return a list of document corresponding to the criteria and the keyword.
@@ -32,6 +37,10 @@ public class DocumentService {
 		for(Document doc : ld) {
 			if(doc.getCurrentstock() == 0) {
 				doc.setAvailableDate(getAvailableDate(doc));
+				WaitingList wl = wlDao.getByDocument(doc);
+				if(wl != null) {
+					doc.setResa(wl.getLastPosition());
+				}
 			}
 		}
 		

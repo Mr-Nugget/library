@@ -1,8 +1,12 @@
 -- Pour faire une réservation et rendre le livre
 
 INSERT INTO documents (id, title, author, ref, type_id, category_id, total_stock, current_stock) VALUES(42, 'Pas dispo', 'Test', 'TEST', 0,0, 1, 0);
+INSERT INTO documents (id, title, author, ref, type_id, category_id, total_stock, current_stock) VALUES(43, 'Reservation annulée', 'Test', 'TEST', 0,0, 1, 0);
 
 INSERT INTO loans (id, user_id, document_id, start_date, end_date, status) VALUES(42, 1, 42, '20-10-2019', '20-11-2019', 1);
+
+INSERT INTO loans (id, user_id, document_id, start_date, end_date, status) VALUES(47, 1, 43, '11-11-2019', '10-12-2019', 4);
+
 
 -- Pour le mail de rappel
 

@@ -28,6 +28,18 @@ public interface IWaitingList {
 
     /**
      * 
+     * @return
+     *     returns java.util.List<fr.library.wsdl.waiting.Loan>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "updateListAfterTwoDays", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.waiting.UpdateListAfterTwoDays")
+    @ResponseWrapper(localName = "updateListAfterTwoDaysResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.waiting.UpdateListAfterTwoDaysResponse")
+    @Action(input = "http://entrypoint.webservices.library.fr/IWaitingList/updateListAfterTwoDaysRequest", output = "http://entrypoint.webservices.library.fr/IWaitingList/updateListAfterTwoDaysResponse")
+    public List<Loan> updateListAfterTwoDays();
+
+    /**
+     * 
      * @param arg1
      * @param arg0
      * @throws UserNotInTheListException_Exception
@@ -45,18 +57,6 @@ public interface IWaitingList {
         Long arg1)
         throws UserNotInTheListException_Exception
     ;
-
-    /**
-     * 
-     * @return
-     *     returns java.util.List<fr.library.wsdl.waiting.Loan>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "updateListAfterTwoDays", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.waiting.UpdateListAfterTwoDays")
-    @ResponseWrapper(localName = "updateListAfterTwoDaysResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.waiting.UpdateListAfterTwoDaysResponse")
-    @Action(input = "http://entrypoint.webservices.library.fr/IWaitingList/updateListAfterTwoDaysRequest", output = "http://entrypoint.webservices.library.fr/IWaitingList/updateListAfterTwoDaysResponse")
-    public List<Loan> updateListAfterTwoDays();
 
     /**
      * 
@@ -79,6 +79,18 @@ public interface IWaitingList {
     /**
      * 
      * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "returnDocument", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.waiting.ReturnDocument")
+    @ResponseWrapper(localName = "returnDocumentResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.waiting.ReturnDocumentResponse")
+    @Action(input = "http://entrypoint.webservices.library.fr/IWaitingList/returnDocumentRequest", output = "http://entrypoint.webservices.library.fr/IWaitingList/returnDocumentResponse")
+    public void returnDocument(
+        @WebParam(name = "arg0", targetNamespace = "")
+        Long arg0);
+
+    /**
+     * 
+     * @param arg0
      * @return
      *     returns java.util.List<fr.library.wsdl.waiting.WaitingList>
      */
@@ -88,18 +100,6 @@ public interface IWaitingList {
     @ResponseWrapper(localName = "getAllWaitingResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.waiting.GetAllWaitingResponse")
     @Action(input = "http://entrypoint.webservices.library.fr/IWaitingList/getAllWaitingRequest", output = "http://entrypoint.webservices.library.fr/IWaitingList/getAllWaitingResponse")
     public List<WaitingList> getAllWaiting(
-        @WebParam(name = "arg0", targetNamespace = "")
-        Long arg0);
-
-    /**
-     * 
-     * @param arg0
-     */
-    @WebMethod
-    @RequestWrapper(localName = "returnDocument", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.waiting.ReturnDocument")
-    @ResponseWrapper(localName = "returnDocumentResponse", targetNamespace = "http://entrypoint.webservices.library.fr/", className = "fr.library.wsdl.waiting.ReturnDocumentResponse")
-    @Action(input = "http://entrypoint.webservices.library.fr/IWaitingList/returnDocumentRequest", output = "http://entrypoint.webservices.library.fr/IWaitingList/returnDocumentResponse")
-    public void returnDocument(
         @WebParam(name = "arg0", targetNamespace = "")
         Long arg0);
 
